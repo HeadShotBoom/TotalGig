@@ -21,7 +21,8 @@ Route::get('clients', 'HomeController@clients');
 
 Route::get('invoices', 'HomeController@invoices');
 
-Route::get('employees', 'HomeController@employees');
+Route::model('employees', 'App\Employee');
+Route::resource('employees', 'EmployeeController');
 
 Route::model('gear', 'App\Gear');
 Route::resource('gear', 'GearController');
