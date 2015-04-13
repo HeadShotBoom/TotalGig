@@ -9,7 +9,7 @@ class Gear extends Model {
  *
  * @var string
  */
-    protected $table = 'gear';
+    protected $table = 'gears';
 
     /**
      * The attributes that are mass assignable.

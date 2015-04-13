@@ -23,7 +23,8 @@ Route::get('invoices', 'HomeController@invoices');
 
 Route::get('employees', 'HomeController@employees');
 
-Route::get('gear', 'HomeController@gear');
+Route::model('gear', 'App\Gear');
+Route::resource('gear', 'GearController');
 
 Route::model('packages', 'App\Package');
 Route::resource('packages', 'PackageController');
