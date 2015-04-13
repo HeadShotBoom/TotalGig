@@ -1,0 +1,561 @@
+$fontstack1: Lobster, Cabin, sans-serif;
+$fontstack2: Cabin, sans-serif;
+
+$color1: #382313;
+$color2: #fafafa;
+$color3: #241a18;
+$highlight-color: #eb5b0e;
+
+$light-shadow: 0 0 5px rgba(36,26,24, .35);
+
+
+@mixin border-radius($border-radius) {
+  -webkit-border-radius: $border-radius;
+     -moz-border-radius: $border-radius;
+      -ms-border-radius: $border-radius;
+          border-radius: $border-radius;
+}
+
+@mixin appearance(){
+	appearance:none;
+	moz-appearance:none;
+	webkit-appearance:none;
+	outline: none;
+}
+
+@mixin transition($transition) {
+  -webkit-transition: $transition;
+     -moz-transition: $transition;
+      -ms-transition: $transition;
+          transition: $transition;
+}
+
+@mixin nine-point-gradient($color1, $point1, $color2, $point2, $color3, $point3, $color4, $point4, $color5, $point5, $color6, $point6, $color7, $point7,  $color8, $point8, $color9, $point9) {
+	background: $color1; /* Old browsers */
+	background: -moz-linear-gradient(top, $color1 $point1,$color2 $point2,$color3 $point3,$color4 $point4,$color5 $point5,$color6 $point6,$color7 $point7,$color8 $point8,$color9 $point9); /* FF3.6+ */
+	background: -webkit-linear-gradient(top, $color1 $point1,$color2 $point2,$color3 $point3,$color4 $point4,$color5 $point5,$color6 $point6,$color7 $point7,$color8 $point8,$color9 $point9); /* Chrome10+,Safari5.1+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop($point1,$color1), color-stop($point2,$color2), color-stop($point3,$color3), color-stop($point4,$color4), color-stop($point5,$color5), color-stop($point6,$color6), color-stop($point7,$color7), color-stop($point8,$color8), color-stop($point9,$color9)); /* Chrome,Safari4+ */
+	background: -o-linear-gradient(top, $color1 $point1,$color2 $point2,$color3 $point3,$color4 $point4,$color5 $point5,$color6 $point6,$color7 $point7,$color8 $point8,$color9 $point9); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top, $color1 $point1,$color2 $point2,$color3 $point3,$color4 $point4,$color5 $point5,$color6 $point6,$color7 $point7,$color8 $point8,$color9 $point9); /* IE10+ */
+	background: linear-gradient(to bottom, $color1 $point1,$color2 $point2,$color3 $point3,$color4 $point4,$color5 $point5,$color6 $point6,$color7 $point7,$color8 $point8,$color9 $point9); /* W3C */
+}
+
+@mixin button($border-color, $background-color, $text-color, $font-size){
+	width: 100%;
+	border-sizing: border-box;
+	border: 4px solid $border-color;
+	background: $background-color;
+	font: $font-size $fontstack1;
+	color: $text-color;
+	height: $font-size + (s$font-size*.25);
+	line-height: $font-size + ($font-size*.25);
+	text-shadow: $light-shadow;
+}
+
+ 
+/* Table of Contents
+==================================================
+	#Site Styles
+	#Page Styles
+	 - Landing
+	#Media Queries
+	#Font-Face */
+
+/* #Site Styles
+================================================== */
+body {
+	background: #fafafa;
+	font: 14px $fontstack2;
+}
+
+.content-container {
+	@include nine-point-gradient(#e3e3e3, 0%, #e5e5e5, 5%, #e8e8e8, 10%, #ebebeb, 25%, #f5f5f5, 40%, #f0f0f0, 60%, #f2f2f2, 90%, #f5f5f5, 95%, #f7f7f7, 100%);
+}
+
+h1 {
+	font: 32px $fontstack1;
+	color: $color3;
+	text-shadow: $light-shadow;
+	margin-bottom: 5px;
+}
+
+h2 {
+	font: 24px $fontstack2;
+	font-weight: normal;
+	color: $color1;
+	text-shadow: $light-shadow;
+}
+
+h3 {
+	font: 24px $fontstack2;
+	font-weight: bold;
+	color: $color3;
+	text-shadow: $light-shadow;
+	margin-bottom: 0;
+}
+
+p {
+	font: 14px $fontstack2;
+	color: $color1;
+}
+
+a {
+	text-decoration: none;
+	@include transition(all .3s ease-in-out);
+}
+
+a:hover {
+	color: $color1;
+}
+
+.highlight-text {
+	color: $highlight-color;
+}
+
+.graphic-underline {
+	padding-bottom: 10px;
+	background: url('../img/underline.png') repeat-x 0% 100%;
+}
+
+.center-row {
+	width: 100%;
+
+	* {
+		text-align: center;
+	}	
+}
+
+header {
+	width: 100%;
+	height: 60px;
+	line-height: 60px;
+	margin: 0;
+
+	@include nine-point-gradient(rgba(0,0,0,.9), 0%, rgba(3,2,2, .9), 10%, rgba(8,6,5,.9), 25%, rgba(13,9,9,.9), 40%, rgba(15,11,10,.9), 50%, rgba(18,13,12,.9), 60%, rgba(20,15,14,.9), 75%, rgba(23,17,15, .9), 90%, rgba(28,20,19,.9), 100%);
+	
+	#header-logo {
+		font: 32px $fontstack1;
+		color: $highlight-color;
+		margin: 0;
+		line-height: inherit;
+	}
+
+	#main_nav {
+		list-style: none;
+		color: $color2;
+		font: 24px $fontstack2;
+		float: right;
+		line-height: inherit;
+
+		li {
+			display: inline-block;
+			margin-left: 30px;
+			@include transition(all .4s ease-in-out);
+		}
+
+		li:hover {
+			color: $highlight-color;
+		}
+	}
+}
+
+footer {
+	@include nine-point-gradient(#e3e3e3, 0%, #e5e5e5, 5%, #e8e8e8, 10%, #ebebeb, 25%, #f5f5f5, 40%, #f0f0f0, 60%, #f2f2f2, 90%, #f5f5f5, 95%, #f7f7f7, 100%);
+	border-top: 1px solid $color3;
+	padding: 50px 0;
+	text-align: center;
+	img {
+		width: 220px;
+		display: block;
+		margin: 0 auto 10px;
+	}
+}
+
+.fill-background {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 90;
+	background: rgba(0,0,0,.8);
+}
+
+.modal {
+	width: 460px;
+	min-height: 350px;
+	max-height: 550px;
+	overflow: scroll;
+	padding: 40px 80px;
+	z-index: 99;
+	position: fixed;
+	top: 50px;
+	left: 50%;
+	margin-left: -320px;
+	@include nine-point-gradient(#e3e3e3, 0%, #e5e5e5, 5%, #e8e8e8, 10%, #ebebeb, 25%, #f5f5f5, 40%, #f0f0f0, 60%, #f2f2f2, 90%, #f5f5f5, 95%, #f7f7f7, 100%);
+	border: 2px solid $color1;
+	box-shadow: $light-shadow;
+	@include border-radius(5px);
+
+	>img {
+		width: 100%;
+	}
+
+	form {
+		margin: 0;
+
+		.form-row {
+			width: 100%;
+			margin-bottom: 20px;
+
+			.form-icon {
+				display: inline-block;
+				margin-right: 20px;
+				width: 38px;
+			}
+
+			input {
+				@include transition(all .3s ease-in-out);
+				display: inline-block;
+				width: 369px;
+				height: 20px;
+				color: $color1;
+				vertical-align: top;
+				margin: 0;
+				font: 24px $fontstack2;
+				@include border-radius(5px);
+				background: $color2;
+				border-sizing: border-box;
+				border: 2px solid $color3;
+				box-shadow: $light-shadow;
+			}
+
+			input:focus {
+				border-color: $highlight-color;
+			}
+		}
+
+		input[type="submit"]{
+			@include button($color3, rgba(0,0,0,0), $highlight-color, 24px);
+			@include appearance();
+			@include border-radius(5px);
+			@include transition(all .3s ease-in-out);
+			border-width: 3px;
+		}
+
+		input[type="submit"]:hover{
+			@include button($color1, rgba(0,0,0,0), $color1, 24px);
+			border-width: 3px;
+		}
+	}
+
+	p {
+		text-align: center;
+	}
+}
+
+.modal-trigger {
+	cursor: pointer;
+}
+
+.hide {
+	display: none;
+}
+
+/* #Page Styles
+================================================== */
+/* - Landing
+======================*/
+#cta {
+	height: 550px;
+
+	.block-text {
+		margin-top: 80px;
+		li {
+			font: 42px $fontstack1;
+			height: 60px;
+			line-height: 60px;
+			margin-bottom: 20px;
+			color: $color2;
+			text-shadow: $light-shadow;
+		}
+	}
+
+	button {
+		margin-top: 310px;
+		text-shadow: $light-shadow;
+		box-shadow: $light-shadow;
+		@include button($highlight-color, rgba(0,0,0,.6), $color2, 32px);
+		@include appearance();
+		@include border-radius(10px);
+		@include transition(all .3s ease-in-out);
+	}
+	button:hover {
+		@include button($color2, rgba(0,0,0,.6), $highlight-color, 32px);
+	}
+}
+
+#cta + *{
+	padding-top: 50px;
+}
+
+.feature {
+	border-sizing: border-box;
+	border: 5px solid $color3;
+	width: 205px;
+	margin-bottom: 20px;
+	@include border-radius(10px);
+	height: 200px;
+	padding: 10px 0;
+
+	img {
+		height: 80px;
+		display: block;
+		margin: 0 auto;
+	}
+
+	h3, p {
+		padding: 0 10px;
+	}
+}
+
+#testimonials {
+	@include nine-point-gradient(rgba(0,0,0,.95), 0%, rgba(3,2,2, .9), 10%, rgba(8,6,5,.95), 25%, rgba(13,9,9,.95), 40%, rgba(15,11,10,.95), 50%, rgba(18,13,12,.95), 60%, rgba(20,15,14,.95), 75%, rgba(23,17,15, .95), 90%, rgba(28,20,19,.95), 100%);
+
+	padding: 50px 0;
+
+	h1, p {
+		color: $color2;
+	}
+
+	.mega-quote {
+		color: $highlight-color;
+		text-shadow: $light-shadow;
+		font: 150px $fontstack1;
+		line-height: 0;
+		padding-top: 60px;
+	}
+
+	p {
+		text-align: center;
+		span {
+			margin-top: 10px;
+			float: right;
+		}
+	}
+}
+
+#get-started-container {
+	width: 300px;
+	margin: 20px auto 0;
+	padding-bottom: 50px;
+	button {
+		text-shadow: $light-shadow;
+		box-shadow: $light-shadow;
+		@include button($color3, rgba(0,0,0,0), $highlight-color, 32px);
+		@include appearance();
+		@include border-radius(10px);
+		@include transition(all .3s ease-in-out);
+	}
+
+	button:hover {
+		@include button($color1, rgba(0,0,0,0), $color1, 32px);
+	}
+}
+
+/* #Media Queries
+================================================== */
+	@media only screen and (min-width: 1440px) {
+		#cta-image {
+			background: url('../img/cta-1980.jpg') no-repeat 50% 0%;
+		}
+	}
+
+	@media only screen and (min-width: 1140px) and (max-width: 1439px) {
+		#cta-image {
+			background: url('../img/cta-1440.jpg') no-repeat 50% 0%;
+		}
+	}
+
+	@media only screen and (min-width: 960px) and (max-width: 1139px) {
+		#cta-image {
+			background: url('../img/cta-1140.jpg') no-repeat 50% 0%;
+		}
+
+		#cta {
+			height: 400px;
+
+			.block-text{
+				margin-top: 20px;
+				li {
+					font-size: 32px;
+					margin-bottom: 10px;
+				}
+			}
+			button {
+				margin-top: 220px;
+				@include button($highlight-color, rgba(0,0,0,.6), $color2, 24px);
+			}
+			button:hover {
+				@include button($color2, rgba(0,0,0,.6), $highlight-color, 24px);
+			}
+		}
+	}
+	
+	/* Smaller than standard 960 (devices and browsers) */
+	@media only screen and (max-width: 959px) {}
+
+	/* Tablet Portrait size to standard 960 (devices and browsers) */
+	@media only screen and (min-width: 768px) and (max-width: 959px) {
+		#cta-image {
+			background: url('../img/cta-960.jpg') no-repeat 50% 0%;
+		}
+		#cta {
+			height: 320px;
+
+			.block-text{
+				margin-top: 0px;
+				li {
+					font-size: 32px;
+					margin-bottom: 10px;
+				}
+			}
+			button {
+				margin-top: 200px;
+				@include button($highlight-color, rgba(0,0,0,.6), $color2, 24px);
+			}
+			button:hover {
+				@include button($color2, rgba(0,0,0,.6), $highlight-color, 24px);
+			}
+		}
+	}
+
+	/* All Mobile Sizes (devices and browser) */
+	@media only screen and (max-width: 767px) {
+		header .container .columns:first-of-type{
+			float: left;
+			display: inline;
+			width: auto;
+			#header-logo {
+				font-size: 24px;
+			}
+		}
+		header .container .columns:last-of-type{
+			float: right;
+			display: inline;
+			width: auto;
+			li {
+				font-size: 14px;
+			}
+		}
+
+		h1 {
+			font-size: 24px;
+		}
+
+		h2 {
+			font-size: 18px;
+		}
+
+		#get-started-container {
+			button {
+				@include button($color3, rgba(0,0,0,0), $highlight-color, 24px);
+			}
+
+			button:hover {
+				@include button($color1, rgba(0,0,0,0), $color1, 24px);
+			}
+		}
+
+		#testimonials .mega-quote {
+			display: none; 
+		}
+	}
+
+	/* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
+	@media only screen and (min-width: 480px) and (max-width: 767px) {
+		#cta-image {
+			background: url('../img/cta-768.jpg') no-repeat 50% 0%;
+		}
+
+		#cta {
+			height: 240px;
+
+			.block-text{
+				text-align: center;
+				margin-top: 0px;
+				li {
+					font-size: 24px;
+					line-height: 24px;
+					margin-bottom: 10px;
+					display: inline;
+					margin-right: 10px;
+				}
+			}
+			button {
+				margin-top: 0;
+				@include button($highlight-color, rgba(0,0,0,.6), $color2, 24px);
+			}
+			button:hover {
+				@include button($color2, rgba(0,0,0,.6), $highlight-color, 24px);
+			}
+		}
+	}
+
+	/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+	@media only screen and (max-width: 479px) {
+		#cta-image {
+			background: url('../img/cta-480.jpg') no-repeat 50% 0%;
+		}
+
+		#cta {
+			height: 100px;
+			
+			.block-text{
+				text-align: center;
+				margin-top: -40px;
+				li {
+					font-size: 24px;
+					line-height: 32px;
+					margin-bottom: 10px;
+					display: inline;
+					margin-right: 10px;
+				}
+			}
+			button {
+				margin-top: 0;
+				@include button($highlight-color, rgba(0,0,0,.6), $color2, 18px);
+			}
+		}
+	}
+
+
+/* #Font-Face
+================================================== */
+	@font-face {
+		font-family: 'Lobster';
+		src: url('../fonts/Lobster 1.4.otf');
+		font-weight: normal;
+		font-style: normal;
+	}
+
+	@font-face {
+		font-family: 'Cabin';
+		src: url('../fonts/Cabin-Regular.ttf');
+		font-weight: normal;
+		font-style: normal;
+	}
+
+	@font-face {
+		font-family: 'Cabin';
+		src: url('../fonts/Cabin-Bold.ttf');
+		font-weight: 600;
+		font-style: normal;
+	}
+
+	@font-face {
+		font-family: 'Cabin';
+		src: url('../fonts/Cabin-Italic.ttf');
+		font-weight: normal;
+		font-style: italic;
+	}
