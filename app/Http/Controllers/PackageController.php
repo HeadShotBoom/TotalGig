@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Package;
 use Auth;
+use App\User;
 
 class PackageController extends Controller {
 
@@ -22,8 +23,9 @@ class PackageController extends Controller {
 	 */
 	public function index()
 	{
+		$user = Auth::user();
 		$packages = Package::all();
-		return view('packages', compact('packages'));
+		return view('packages', compact('packages', 'user'));
 	}
 
 	/**

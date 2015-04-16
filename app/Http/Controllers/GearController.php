@@ -22,8 +22,9 @@ class GearController extends Controller {
 	 */
 	public function index()
 	{
-		$gear = Gear::all();
-		return view('gear', compact('gear'));
+		$user = Auth::user();
+		$gears = Gear::all();
+		return view('gear', compact('user', 'gears'));
 	}
 
 	/**

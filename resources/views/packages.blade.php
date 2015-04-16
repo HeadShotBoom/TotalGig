@@ -37,7 +37,7 @@
     <div class="container">
 
         <div class="breadcrumbs row">
-            <h1>Business Name > <span class="page-title">Packages</span></h1>
+            <h1>{{ $user->business }} > <span class="page-title">Packages</span></h1>
         </div>
 
         <div class="row">
@@ -53,55 +53,32 @@
 
         <div class="packages row">
             <div class="row">
-                <div class="package" data-package-id="0">
-                    <img class="package-icon" data-category-id="1" src="img/web-development.png" alt="Package Name" />
+
+                @foreach($packages as $package)
+
+                <div class="package" data-package-id={{ $package->id }}>
+                    @if($package->category == 'Web-Development')
+                    <img class="package-icon" data-category-id="1" src={{ asset('img/web-development.png') }} alt="Package Name" />
+                    @endif
                     <div data-id="1" class="content">
-                        <h1>Package Name 1</h1>
+                        <h1>{{ $package->package_name }}</h1>
                         <img class="edit modal-trigger" data-modal="edit-package" src="img/edit.png" alt="Edit" />
                         <img class="delete modal-trigger"  data-modal="delete-package" src="img/delete.png" alt="Delete" />
 
                         <table class="services mCustomScrollbar" data-mcs-theme="dark">
 
                             <tbody>
+                            @foreach($package->service as $service)
                             <tr>
-                                <td class="service-quantity">1</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$99.99</td>
+                                <td class="service-quantity">{{ $service->service_qty }}</td>
+                                <td class="service-name">{{ $service->service_name }}</td>
+                                <td class="service-price">{{ $service->service_price }}</td>
                             </tr>
-                            <tr>
-                                <td class="service-quantity">3</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$99.99</td>
-                            </tr>
-                            <tr>
-                                <td class="service-quantity">3</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$999.99</td>
-                            </tr>
-                            <tr>
-                                <td class="service-quantity">3</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$999.99</td>
-                            </tr>
-                            <tr>
-                                <td class="service-quantity">32</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$999.99</td>
-                            </tr>
-                            <tr>
-                                <td class="service-quantity">3</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$999.99</td>
-                            </tr>
-                            <tr>
-                                <td class="service-quantity">3</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$999.99</td>
-                            </tr>
+                            @endforeach
                             <tr>
                                 <td></td>
                                 <td></td>
-                                <td class="sum">$1231.91</td>
+                                <td class="sum">Need Sum JS</td>
                             </tr>
                             </tbody>
 
@@ -109,363 +86,8 @@
                     </div>
                 </div>
 
-                <div class="package" data-package-id="1">
-                    <img class="package-icon" data-category-id="2" src="img/photographer.png" alt="Package Name" />
-                    <div data-id="2" class="content">
-                        <h1>Package Name 2</h1>
-                        <img class="edit modal-trigger" data-modal="edit-package" src="img/edit.png" alt="Edit" />
-                        <img class="delete modal-trigger"  data-modal="delete-package" src="img/delete.png" alt="Delete" />
+                @endforeach
 
-                        <table class="services mCustomScrollbar" data-mcs-theme="dark">
-
-                            <tbody>
-                            <tr>
-                                <td class="service-quantity">1</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$99.99</td>
-                            </tr>
-                            <tr>
-                                <td class="service-quantity">3</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$99.99</td>
-                            </tr>
-                            <tr>
-                                <td class="service-quantity">3</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$999.99</td>
-                            </tr>
-                            <tr>
-                                <td class="service-quantity">3</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$999.99</td>
-                            </tr>
-                            <tr>
-                                <td class="service-quantity">32</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$999.99</td>
-                            </tr>
-                            <tr>
-                                <td class="service-quantity">3</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$999.99</td>
-                            </tr>
-                            <tr>
-                                <td class="service-quantity">3</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$999.99</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td class="sum">$1231.91</td>
-                            </tr>
-                            </tbody>
-
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="package" data-package-id="2">
-                    <img class="package-icon" data-category-id="3" src="img/graphic-artist.png" alt="Package Name" />
-                    <div data-id="3" class="content">
-                        <h1>Package Name 3</h1>
-                        <img class="edit modal-trigger" data-modal="edit-package" src="img/edit.png" alt="Edit" />
-                        <img class="delete modal-trigger"  data-modal="delete-package" src="img/delete.png" alt="Delete" />
-
-                        <table class="services mCustomScrollbar" data-mcs-theme="dark">
-
-                            <tbody>
-                            <tr>
-                                <td class="service-quantity">1</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$99.99</td>
-                            </tr>
-                            <tr>
-                                <td class="service-quantity">3</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$99.99</td>
-                            </tr>
-                            <tr>
-                                <td class="service-quantity">3</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$999.99</td>
-                            </tr>
-                            <tr>
-                                <td class="service-quantity">3</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$999.99</td>
-                            </tr>
-                            <tr>
-                                <td class="service-quantity">32</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$999.99</td>
-                            </tr>
-                            <tr>
-                                <td class="service-quantity">3</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$999.99</td>
-                            </tr>
-                            <tr>
-                                <td class="service-quantity">3</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$999.99</td>
-                            </tr>
-                            <tr>
-                                <td class="service-quantity">32</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$999.99</td>
-                            </tr>
-                            <tr>
-                                <td class="service-quantity">3</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$999.99</td>
-                            </tr>
-                            <tr>
-                                <td class="service-quantity">3</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$999.99</td>
-                            </tr>
-                            <tr>
-                                <td class="service-quantity">32</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$999.99</td>
-                            </tr>
-                            <tr>
-                                <td class="service-quantity">3</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$999.99</td>
-                            </tr>
-                            <tr>
-                                <td class="service-quantity">3</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$999.99</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td class="sum">$1231.91</td>
-                            </tr>
-                            </tbody>
-
-                        </table>
-                    </div>
-                </div>
-
-                <div class="package" data-package-id="3">
-                    <img class="package-icon" data-category-id="1" src="img/web-development.png" alt="Package Name" />
-                    <div data-id="4" class="content">
-                        <h1>Package Name 4</h1>
-                        <img class="edit modal-trigger" data-modal="edit-package" src="img/edit.png" alt="Edit" />
-                        <img class="delete modal-trigger"  data-modal="delete-package" src="img/delete.png" alt="Delete" />
-
-                        <table class="services mCustomScrollbar" data-mcs-theme="dark">
-
-                            <tbody>
-                            <tr>
-                                <td class="service-quantity">1</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$99.99</td>
-                            </tr>
-                            <tr>
-                                <td class="service-quantity">32</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$999.99</td>
-                            </tr>
-                            <tr>
-                                <td class="service-quantity">3</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$999.99</td>
-                            </tr>
-                            <tr>
-                                <td class="service-quantity">3</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$999.99</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td class="sum">$1231.91</td>
-                            </tr>
-                            </tbody>
-
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="package" data-package-id="4">
-                    <img class="package-icon" data-category-id="4" src="img/party-planner.png" alt="Package Name" />
-                    <div data-id="5" class="content">
-                        <h1>Package Name 5</h1>
-                        <img class="edit modal-trigger" data-modal="edit-package" src="img/edit.png" alt="Edit" />
-                        <img class="delete modal-trigger"  data-modal="delete-package" src="img/delete.png" alt="Delete" />
-
-                        <table class="services mCustomScrollbar" data-mcs-theme="dark">
-
-                            <tbody>
-                            <tr>
-                                <td class="service-quantity">1</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$99.99</td>
-                            </tr>
-                            <tr>
-                                <td class="service-quantity">3</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$99.99</td>
-                            </tr>
-                            <tr>
-                                <td class="service-quantity">3</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$999.99</td>
-                            </tr>
-                            <tr>
-                                <td class="service-quantity">3</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$999.99</td>
-                            </tr>
-                            <tr>
-                                <td class="service-quantity">32</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$999.99</td>
-                            </tr>
-                            <tr>
-                                <td class="service-quantity">3</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$999.99</td>
-                            </tr>
-                            <tr>
-                                <td class="service-quantity">3</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$999.99</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td class="sum">$1231.91</td>
-                            </tr>
-                            </tbody>
-
-                        </table>
-                    </div>
-                </div>
-
-                <div class="package" data-package-id="5">
-                    <img class="package-icon" data-category-id="5" src="img/videographer.png" alt="Package Name" />
-                    <div data-id="6" class="content">
-                        <h1>Package Name 6</h1>
-                        <img class="edit modal-trigger" data-modal="edit-package" src="img/edit.png" alt="Edit" />
-                        <img class="delete modal-trigger"  data-modal="delete-package" src="img/delete.png" alt="Delete" />
-
-                        <table class="services mCustomScrollbar" data-mcs-theme="dark">
-
-                            <tbody>
-                            <tr>
-                                <td class="service-quantity">1</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$99.99</td>
-                            </tr>
-                            <tr>
-                                <td class="service-quantity">3</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$99.99</td>
-                            </tr>
-                            <tr>
-                                <td class="service-quantity">3</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$999.99</td>
-                            </tr>
-                            <tr>
-                                <td class="service-quantity">3</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$999.99</td>
-                            </tr>
-                            <tr>
-                                <td class="service-quantity">32</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$999.99</td>
-                            </tr>
-                            <tr>
-                                <td class="service-quantity">3</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$999.99</td>
-                            </tr>
-                            <tr>
-                                <td class="service-quantity">3</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$999.99</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td class="sum">$1231.91</td>
-                            </tr>
-                            </tbody>
-
-                        </table>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="package" data-package-id="6">
-                    <img class="package-icon" data-category-id="6" src="img/other.png" alt="Package Name" />
-                    <div data-id="7" class="content">
-                        <h1>Package Name 7</h1>
-                        <img class="edit modal-trigger" data-modal="edit-package" src="img/edit.png" alt="Edit" />
-                        <img class="delete modal-trigger"  data-modal="delete-package" src="img/delete.png" alt="Delete" />
-
-                        <table class="services mCustomScrollbar" data-mcs-theme="dark">
-
-                            <tbody>
-                            <tr>
-                                <td class="service-quantity">1</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$99.99</td>
-                            </tr>
-                            <tr>
-                                <td class="service-quantity">3</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$99.99</td>
-                            </tr>
-                            <tr>
-                                <td class="service-quantity">3</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$999.99</td>
-                            </tr>
-                            <tr>
-                                <td class="service-quantity">3</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$999.99</td>
-                            </tr>
-                            <tr>
-                                <td class="service-quantity">32</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$999.99</td>
-                            </tr>
-                            <tr>
-                                <td class="service-quantity">3</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$999.99</td>
-                            </tr>
-                            <tr>
-                                <td class="service-quantity">3</td>
-                                <td class="service-name">Service Name</td>
-                                <td class="service-price">$999.99</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td class="sum">$1231.91</td>
-                            </tr>
-                            </tbody>
-
-                        </table>
-                    </div>
-                </div>
-            </div>
 
         </div>
 

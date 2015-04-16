@@ -23,9 +23,13 @@ class Package extends Model {
         return $this->belongsTo('App\User');
     }
 
-    public function Gig()
+    public function gig()
     {
         return $this->belongsToMany('App\Gig');
+    }
+    Public function service()
+    {
+        return $this->hasMany('App\Service');
     }
 
 }
