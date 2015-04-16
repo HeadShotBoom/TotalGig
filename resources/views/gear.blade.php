@@ -63,15 +63,15 @@
             @foreach($gears as $gear)
             <div class="row">
                 <div class="gear-item" data-gear-id={{ $gear->id }}>
-                    @if($gear->category == 'Web-Development')
+                    @if($gear->gig_category == 'Web-Development')
                     <img class="package-icon" data-category-id="1" src={{ asset('img/web-development.png') }} alt="Gear Name" />
                     @endif
                     <div data-id="1" class="content">
-                        <h1>{{ $gear->item_name }}</h1>
+                        <h1>{{ $gear->gear_name }}</h1>
                         <img class="edit modal-trigger" data-modal="edit-gear" src="img/edit.png" alt="Edit" />
                         <img class="delete modal-trigger"  data-modal="delete-gear" src="img/delete.png" alt="Delete" />
                         <h6>Item Type</h6>
-                        <p class="mCustomScrollbar" data-mcs-theme="dark">{{ $gear->description }}</p>
+                        <p class="mCustomScrollbar" data-mcs-theme="dark">{{ $gear->gear_description }}</p>
                     </div>
                 </div>
             </div>
@@ -96,6 +96,7 @@
 </div><!--fill-background -->
 <!-- End Document
 ================================================== -->
+<input id="csrf-token" type="hidden" name="_token" value={{ $user->remembertoken }}>
 </body>
 
 

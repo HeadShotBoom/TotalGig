@@ -767,6 +767,9 @@ footer {
         padding: 0 2%;
         margin: 0;
         text-align: left; }
+      .package .content .services .service-id,
+      .gear-item .content .services .service-id {
+        display: none; }
       .package .content .services .service-quantity,
       .gear-item .content .services .service-quantity {
         width: 11%; }

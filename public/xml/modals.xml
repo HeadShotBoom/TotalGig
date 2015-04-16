@@ -120,7 +120,7 @@
 			<h1>Add Package</h1>
 			<form-requirements>*Indicates a required field</form-requirements>
 			<form-action>#</form-action>
-			<form-method>DELETE</form-method>
+			<form-method>POST</form-method>
 			<validation-function></validation-function>
 			<submit-button-value>Add</submit-button-value>
 			<inputs>
@@ -182,10 +182,16 @@
 			<h1>Update Package</h1>
 			<form-requirements></form-requirements>
 			<form-action>#</form-action>
-			<form-method>PUT</form-method>
+			<form-method>POST</form-method>
 			<validation-function></validation-function>
 			<submit-button-value>Update</submit-button-value>
 			<inputs>
+				<package-id>
+					<type>hidden</type>
+					<name>edit-package-id</name>
+					<id>edit-package-id</id>
+					<required>required</required>
+				</package-id>
 				<package-name>
 					<icon-img>form-package</icon-img>
 					<icon-alt>Package Name</icon-alt>
@@ -251,7 +257,7 @@
 			<modal-id>add-gear-modal</modal-id>
 			<h1>Add Item</h1>
 			<form-requirements>*Indicates a required field</form-requirements>
-			<form-action>#</form-action>
+			<form-action>/gear</form-action>
 			<form-method>POST</form-method>
 			<validation-function></validation-function>
 			<submit-button-value>Add</submit-button-value>
@@ -260,7 +266,7 @@
 					<icon-img>form-item-name</icon-img>
 					<icon-alt>Gear Name</icon-alt>
 					<type>text</type>
-					<name>gear-name</name>
+					<name>gear_name</name>
 					<id>gear-name</id>
 					<placeholder>*Item Name</placeholder>
 					<required>required</required>
@@ -270,7 +276,7 @@
 				<gig-category type="select">
 					<icon-img>form-category</icon-img>
 					<icon-alt>Gig Category</icon-alt>
-					<name>gig-category</name>
+					<name>gig_category</name>
 					<id>gig-category</id>
 					<required>required</required>
 					<onblur></onblur>
@@ -304,6 +310,17 @@
 
 					</options>
 				</gig-category>
+				<gear-description>
+					<icon-img>form-description</icon-img>
+					<icon-alt>Gear Description</icon-alt>
+					<type>textarea</type>
+					<name>gear_description</name>
+					<id>gear-description</id>
+					<placeholder>Item Description</placeholder>
+					<required></required>
+					<onblur></onblur>
+					<field-requirements>Ex: Great camera. Bring to any photography session.</field-requirements>
+				</gear-description>
 			</inputs>
 		</modal>
 	</add-gear>
@@ -318,8 +335,14 @@
 			<validation-function></validation-function>
 			<submit-button-value>Update</submit-button-value>
 			<inputs>
+				<item-id>
+					<type>hidden</type>
+					<name>edit-gear-id</name>
+					<id>edit-gear-id</id>
+					<required>required</required>
+				</item-id>
 				<package-name>
-					<icon-img>form-gear</icon-img>
+					<icon-img>form-item-name</icon-img>
 					<icon-alt>Gear Name</icon-alt>
 					<type>text</type>
 					<name>edit-gear-name</name>
@@ -366,6 +389,17 @@
 
 					</options>
 				</gig-category>
+				<gear-description>
+					<icon-img>form-description</icon-img>
+					<icon-alt>Gear Description</icon-alt>
+					<type>textarea</type>
+					<name>edit-gear-description</name>
+					<id>edit-gear-description</id>
+					<placeholder>Item Description</placeholder>
+					<required></required>
+					<onblur></onblur>
+					<field-requirements>Ex: Great camera. Bring to any photography session.</field-requirements>
+				</gear-description>
 			</inputs>
 		</modal>
 	</edit-gear>

@@ -16,9 +16,9 @@ class CreateGearsTable extends Migration {
 		{
 			$table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->string('item_name');
-            $table->string('category');
-            $table->text('description');
+            $table->string('gear_name');
+            $table->string('gig_category');
+            $table->text('gear_description');
 			$table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 		});

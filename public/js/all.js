@@ -100,7 +100,9 @@ function launchModal(targetModal){
 				    	$inputs.push($selectOpen+$selectOptions+$selectClose);
 				    }else if($type === 'textarea'){
 				    	$inputs.push('<div class="form-row"><div class="form-icon"><img src="img/'+$iconImg+'.png" alt="'+$iconAlt+'" /></div><textarea name="'+$name+'" placeholder="'+$placeholder+'" onblur="'+$onblur+'" '+$required+'></textarea><p class="field-requirements highlight">'+$fieldRequirements+'</p></div>');
-				 	}else{
+				 	}else if($type === 'hidden'){
+				 		$inputs.push('<input type="'+$type+'" value=" " name="'+$name+'" id="'+$id+'" '+$required+'>');
+				 	}else {
 				    	$inputs.push('<div class="form-row"><div class="form-icon"><img src="img/'+$iconImg+'.png" alt="'+$iconAlt+'" /></div><input type="'+$type+'" name="'+$name+'" id="'+$id+'" placeholder="'+$placeholder+'" onblur="'+$onblur+'"' +$required+' /><p class="field-requirements highlight">'+$fieldRequirements+'</p></div>');
 				    }
 			    });
@@ -113,7 +115,7 @@ function launchModal(targetModal){
 						}
 					}else {
 						for(var k = 0; k < 10; k++){
-							$packageUnique += '<div class="form-row"><input placeholder="Quantity" name="service-quantity-edit'+k+'" type="number"><input placeholder="Service Name" name="service-name-edit'+k+'" type="text"><input placeholder="Price" name="service-price-edit'+k+'" type="number" step="0.01"></div>';
+							$packageUnique += '<div class="form-row"><input type="hidden" name="service-id-edit'+k+'" id="service-id-edit'+k+'" value=" "><input placeholder="Quantity" name="service-quantity-edit'+k+'" type="number"><input placeholder="Service Name" name="service-name-edit'+k+'" type="text"><input placeholder="Price" name="service-price-edit'+k+'" type="number" step="0.01"></div>';
 						}
 					}
 					$packageUnique += '</div>';
@@ -123,7 +125,7 @@ function launchModal(targetModal){
 			    // Compile Form html
 			    var $formOpen = '<form action="'+$formAction+'" method="'+$formMethod+'" onsubmit="return '+$validationFunction+'">';
 
-			    var	$formInputs = '';
+			    var	$formInputs = '<input type="hidden" class="csrf-token" name="csrf-token" value=" ">';
 
 			    for(var j=0;j < $inputs.length; j++){
 			    	$formInputs += $inputs[j]; 
@@ -152,6 +154,9 @@ function launchModal(targetModal){
 
 function openModal(targetModal){
 	var modal = '#'+targetModal;
+	var csrf = $('#csrf-token').val();
+
+	$('.csrf-token').val(csrf);
 
     // Assign max-height
     var $maxHeight =  window.innerHeight;
@@ -320,39 +325,48 @@ $(document).ready(function(){
 				services.pop(); // No need for sum
 
 				// Populate package data
+				$('input[name="edit-package-id').val(packageId);
 				$('input[name="edit-package-name"]').val(packageName);
 				$('select[name="edit-gig-category"]').val(packageCategory);
 				for(var l = 0;l < 10;l++){
+					var idTarget = 'input[name="service-id-edit'+l+'"]';
 					var quantityTarget = 'input[name="service-quantity-edit'+l+'"]';
 					var nameTarget = 'input[name="service-name-edit'+l+'"]';
 					var priceTarget = 'input[name="service-price-edit'+l+'"]';
 
+					$(idTarget).val('');
 					$(quantityTarget).val('');
 					$(nameTarget).val('');
 					$(priceTarget).val('');
 				}
 				for(var m = 0; m < services.length; m++){
+					var idTargetNew = 'input[name="service-id-edit'+m+'"]';
 					var quantityTargetNew = 'input[name="service-quantity-edit'+m+'"]';
 					var nameTargetNew = 'input[name="service-name-edit'+m+'"]';
 					var priceTargetNew = 'input[name="service-price-edit'+m+'"]';
 
+					var idValue = services[m]['service-id'];
+					console.log(idValue);
+					console.log(idTargetNew);
 					var quantityValue = parseInt(services[m]['service-quantity']);
 					var nameValue = services[m]['service-name'];
 					var priceValue = parseFloat(services[m]['service-price'].slice(1));
 					
+					$(idTargetNew).val(idValue);
 					$(quantityTargetNew).val(quantityValue);
 					$(nameTargetNew).val(nameValue);
 					$(priceTargetNew).val(priceValue);
 				}
 			}else if(dataModal === 'edit-gear'){  // Exclusive to edit-gear-modal
 				// Collect gear data
-				var gearId = $(this).parent().prev().parent().attr('data-package-id');
+				var gearId = $(this).parent().prev().parent().attr('data-gear-id');
 				var gearName = $(this).prevUntil('.content').text();
 				var gearCategory = $(this).parent().prev().attr('data-category-id');
 				var gearDescription = $(this).next().next().next().text();
 				console.log(gearDescription);
 
 				// Populate package data
+				$('input[name="edit-gear-id"]').val(gearId);
 				$('input[name="edit-gear-name"]').val(gearName);
 				$('select[name="edit-gig-category"]').val(gearCategory);
 				$('textarea[name="edit-gear-description"]').val(gearDescription);

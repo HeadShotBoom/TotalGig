@@ -16,7 +16,7 @@ class Gear extends Model {
      *
      * @var array
      */
-    protected $fillable = ['item_name', 'category', 'user_id', 'description'];
+    protected $fillable = ['gear_name', 'gig_category', 'user_id', 'gear_description'];
 
     public function user()
     {
