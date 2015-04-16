@@ -1,18 +1,365 @@
-$(function($){
+////////////////////////////////////////////
+///	Author: Jake Chapman				 ///
+///	Tabel of Contents:					 ///
+///	I: Modal Functions					 ///
+///	II: Form Validation					 ///
+///	III: Other Functions      			 ///
+///	IV: $(document).ready(function(){})  ///
+///										 ///
+///										 ///
+///										 ///
+///										 ///										 
+////////////////////////////////////////////
 
-	$(".sign-in-trigger").click(function(){
-		$(".modal").hide();
-		$(".fill-background").show(300);
-		$("#sign-in-modal").show(200);
+
+////////////////////////////////////////////
+/// I: Modal Functions					 ///
+function launchModal(targetModal){
+	var modal = targetModal;
+	$.ajax({
+	    type: "GET",
+	    url: "../xml/modals.xml",
+	    dataType: "xml",
+	    success: function (modalXml) {
+	    	var xml = modalXml;
+			// XML variables
+		    var $selectedModal = $(xml).find('modals '+ modal);
+
+		    var $id = $selectedModal.find('modal-id').text();
+		    var $h1 = $selectedModal.find('h1').text();
+		    var $formAction = $selectedModal.find('form-action').text();
+		    var $formMethod = $selectedModal.find('form-method').text();
+		    var $validationFunction = $selectedModal.find('validation-function').text();
+		    var $formRequirements = $selectedModal.find('form-requirements').text();
+		    var $submitButtonValue = $selectedModal.find('submit-button-value').text();
+		    var $linkTo = $selectedModal.find('link-to').text();
+		    var $inputs = [];
+
+		    var modalCheck = document.getElementById($id);
+		    if(modalCheck !== null){
+				return false;
+			}
+
+			 var $modalType = $selectedModal.attr('type');
+
+		    if($modalType === 'delete'){
+		    	var $htmlOpenDelete = '<div class="modal hide" id="'+$id+'" class="mCustomScrollbar" data-mcs-theme="minimal-dark"><div class="modal-header"><img src="img/alt-logo.png" alt="Total Gig" /><span class="modal-close">X</span></div><h1>'+$h1+'</h1>';
+
+		    	var $htmlBodyDelete = '<a href="'+$linkTo+'" class="button delete-link" data-original-href="'+$linkTo+'">Delete</a><span class="modal-close button">Cancel</span>';
+
+		    	var $htmlCloseDelete = '</div>';
+
+		    	var $htmlDelete = $htmlOpenDelete + $htmlBodyDelete + $htmlCloseDelete;
+		    	// Output HTML
+			    $('body').append($htmlDelete);
+		    }else {
+			    // Populate inputs array
+			    $selectedModal.find('inputs>*').each(function(){
+			    	var $iconImg = $(this).find('>icon-img').text();
+			    	var $iconAlt = $(this).find('icon-alt').text();
+			    	var $type = $(this).find('type').text();
+			    	var $name = $(this).find('name').text();
+			    	var $id = $(this).find('id').text();
+			    	var $placeholder = $(this).find('placeholder').text();
+			    	var $required = $(this).find('required').text();
+			    	var $onblur = $(this).find('onblur').text();
+			    	var $fieldRequirements = $(this).find('field-requirements').text();
+			    	if($fieldRequirements.length < 1){
+			    		$fieldRequirements = '<br>';
+			    	}
+
+			    	if($(this).attr('type') === 'select'){
+			    		$selectOpen = '<div class="form-row"><div class="form-icon"><img src="img/'+$iconImg+'.png" alt="'+$iconAlt+'" /></div><select name="'+$name+'" id="'+$id+'" onblur="'+$onblur+'" '+$required+'><optgroup>';
+
+			    		$selectClose = '</optgroup></select></div>';
+
+			    		$selectOptions = '';
+
+				    	$(this).find('options>*').each(function(){
+				    		var $disable = $(this).find('disable').text();
+				    		var $value = $(this).find('value').text();
+				    		var $text = $(this).find('text').text();
+
+				    		var $option = '<option value="'+$value+'" '+$disable+'>'+$text+'</option>';
+
+				    		$selectOptions += $option;
+				    	});
+
+				    	$inputs.push($selectOpen+$selectOptions+$selectClose);
+				    }else if($type === 'textarea'){
+				    	$inputs.push('<div class="form-row"><div class="form-icon"><img src="img/'+$iconImg+'.png" alt="'+$iconAlt+'" /></div><textarea name="'+$name+'" placeholder="'+$placeholder+'" onblur="'+$onblur+'" '+$required+'></textarea><p class="field-requirements highlight">'+$fieldRequirements+'</p></div>');
+				 	}else{
+				    	$inputs.push('<div class="form-row"><div class="form-icon"><img src="img/'+$iconImg+'.png" alt="'+$iconAlt+'" /></div><input type="'+$type+'" name="'+$name+'" id="'+$id+'" placeholder="'+$placeholder+'" onblur="'+$onblur+'"' +$required+' /><p class="field-requirements highlight">'+$fieldRequirements+'</p></div>');
+				    }
+			    });
+
+				if($id === 'add-package-modal' || $id === 'edit-package-modal'){
+					var $packageUnique = '<div class="form-row"><h3>Services</h3></div><div class="form row form-services mCustomScrollbar" data-mcs-theme="dark-thick">';
+					if($id === 'add-package-modal'){
+						for(var i = 0; i < 10; i++){
+							$packageUnique += '<div class="form-row"><input placeholder="Quantity" name="service-quantity'+i+'" type="number"><input placeholder="Service Name" name="service-name'+i+'" type="text"><input placeholder="Price" name="service-price'+i+'" type="number" step="0.01"></div>';
+						}
+					}else {
+						for(var k = 0; k < 10; k++){
+							$packageUnique += '<div class="form-row"><input placeholder="Quantity" name="service-quantity-edit'+k+'" type="number"><input placeholder="Service Name" name="service-name-edit'+k+'" type="text"><input placeholder="Price" name="service-price-edit'+k+'" type="number" step="0.01"></div>';
+						}
+					}
+					$packageUnique += '</div>';
+					$inputs.push($packageUnique);
+				}
+
+			    // Compile Form html
+			    var $formOpen = '<form action="'+$formAction+'" method="'+$formMethod+'" onsubmit="return '+$validationFunction+'">';
+
+			    var	$formInputs = '';
+
+			    for(var j=0;j < $inputs.length; j++){
+			    	$formInputs += $inputs[j]; 
+			    }
+
+			    var $formClose = '<input type="submit" value="'+$submitButtonValue+'" /></form>';
+
+			    // Compile modal html
+			    var $htmlOpen = '<div class="modal hide" id="'+$id+'" class="mCustomScrollbar" data-mcs-theme="minimal-dark"><div class="modal-header"><img src="img/alt-logo.png" alt="Total Gig" /><span class="modal-close">X</span></div><h1>'+$h1+'</h1><p class="form-requirements">'+$formRequirements+'</p>';
+
+			    var $htmlForm = $formOpen + $formInputs + $formClose;
+
+			    var $htmlClose = '</div>';
+			    
+			    var $html = $htmlOpen + $htmlForm + $htmlClose;
+				
+				// Output HTML
+			    $('body').append($html);
+			}
+
+			$(".modal").mCustomScrollbar({scrollInertia:75});
+		    $(".form-services").mCustomScrollbar({scrollInertia: 50});
+		}   
 	});
+}
 
-	$(".sign-up-trigger").click(function(){
-		$(".fill-background").show(300);
-		$("#sign-up-modal").show(200);
+function openModal(targetModal){
+	var modal = '#'+targetModal;
+
+    // Assign max-height
+    var $maxHeight =  window.innerHeight;
+    $(modal).css('max-height', $maxHeight);
+
+    // Vertically center
+    var $margin = 0 - ($(modal).height()+34)/2; // `modal height` + 44(vertical padding+border) /2 for half of modal height, minus 0 for negative
+    $(modal).css('margin-top', $margin);
+
+    //Display
+    $(".fill-background").show(300);
+    $(modal).show(100);
+}
+
+function closeModal(){
+    $(".modal-close").click(function(){
+		$(".modal").hide();
+		$(".fill-background").hide();
 	});
 
 	$(".fill-background").click(function(){
 		$(".modal").hide();
 		$(".fill-background").hide();
+	});
+}
+
+////////////////////////////////////////////
+/// II: Form Validation					 ///
+function validateSignUp(){
+	var $pass1 = $('#reg-password').val();
+	var $pass2 = $('#confirm-password').val();
+
+	if ($pass1.length < 6) {
+		$('#reg-password').next().text('Password must be at least 6 characters. Please try again.');
+		$('#reg-password').next().addClass('error');
+
+        return false;
+	}else if($pass1 !== $pass2){
+		$('#confirm-password').next().text('Passwords do not match. Please try again.');
+		$('#confirm-password').next().addClass('error');
+
+		return false;
+	}
+}
+
+function validateInput(id){
+	if($(id).is(":invalid")){
+		$(id).prev().removeClass('valid');
+		$(id).prev().addClass('invalid');
+	}else {
+		$(id).prev().removeClass('invalid');
+		$(id).prev().addClass('valid');
+	}
+}
+
+function validatePassword(){
+	var $pass = $('#reg-password').val();
+
+	if ($pass.length < 6) {
+		$('#reg-password').prev().addClass('invalid');
+		$('#reg-password').prev().removeClass('valid');
+
+		$('#reg-password').next().text('Password must be at least 6 characters. Please try again.');
+		$('#reg-password').next().addClass('error');
+	}else {
+		$('#reg-password').prev().addClass('valid');
+		$('#reg-password').prev().removeClass('invalid');
+
+		$('#reg-password').next().text('Password must be at least 6 characters.');
+		$('#reg-password').next().removeClass('error');
+	}
+}
+
+function matchPasswords(){
+	var $pass1 = $('#reg-password').val();
+	var $pass2 = $('#confirm-password').val();
+
+	if($pass1 !== $pass2){
+		$('#confirm-password').prev().addClass('invalid');
+		$('#confirm-password').prev().removeClass('valid');
+
+		$('#confirm-password').next().text('Passwords do not match. Please try again.');
+		$('#confirm-password').next().addClass('error');
+	}else {
+		$('#confirm-password').prev().addClass('valid');
+		$('#confirm-password').prev().removeClass('invalid');
+
+		$('#confirm-password').next().text('');
+		$('#confirm-password').next().removeClass('error');	
+	}
+}
+
+////////////////////////////////////////////
+/// III: Other Functions				 ///
+function toggleSort(){
+	if($('.sort').attr('data-status') === 'open'){
+		$('.sort').css('width', 'initial');
+		$('.sort-options').toggleClass('hide');
+		$('.sort').attr('data-status', 'closed');
+		$('.sort .arrow-down').css({'-ms-transform': 'rotate(0deg)', '-webkit-transform': 'rotate(0deg)', 'transition': 'rotate(0deg)'});
+	}else if($('.sort').attr('data-status') === 'closed'){
+		$('.sort').width(760);
+		$('.sort-options').toggleClass('hide');
+		$('.sort').attr('data-status', 'open');
+		$('.sort .arrow-down').css({'-ms-transform': 'rotate(-90deg)', '-webkit-transform': 'rotate(-90deg)', 'transition': 'rotate(-90deg)'});
+	}
+}
+
+
+
+
+////////////////////////////////////////////
+/// IV: $(document.ready(function(){})   ///
+$(document).ready(function(){
+
+	// Launch every necessary modal for the page
+	$(".modal-trigger").each(function(){
+		var targetModal = $(this);
+		var dataModal = $(targetModal).attr('data-modal');
+
+		launchModal(dataModal);
+	});
+
+	// Open modal on click
+	$(".modal-trigger").click(function(){
+		var targetModal = $(this);
+		var dataModal = $(targetModal).attr('data-modal');
+		var modalId = dataModal+'-modal';
+
+		if($(this).hasClass('delete')){
+			var itemName = $(this).prevUntil('.content').text();
+			var itemId = $(this).parents('.content').attr('data-id');
+
+			openModal(modalId);
+			closeModal();
+
+			var fullTarget = '#'+modalId+' h1 .delete-value';
+			$(fullTarget).html(itemName);
+
+			var linkTarget = '#'+modalId+' .delete-link';
+			$(linkTarget).attr('href', $(linkTarget).attr('data-original-href') + itemId);
+
+		}else if($(this).hasClass('edit')){
+			openModal(modalId);
+			closeModal();
+
+			// Exclusives to edit-package modal
+			if(dataModal === 'edit-package'){
+				// Collect package data
+				var packageId = $(this).parent().prev().parent().attr('data-package-id');
+				var packageName = $(this).prevUntil('.content').text();
+				var packageCategory = $(this).parent().prev().attr('data-category-id');
+				var services = [];
+
+				var eachTarget = '.package[data-package-id="'+packageId+'"] tr';
+				$(eachTarget).each(function(){
+					var service = {};
+					$(this).children().each(function(){
+						var key = $(this).attr('class');
+						var value = $(this).text();
+
+						service[key] = value;
+					});
+					services.push(service);
+				});
+				services.pop(); // No need for sum
+
+				// Populate package data
+				$('input[name="edit-package-name"]').val(packageName);
+				$('select[name="edit-gig-category"]').val(packageCategory);
+				for(var l = 0;l < 10;l++){
+					var quantityTarget = 'input[name="service-quantity-edit'+l+'"]';
+					var nameTarget = 'input[name="service-name-edit'+l+'"]';
+					var priceTarget = 'input[name="service-price-edit'+l+'"]';
+
+					$(quantityTarget).val('');
+					$(nameTarget).val('');
+					$(priceTarget).val('');
+				}
+				for(var m = 0; m < services.length; m++){
+					var quantityTargetNew = 'input[name="service-quantity-edit'+m+'"]';
+					var nameTargetNew = 'input[name="service-name-edit'+m+'"]';
+					var priceTargetNew = 'input[name="service-price-edit'+m+'"]';
+
+					var quantityValue = parseInt(services[m]['service-quantity']);
+					var nameValue = services[m]['service-name'];
+					var priceValue = parseFloat(services[m]['service-price'].slice(1));
+					
+					$(quantityTargetNew).val(quantityValue);
+					$(nameTargetNew).val(nameValue);
+					$(priceTargetNew).val(priceValue);
+				}
+			}else if(dataModal === 'edit-gear'){  // Exclusive to edit-gear-modal
+				// Collect gear data
+				var gearId = $(this).parent().prev().parent().attr('data-package-id');
+				var gearName = $(this).prevUntil('.content').text();
+				var gearCategory = $(this).parent().prev().attr('data-category-id');
+				var gearDescription = $(this).next().next().next().text();
+				console.log(gearDescription);
+
+				// Populate package data
+				$('input[name="edit-gear-name"]').val(gearName);
+				$('select[name="edit-gig-category"]').val(gearCategory);
+				$('textarea[name="edit-gear-description"]').val(gearDescription);
+			}
+		}else {
+			openModal(modalId);
+			closeModal();
+
+			// Nested in order to go directly from one modal to another
+			$(".inside-modal-trigger").click(function(){
+				var targetModal = $(this);
+				var dataModal = $(targetModal).attr('data-modal');
+				var modalId = dataModal+'-modal';
+
+				$(".modal").hide();
+				$(".fill-background").hide();
+
+				openModal(modalId);
+			});
+		}
 	});
 });

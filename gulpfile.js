@@ -12,16 +12,18 @@ var elixir = require('laravel-elixir');
  */
 
 elixir(function(mix) {
-    mix.sass('layout.scss', 'resources/css');
 
     mix.styles([
         'libs/base.css',
         'libs/skeleton.css',
-        'layout.css'
+        'libs/jquery.mCustomScrollbar.min.css',
+        'libs/layout.css'
     ])
 
     mix.scripts([
         'libs/jquery-2.0.3.min.js',
+        'libs/jquery.mCustomScrollbar.concat.min.js',
         'libs/main.js'
+
     ])
 });

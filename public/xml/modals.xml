@@ -1,0 +1,373 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modals>
+
+	<sign-in type="basic">
+		<modal>
+			<modal-id>sign-in-modal</modal-id>
+			<h1>Sign In&lt;span&gt;&lt;span class="inside-modal-trigger highlight-text" data-modal="sign-up">Register&lt;/span&gt; | &lt;a href="#" class="highlight-text">Forgot your password?&lt;/a&gt;&lt;/span&gt;</h1>
+			<form-requirements></form-requirements>
+			<form-action>/auth/login</form-action>
+			<form-method>POST</form-method>
+			<validation-function></validation-function>
+			<submit-button-value>Sign In</submit-button-value>
+			<inputs>
+				<email>
+					<icon-img>form-email</icon-img>
+					<icon-alt>Email</icon-alt>
+					<type>email</type>
+					<name>email</name>
+					<id>email</id>
+					<placeholder>Email</placeholder>
+					<required>required</required>
+					<onblur></onblur>
+					<field-requirements></field-requirements>
+				</email>
+				<password>
+					<icon-img>form-password</icon-img>
+					<icon-alt>Password</icon-alt>
+					<type>password</type>
+					<name>password</name>
+					<id>password</id>
+					<placeholder>Password</placeholder>
+					<required>required</required>
+					<onblur></onblur>
+					<field-requirements></field-requirements>
+				</password>
+			</inputs>
+		</modal>
+	</sign-in>
+
+	<sign-up type="basic">
+		<modal>
+			<modal-id>sign-up-modal</modal-id>
+			<h1>Sign Up&lt;span class="inside-modal-trigger highlight-text" data-modal="sign-in"&gt;Login&lt;/span&gt;</h1>
+			<form-requirements>*All fields are required</form-requirements>
+			<form-action>/auth/register</form-action>
+			<form-method>POST</form-method>
+			<validation-function>validateSignUp()</validation-function>
+			<submit-button-value>Sign Up</submit-button-value>
+			<inputs>
+				<full-name>
+					<icon-img>form-user</icon-img>
+					<icon-alt>Full Name</icon-alt>
+					<type>text</type>
+					<name>full-name</name>
+					<id>full-name</id>
+					<placeholder>*Full Name</placeholder>
+					<required>required</required>
+					<onblur>validateInput('#full-name')</onblur>
+					<field-requirements>Ex: John Doe</field-requirements>
+				</full-name>
+				<business>
+					<icon-img>form-business</icon-img>
+					<icon-alt>Business</icon-alt>
+					<type>text</type>
+					<name>business</name>
+					<id>business</id>
+					<placeholder>*Business Name</placeholder>
+					<required>required</required>
+					<onblur>validateInput('#business')</onblur>
+					<field-requirements>Ex: TG Freelancing Inc.</field-requirements>
+				</business>
+				<email>
+					<icon-img>form-email</icon-img>
+					<icon-alt>Email</icon-alt>
+					<type>email</type>
+					<name>reg-email</name>
+					<id>reg-email</id>
+					<placeholder>*Email</placeholder>
+					<required>required</required>
+					<onblur>validateInput('#reg-email')</onblur>
+					<field-requirements></field-requirements>
+				</email>
+				<password>
+					<icon-img>form-password</icon-img>
+					<icon-alt>Password</icon-alt>
+					<type>password</type>
+					<name>reg-password</name>
+					<id>reg-password</id>
+					<placeholder>*Password</placeholder>
+					<required>required</required>
+					<onblur>validatePassword()</onblur>
+					<field-requirements>Must be at least six (6) characters long.</field-requirements>
+				</password>
+				<confirm-password>
+					<icon-img>form-password</icon-img>
+					<icon-alt>Confirm Password</icon-alt>
+					<type>password</type>
+					<name>confirm-password</name>
+					<id>confirm-password</id>
+					<placeholder>*Confirm Password</placeholder>
+					<required>required</required>
+					<onblur>matchPasswords()</onblur>
+					<field-requirements></field-requirements>
+				</confirm-password>
+			</inputs>
+		</modal>
+	</sign-up>
+
+	<delete-package type="delete">
+		<modal>
+			<modal-id>delete-package-modal</modal-id>
+			<h1>Are you sure you want to delete&lt;br&gt;&lt;span class="delete-value"&gt;&lt;/span&gt;?</h1>
+			<link-to>#?id=</link-to>
+		</modal>
+	</delete-package>
+
+	<add-package type="add">
+		<modal>
+			<modal-id>add-package-modal</modal-id>
+			<h1>Add Package</h1>
+			<form-requirements>*Indicates a required field</form-requirements>
+			<form-action>#</form-action>
+			<form-method>DELETE</form-method>
+			<validation-function></validation-function>
+			<submit-button-value>Add</submit-button-value>
+			<inputs>
+				<package-name>
+					<icon-img>form-package</icon-img>
+					<icon-alt>Package Name</icon-alt>
+					<type>text</type>
+					<name>package-name</name>
+					<id>package-name</id>
+					<placeholder>*Package Name</placeholder>
+					<required>required</required>
+					<onblur>validateInput('#package-name')</onblur>
+					<field-requirements>Ex: Deluxe Wedding Package</field-requirements>
+				</package-name>
+				<gig-category type="select">
+					<icon-img>form-category</icon-img>
+					<icon-alt>Gig Category</icon-alt>
+					<name>gig-category</name>
+					<id>gig-category</id>
+					<required>required</required>
+					<onblur></onblur>
+					<options>
+
+						<option>
+							<disable>disabled selected</disable>
+							<value></value>
+							<text>*Gig Category</text>
+						</option>
+
+						<option>
+							<value>0</value>
+							<text>Category</text>
+						</option>
+
+						<option>
+							<value>1</value>
+							<text>Category</text>
+						</option>
+
+						<option>
+							<value>2</value>
+							<text>Category</text>
+						</option>
+
+						<option>
+							<value>3</value>
+							<text>Category</text>
+						</option>
+
+					</options>
+				</gig-category>
+			</inputs>
+		</modal>
+	</add-package>
+
+	<edit-package type="edit">
+		<modal>
+			<modal-id>edit-package-modal</modal-id>
+			<h1>Update Package</h1>
+			<form-requirements></form-requirements>
+			<form-action>#</form-action>
+			<form-method>PUT</form-method>
+			<validation-function></validation-function>
+			<submit-button-value>Update</submit-button-value>
+			<inputs>
+				<package-name>
+					<icon-img>form-package</icon-img>
+					<icon-alt>Package Name</icon-alt>
+					<type>text</type>
+					<name>edit-package-name</name>
+					<id>edit-package-name</id>
+					<placeholder>*Package Name</placeholder>
+					<required>required</required>
+					<onblur>validateInput('#package-name')</onblur>
+					<field-requirements>Ex: Deluxe Wedding Package</field-requirements>
+				</package-name>
+				<gig-category type="select">
+					<icon-img>form-category</icon-img>
+					<icon-alt>Gig Category</icon-alt>
+					<name>edit-gig-category</name>
+					<id>edit-gig-category</id>
+					<required>required</required>
+					<onblur></onblur>
+					<options>
+
+						<option>
+							<disable>disabled selected</disable>
+							<value></value>
+							<text>*Gig Category</text>
+						</option>
+
+						<option>
+							<value>0</value>
+							<text>Category</text>
+						</option>
+
+						<option>
+							<value>1</value>
+							<text>Category</text>
+						</option>
+
+						<option>
+							<value>2</value>
+							<text>Category</text>
+						</option>
+
+						<option>
+							<value>3</value>
+							<text>Category</text>
+						</option>
+
+					</options>
+				</gig-category>
+			</inputs>
+		</modal>
+	</edit-package>
+
+	<delete-gear type="delete">
+		<modal>
+			<modal-id>delete-gear-modal</modal-id>
+			<h1>Are you sure you want to delete&lt;br&gt;&lt;span class="delete-value"&gt;&lt;/span&gt;?</h1>
+			<link-to>#?id=</link-to>
+		</modal>
+	</delete-gear>
+
+	<add-gear type="add">
+		<modal>
+			<modal-id>add-gear-modal</modal-id>
+			<h1>Add Item</h1>
+			<form-requirements>*Indicates a required field</form-requirements>
+			<form-action>#</form-action>
+			<form-method>POST</form-method>
+			<validation-function></validation-function>
+			<submit-button-value>Add</submit-button-value>
+			<inputs>
+				<gear-name>
+					<icon-img>form-item-name</icon-img>
+					<icon-alt>Gear Name</icon-alt>
+					<type>text</type>
+					<name>gear-name</name>
+					<id>gear-name</id>
+					<placeholder>*Item Name</placeholder>
+					<required>required</required>
+					<onblur>validateInput('#gear-name')</onblur>
+					<field-requirements>Ex: Canon DSLR</field-requirements>
+				</gear-name>
+				<gig-category type="select">
+					<icon-img>form-category</icon-img>
+					<icon-alt>Gig Category</icon-alt>
+					<name>gig-category</name>
+					<id>gig-category</id>
+					<required>required</required>
+					<onblur></onblur>
+					<options>
+
+						<option>
+							<disable>disabled selected</disable>
+							<value></value>
+							<text>*Gig Category</text>
+						</option>
+
+						<option>
+							<value>0</value>
+							<text>Category</text>
+						</option>
+
+						<option>
+							<value>1</value>
+							<text>Category</text>
+						</option>
+
+						<option>
+							<value>2</value>
+							<text>Category</text>
+						</option>
+
+						<option>
+							<value>3</value>
+							<text>Category</text>
+						</option>
+
+					</options>
+				</gig-category>
+			</inputs>
+		</modal>
+	</add-gear>
+
+	<edit-gear type="edit">
+		<modal>
+			<modal-id>edit-gear-modal</modal-id>
+			<h1>Update Item</h1>
+			<form-requirements></form-requirements>
+			<form-action>#</form-action>
+			<form-method>POST</form-method>
+			<validation-function></validation-function>
+			<submit-button-value>Update</submit-button-value>
+			<inputs>
+				<package-name>
+					<icon-img>form-gear</icon-img>
+					<icon-alt>Gear Name</icon-alt>
+					<type>text</type>
+					<name>edit-gear-name</name>
+					<id>edit-item-name</id>
+					<placeholder>*Item Name</placeholder>
+					<required>required</required>
+					<onblur>validateInput('#gear-name')</onblur>
+					<field-requirements>Ex: Canon DSLR</field-requirements>
+				</package-name>
+				<gig-category type="select">
+					<icon-img>form-category</icon-img>
+					<icon-alt>Gig Category</icon-alt>
+					<name>edit-gig-category</name>
+					<id>edit-gig-category</id>
+					<required>required</required>
+					<onblur></onblur>
+					<options>
+
+						<option>
+							<disable>disabled selected</disable>
+							<value></value>
+							<text>*Gig Category</text>
+						</option>
+
+						<option>
+							<value>0</value>
+							<text>Category</text>
+						</option>
+
+						<option>
+							<value>1</value>
+							<text>Category</text>
+						</option>
+
+						<option>
+							<value>2</value>
+							<text>Category</text>
+						</option>
+
+						<option>
+							<value>3</value>
+							<text>Category</text>
+						</option>
+
+					</options>
+				</gig-category>
+			</inputs>
+		</modal>
+	</edit-gear>
+
+</modals>
