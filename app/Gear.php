@@ -16,14 +16,14 @@ class Gear extends Model {
      *
      * @var array
      */
-    protected $fillable = ['gear_name', 'gig_category', 'user_id', 'gear_description'];
+    protected $fillable = ['gear_name', 'gig-category', 'user_id', 'gear_description'];
 
     public function user()
     {
         return $this->belongsTo('App\User');
     }
 
-    public function Gig()
+    public function gig()
     {
         return $this->belongsToMany('App\Gig');
     }

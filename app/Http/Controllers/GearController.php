@@ -5,6 +5,7 @@ use App\Http\Requests\GearRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Gear;
+use App\User;
 use Auth;
 
 class GearController extends Controller {
@@ -22,9 +23,9 @@ class GearController extends Controller {
 	 */
 	public function index()
 	{
-		$user = Auth::user();
+		$thisUser = Auth::user();
 		$gears = Gear::all();
-		return view('gear', compact('user', 'gears'));
+		return view('gear', compact('thisUser', 'gears'));
 	}
 
 	/**

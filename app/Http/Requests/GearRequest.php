@@ -22,7 +22,7 @@ class GearRequest extends Request {
     public function rules()
     {
         return [
-            'item_name' => 'required|min:3',
+            'gear_name' => 'required|min:3',
         ];
     }
 

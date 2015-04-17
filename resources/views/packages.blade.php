@@ -1,25 +1,25 @@
 @extends('app')
 
 @section('content')
+{{--
+<h1>Packages Page</h1>
 
-<!--<h1>Packages Page</h1>-->
-<!---->
-<!--@foreach($packages as $package)-->
-<!---->
-<!--<div>-->
-<!--    <a href="{{ action('PackageController@show', [$package->id]) }}">{{ $package->package_name }}</a>-->
-<!--</div>-->
-<!--@endforeach-->
-<!---->
-<!--<form action="{{ action('PackageController@store') }}" method="POST">-->
-<!--    <input type="hidden" name="_token" value="{{ csrf_token() }}">-->
-<!--    <div class="form-row">-->
-<!--        <input type="package_name" name="package_name" id="package_name" placeholder="Package name" required />-->
-<!--    </div>-->
-<!---->
-<!--    <input type="submit" value="Create" />-->
-<!--</form>-->
+@foreach($packages as $package)
 
+<div>
+    <a href="{{ action('PackageController@show', [$package->id]) }}">{{ $package->package_name }}</a>
+</div>
+@endforeach
+
+<form action="{{ action('PackageController@store') }}" method="POST">
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+    <div class="form-row">
+        <input type="package_name" name="package_name" id="package_name" placeholder="Package name" required />
+    </div>
+
+    <input type="submit" value="Create" />
+</form>
+--}}
 
 <body>
 <!-- Primary Page Layout
@@ -37,7 +37,7 @@
     <div class="container">
 
         <div class="breadcrumbs row">
-            <h1>{{ $user->business }} > <span class="page-title">Packages</span></h1>
+            <h1>{{ $thisUser->business }} > <span class="page-title">Packages</span></h1>
         </div>
 
         <div class="row">
@@ -51,14 +51,28 @@
             <button class="add-item three columns omega modal-trigger" data-modal="add-package">Add Package</button>
         </div>
 
+
+
         <div class="packages row">
             <div class="row">
-
                 @foreach($packages as $package)
+
 
                 <div class="package" data-package-id={{ $package->id }}>
                     @if($package->category == 'Web-Development')
-                    <img class="package-icon" data-category-id="1" src={{ asset('img/web-development.png') }} alt="Package Name" />
+                    <img class="package-icon" data-category-id="1" src={{ asset('img/web-development.png') }} alt="package Name" />
+                    @elseif($package->category == 'Cosmetologist')
+                    <img class="package-icon" data-category-id="1" src={{ asset('img/cosmetologist.png') }} alt="package Name" />
+                    @elseif($package->category == 'Musician')
+                    <img class="package-icon" data-category-id="1" src={{ asset('img/musician.png') }} alt="package Name" />
+                    @elseif($package->category == 'Party-Planner')
+                    <img class="package-icon" data-category-id="1" src={{ asset('img/party-planner.png') }} alt="package Name" />
+                    @elseif($package->category == 'Photography')
+                    <img class="package-icon" data-category-id="1" src={{ asset('img/photographer.png') }} alt="package Name" />
+                    @elseif($package->category == 'Videographer')
+                    <img class="package-icon" data-category-id="1" src={{ asset('img/videographer.png') }} alt="package Name" />
+                    @elseif($package->category == 'Other')
+                    <img class="package-icon" data-category-id="1" src={{ asset('img/other.png') }} alt="package Name" />
                     @endif
                     <div data-id="1" class="content">
                         <h1>{{ $package->package_name }}</h1>
@@ -85,11 +99,12 @@
                         </table>
                     </div>
                 </div>
-
+            </div>
+            </div>
                 @endforeach
 
 
-        </div>
+
 
         <script type="text/javascript">$(".services").mCustomScrollbar({scrollInertia: 75});</script>
     </div><!-- container -->
@@ -107,6 +122,7 @@
 </div><!--fill-background -->
 <!-- End Document
 ================================================== -->
+    <input id="csrf-token" type="hidden" name="_token" value={{ $thisUser->remember_token }}>
 </body>
 
 @endsection

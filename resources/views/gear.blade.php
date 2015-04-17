@@ -46,7 +46,7 @@
     <div class="container">
 
         <div class="breadcrumbs row">
-            <h1>{{ $user->business }} > <span class="page-title">Gear</span></h1>
+            <h1>{{ $thisUser->business }} > <span class="page-title">Gear</span></h1>
         </div>
 
         <div class="row">
@@ -64,7 +64,19 @@
             <div class="row">
                 <div class="gear-item" data-gear-id={{ $gear->id }}>
                     @if($gear->gig_category == 'Web-Development')
-                    <img class="package-icon" data-category-id="1" src={{ asset('img/web-development.png') }} alt="Gear Name" />
+                    <img class="package-icon" data-category-id="1" src={{ asset('img/web-development.png') }} alt="gear Name" />
+                    @elseif($gear->gig_category == 'Cosmetologist')
+                    <img class="package-icon" data-category-id="1" src={{ asset('img/cosmetologist.png') }} alt="gear Name" />
+                    @elseif($gear->gig_category == 'Musician')
+                    <img class="package-icon" data-category-id="1" src={{ asset('img/musician.png') }} alt="gear Name" />
+                    @elseif($gear->gig_category == 'Party-Planner')
+                    <img class="package-icon" data-category-id="1" src={{ asset('img/party-planner.png') }} alt="gear Name" />
+                    @elseif($gear->gig_category == 'Photographer')
+                    <img class="package-icon" data-category-id="1" src={{ asset('img/photographer.png') }} alt="gear Name" />
+                    @elseif($gear->gig_category == 'Videographer')
+                    <img class="package-icon" data-category-id="1" src={{ asset('img/videographer.png') }} alt="gear Name" />
+                    @elseif($gear->gig_category == 'Other')
+                    <img class="package-icon" data-category-id="1" src={{ asset('img/other.png') }} alt="gear Name" />
                     @endif
                     <div data-id="1" class="content">
                         <h1>{{ $gear->gear_name }}</h1>
@@ -96,7 +108,7 @@
 </div><!--fill-background -->
 <!-- End Document
 ================================================== -->
-<input id="csrf-token" type="hidden" name="_token" value={{ $user->remembertoken }}>
+<input id="csrf-token" type="hidden" name="_token" value={{ $thisUser->remember_token }}>
 </body>
 
 

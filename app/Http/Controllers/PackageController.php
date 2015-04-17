@@ -23,9 +23,9 @@ class PackageController extends Controller {
 	 */
 	public function index()
 	{
-		$user = Auth::user();
+		$thisUser = Auth::user();
 		$packages = Package::all();
-		return view('packages', compact('packages', 'user'));
+		return view('packages', compact('packages', 'thisUser'));
 	}
 
 	/**

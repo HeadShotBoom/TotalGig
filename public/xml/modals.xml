@@ -267,7 +267,7 @@
 					<icon-alt>Gear Name</icon-alt>
 					<type>text</type>
 					<name>gear_name</name>
-					<id>gear-name</id>
+					<id>gear_name</id>
 					<placeholder>*Item Name</placeholder>
 					<required>required</required>
 					<onblur>validateInput('#gear-name')</onblur>
@@ -276,7 +276,7 @@
 				<gig-category type="select">
 					<icon-img>form-category</icon-img>
 					<icon-alt>Gig Category</icon-alt>
-					<name>gig_category</name>
+					<name>gig-category</name>
 					<id>gig-category</id>
 					<required>required</required>
 					<onblur></onblur>
@@ -289,23 +289,38 @@
 						</option>
 
 						<option>
-							<value>0</value>
-							<text>Category</text>
+							<value>Web-Development</value>
+							<text>Web-Development</text>
 						</option>
 
 						<option>
-							<value>1</value>
-							<text>Category</text>
+							<value>Cosmetologist</value>
+							<text>Cosmetologist</text>
 						</option>
 
 						<option>
-							<value>2</value>
-							<text>Category</text>
+							<value>Musician</value>
+							<text>Musician</text>
 						</option>
 
 						<option>
-							<value>3</value>
-							<text>Category</text>
+							<value>Photographer</value>
+							<text>Photographer</text>
+						</option>
+
+						<option>
+							<value>Videographer</value>
+							<text>Videographer</text>
+						</option>
+
+						<option>
+							<value>Party-Planner</value>
+							<text>Party-Planner</text>
+						</option>
+
+						<option>
+							<value>Other</value>
+							<text>Other</text>
 						</option>
 
 					</options>
