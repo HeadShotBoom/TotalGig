@@ -732,7 +732,7 @@ footer {
     margin: 0; }
     .modal form .form-services {
       max-height: 200px;
-      overflow: scroll; }
+      overflow: auto; }
     .modal form .form-row {
       width: 100%;
       margin-bottom: 20px; }
@@ -1225,7 +1225,7 @@ footer {
   padding: 20px;
   width: 468px;
   display: inline-block;
-  margin: 0; }
+  margin: 0 0 20px; }
   .package .package-icon,
   .package .gear-icon,
   .gear-item .package-icon,
@@ -1264,14 +1264,14 @@ footer {
     .package .content p,
     .gear-item .content p {
       max-height: 100px;
-      overflow: scroll; }
+      overflow: auto; }
     .package .content .services,
     .gear-item .content .services {
       table-layout: fixed;
       padding: 0;
       width: 110%;
       max-height: 140px;
-      overflow: scroll; }
+      overflow: auto; }
       .package .content .services tbody tr:nth-of-type(even),
       .gear-item .content .services tbody tr:nth-of-type(even) {
         background: #fafafa; }

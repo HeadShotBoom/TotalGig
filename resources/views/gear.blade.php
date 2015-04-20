@@ -61,7 +61,7 @@
 
         <div class="gear row">
             @foreach($gears as $gear)
-            <div class="row">
+
                 <div class="gear-item" data-gear-id={{ $gear->id }}>
                     @if($gear->gig_category == 'Web-Development')
                     <img class="package-icon" data-category-id="1" src={{ asset('img/web-development.png') }} alt="gear Name" />
@@ -86,7 +86,7 @@
                         <p class="mCustomScrollbar" data-mcs-theme="dark">{{ $gear->gear_description }}</p>
                     </div>
                 </div>
-            </div>
+
             @endforeach
         </div>
 

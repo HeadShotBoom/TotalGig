@@ -54,10 +54,7 @@
 
 
         <div class="packages row">
-            <div class="row">
                 @foreach($packages as $package)
-
-
                 <div class="package" data-package-id={{ $package->id }}>
                     @if($package->category == 'Web-Development')
                     <img class="package-icon" data-category-id="1" src={{ asset('img/web-development.png') }} alt="package Name" />
@@ -99,10 +96,9 @@
                         </table>
                     </div>
                 </div>
-            </div>
-            </div>
-                @endforeach
 
+                @endforeach
+</div>
 
 
 

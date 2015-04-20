@@ -276,7 +276,7 @@
 				<gig-category type="select">
 					<icon-img>form-category</icon-img>
 					<icon-alt>Gig Category</icon-alt>
-					<name>gig-category</name>
+					<name>gig_category</name>
 					<id>gig-category</id>
 					<required>required</required>
 					<onblur></onblur>
