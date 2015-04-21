@@ -313,7 +313,7 @@ $(document).ready(function(){
 				services.pop(); // No need for sum
 
 				// Populate package data
-				$('input[name="edit-package-id').val(packageId);
+				$('input[name="edit-package-id"]').val(packageId);
 				$('input[name="edit-package-name"]').val(packageName);
 				$('select[name="edit-gig-category"]').val(packageCategory);
 				for(var l = 0;l < 10;l++){
@@ -334,8 +334,6 @@ $(document).ready(function(){
 					var priceTargetNew = 'input[name="service-price-edit'+m+'"]';
 
 					var idValue = services[m]['service-id'];
-					console.log(idValue);
-					console.log(idTargetNew);
 					var quantityValue = parseInt(services[m]['service-quantity']);
 					var nameValue = services[m]['service-name'];
 					var priceValue = parseFloat(services[m]['service-price'].slice(1));
@@ -355,7 +353,7 @@ $(document).ready(function(){
 
 				// Populate package data
 				$('input[name="edit-gear-id"]').val(gearId);
-				$('input[name="edit-gear-name"]').val(gearName);
+				$('input[name="edit_gear_name"]').val(gearName);
 				$('select[name="edit-gig-category"]').val(gearCategory);
 				$('textarea[name="edit-gear-description"]').val(gearDescription);
 			}

@@ -1,25 +1,6 @@
 @extends('app')
 
 @section('content')
-{{--
-<h1>Packages Page</h1>
-
-@foreach($packages as $package)
-
-<div>
-    <a href="{{ action('PackageController@show', [$package->id]) }}">{{ $package->package_name }}</a>
-</div>
-@endforeach
-
-<form action="{{ action('PackageController@store') }}" method="POST">
-    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-    <div class="form-row">
-        <input type="package_name" name="package_name" id="package_name" placeholder="Package name" required />
-    </div>
-
-    <input type="submit" value="Create" />
-</form>
---}}
 
 <body>
 <!-- Primary Page Layout
@@ -57,19 +38,25 @@
                 @foreach($packages as $package)
                 <div class="package" data-package-id={{ $package->id }}>
                     @if($package->category == 'Web-Development')
-                    <img class="package-icon" data-category-id="1" src={{ asset('img/web-development.png') }} alt="package Name" />
+                    <img class="package-icon" data-category-id={{ $package->category }} src={{ asset('img/web-development.png') }} alt="package Name" />
                     @elseif($package->category == 'Cosmetologist')
-                    <img class="package-icon" data-category-id="1" src={{ asset('img/cosmetologist.png') }} alt="package Name" />
+                    <img class="package-icon" data-category-id={{ $package->category }} src={{ asset('img/cosmetologist.png') }} alt="package Name" />
                     @elseif($package->category == 'Musician')
-                    <img class="package-icon" data-category-id="1" src={{ asset('img/musician.png') }} alt="package Name" />
+                    <img class="package-icon" data-category-id={{ $package->category }} src={{ asset('img/musician.png') }} alt="package Name" />
                     @elseif($package->category == 'Party-Planner')
-                    <img class="package-icon" data-category-id="1" src={{ asset('img/party-planner.png') }} alt="package Name" />
+                    <img class="package-icon" data-category-id={{ $package->category }} src={{ asset('img/party-planner.png') }} alt="package Name" />
                     @elseif($package->category == 'Photography')
-                    <img class="package-icon" data-category-id="1" src={{ asset('img/photographer.png') }} alt="package Name" />
-                    @elseif($package->category == 'Videographer')
-                    <img class="package-icon" data-category-id="1" src={{ asset('img/videographer.png') }} alt="package Name" />
+                    <img class="package-icon" data-category-id={{ $package->category }} src={{ asset('img/photographer.png') }} alt="package Name" />
+                    @elseif($package->category == 'Videography')
+                    <img class="package-icon" data-category-id={{ $package->category }} src={{ asset('img/videographer.png') }} alt="package Name" />
+                    @elseif($package->category == 'DJ')
+                    <img class="package-icon" data-category-id={{ $package->category }} src={{ asset('img/dj.png') }} alt="package Name" />
+                    @elseif($package->category == 'Graphic-Artist')
+                    <img class="package-icon" data-category-id={{ $package->category }} src={{ asset('img/graphic-artist.png') }} alt="package Name" />
+                    @elseif($package->category == 'Makeup-Artist')
+                    <img class="package-icon" data-category-id={{ $package->category }} src={{ asset('img/makeup-artist.png') }} alt="package Name" />
                     @elseif($package->category == 'Other')
-                    <img class="package-icon" data-category-id="1" src={{ asset('img/other.png') }} alt="package Name" />
+                    <img class="package-icon" data-category-id={{ $package->category }} src={{ asset('img/other.png') }} alt="package Name" />
                     @endif
                     <div data-id="1" class="content">
                         <h1>{{ $package->package_name }}</h1>
@@ -79,17 +66,19 @@
                         <table class="services mCustomScrollbar" data-mcs-theme="dark">
 
                             <tbody>
+                            <?php $total = 0 ?>
                             @foreach($package->service as $service)
                             <tr>
                                 <td class="service-quantity">{{ $service->service_qty }}</td>
                                 <td class="service-name">{{ $service->service_name }}</td>
-                                <td class="service-price">{{ $service->service_price }}</td>
+                                <td class="service-price">${{ $service->service_price }}.00</td>
                             </tr>
+                            <?php $total = $total + $service->service_price ?>
                             @endforeach
                             <tr>
                                 <td></td>
                                 <td></td>
-                                <td class="sum">Need Sum JS</td>
+                                <td class="sum">${{ $total }}.00</td>
                             </tr>
                             </tbody>
 

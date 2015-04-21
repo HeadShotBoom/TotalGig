@@ -5,6 +5,7 @@ use App\Http\Requests\PackageRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Package;
+use App\Service;
 use Auth;
 use App\User;
 
@@ -43,9 +44,109 @@ class PackageController extends Controller {
 	 *
 	 * @return Response
 	 */
-	public function store(PackageRequest $request)
+	public function store(Request $request)
 	{
-		$this->createPackage($request);
+		$packageName = $request['package_name'];
+		$category = $request['gig_category'];
+		$service0 = [$request['service-quantity0'], $request['service-name0'], $request['service-price0']];
+		$service1 = [$request['service-quantity1'], $request['service-name1'], $request['service-price1']];
+		$service2 = [$request['service-quantity2'], $request['service-name2'], $request['service-price2']];
+		$service3 = [$request['service-quantity3'], $request['service-name3'], $request['service-price3']];
+		$service4 = [$request['service-quantity4'], $request['service-name4'], $request['service-price4']];
+		$service5 = [$request['service-quantity5'], $request['service-name5'], $request['service-price5']];
+		$service6 = [$request['service-quantity6'], $request['service-name6'], $request['service-price6']];
+		$service7 = [$request['service-quantity7'], $request['service-name7'], $request['service-price7']];
+		$service8 = [$request['service-quantity8'], $request['service-name8'], $request['service-price8']];
+		$service9 = [$request['service-quantity9'], $request['service-name9'], $request['service-price9']];
+
+		$package = new Package;
+		$package->user_id = Auth::id();
+		$package->package_name = $packageName;
+		$package->category = $category;
+		$package->save();
+		$packageID = $package->id;
+
+		if (!empty($service0[1])) {
+			$service = new Service;
+			$service->service_qty = $service0[0];
+			$service->service_name = $service0[1];
+			$service->service_price = $service0[2];
+			$service->package_id = $packageID;
+			$service->save();
+		}
+		if (!empty($service1[1])) {
+			$service = new Service;
+			$service->service_qty = $service1[0];
+			$service->service_name = $service1[1];
+			$service->service_price = $service1[2];
+			$service->package_id = $packageID;
+			$service->save();
+		}
+		if (!empty($service2[1])) {
+			$service = new Service;
+			$service->service_qty = $service2[0];
+			$service->service_name = $service2[1];
+			$service->service_price = $service2[2];
+			$service->package_id = $packageID;
+			$service->save();
+		}
+		if (!empty($service3[1])) {
+			$service = new Service;
+			$service->service_qty = $service3[0];
+			$service->service_name = $service3[1];
+			$service->service_price = $service3[2];
+			$service->package_id = $packageID;
+			$service->save();
+		}
+		if (!empty($service4[1])) {
+			$service = new Service;
+			$service->service_qty = $service4[0];
+			$service->service_name = $service4[1];
+			$service->service_price = $service4[2];
+			$service->package_id = $packageID;
+			$service->save();
+		}
+		if (!empty($service5[1])) {
+			$service = new Service;
+			$service->service_qty = $service5[0];
+			$service->service_name = $service5[1];
+			$service->service_price = $service5[2];
+			$service->package_id = $packageID;
+			$service->save();
+		}
+		if (!empty($service6[1])) {
+			$service = new Service;
+			$service->service_qty = $service6[0];
+			$service->service_name = $service6[1];
+			$service->service_price = $service6[2];
+			$service->package_id = $packageID;
+			$service->save();
+		}
+		if (!empty($service7[1])) {
+			$service = new Service;
+			$service->service_qty = $service7[0];
+			$service->service_name = $service7[1];
+			$service->service_price = $service7[2];
+			$service->package_id = $packageID;
+			$service->save();
+		}
+		if (!empty($service8[1])) {
+			$service = new Service;
+			$service->service_qty = $service8[0];
+			$service->service_name = $service8[1];
+			$service->service_price = $service8[2];
+			$service->package_id = $packageID;
+			$service->save();
+		}
+		if (!empty($service9[1])) {
+			$service = new Service;
+			$service->service_qty = $service9[0];
+			$service->service_name = $service9[1];
+			$service->service_price = $service9[2];
+			$service->package_id = $packageID;
+			$service->save();
+		}
+
 		return redirect('packages');
 	}
 
@@ -77,7 +178,7 @@ class PackageController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update(Package $package, PackageRequest $request)
+	public function update(Package $package, Request $request)
 	{
 		$package->update($request->all());
 		return redirect('packages');
@@ -93,12 +194,6 @@ class PackageController extends Controller {
 	{
 		$package->delete();
 		return redirect('packages');
-	}
-
-	private function createPackage(PackageRequest $request)
-	{
-		$package = Auth::user()->package()->create($request->all());
-		return $package;
 	}
 
 }

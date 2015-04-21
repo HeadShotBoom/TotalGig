@@ -64,19 +64,25 @@
 
                 <div class="gear-item" data-gear-id={{ $gear->id }}>
                     @if($gear->gig_category == 'Web-Development')
-                    <img class="package-icon" data-category-id="1" src={{ asset('img/web-development.png') }} alt="gear Name" />
+                    <img class="package-icon" data-category-id={{ $gear->gig_category }} src={{ asset('img/web-development.png') }} alt="gear Name" />
                     @elseif($gear->gig_category == 'Cosmetologist')
-                    <img class="package-icon" data-category-id="1" src={{ asset('img/cosmetologist.png') }} alt="gear Name" />
+                    <img class="package-icon" data-category-id={{ $gear->gig_category }} src={{ asset('img/cosmetologist.png') }} alt="gear Name" />
                     @elseif($gear->gig_category == 'Musician')
-                    <img class="package-icon" data-category-id="1" src={{ asset('img/musician.png') }} alt="gear Name" />
+                    <img class="package-icon" data-category-id={{ $gear->gig_category }} src={{ asset('img/musician.png') }} alt="gear Name" />
                     @elseif($gear->gig_category == 'Party-Planner')
-                    <img class="package-icon" data-category-id="1" src={{ asset('img/party-planner.png') }} alt="gear Name" />
-                    @elseif($gear->gig_category == 'Photographer')
-                    <img class="package-icon" data-category-id="1" src={{ asset('img/photographer.png') }} alt="gear Name" />
-                    @elseif($gear->gig_category == 'Videographer')
-                    <img class="package-icon" data-category-id="1" src={{ asset('img/videographer.png') }} alt="gear Name" />
-                    @elseif($gear->gig_category == 'Other')
-                    <img class="package-icon" data-category-id="1" src={{ asset('img/other.png') }} alt="gear Name" />
+                    <img class="package-icon" data-category-id={{ $gear->gig_category }} src={{ asset('img/party-planner.png') }} alt="gear Name" />
+                    @elseif($gear->gig_category == 'Photography')
+                    <img class="package-icon" data-category-id={{ $gear->gig_category }} src={{ asset('img/photographer.png') }} alt="gear Name" />
+                    @elseif($gear->gig_category == 'Videography')
+                    <img class="package-icon" data-category-id={{ $gear->gig_category }} src={{ asset('img/videographer.png') }} alt="gear Name" />
+                    @elseif($gear->gig_category == 'DJ')
+                    <img class="package-icon" data-category-id={{ $gear->gig_category }} src={{ asset('img/dj.png') }} alt="gear Name" />
+                    @elseif($gear->gig_category == 'Graphic-Artist')
+                    <img class="package-icon" data-category-id={{ $gear->gig_category }} src={{ asset('img/graphic-artist.png') }} alt="gear Name" />
+                    @elseif($gear->gig_category == 'Makeup-Artist')
+                    <img class="package-icon" data-category-id={{ $gear->gig_category }} src={{ asset('img/makeup-artist.png') }} alt="gear Name" />
+                    @else
+                    <img class="package-icon" data-category-id={{ $gear->gig_category }} src={{ asset('img/other.png') }} alt="gear Name" />
                     @endif
                     <div data-id="1" class="content">
                         <h1>{{ $gear->gear_name }}</h1>

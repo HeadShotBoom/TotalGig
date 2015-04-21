@@ -119,7 +119,7 @@
 			<modal-id>add-package-modal</modal-id>
 			<h1>Add Package</h1>
 			<form-requirements>*Indicates a required field</form-requirements>
-			<form-action>#</form-action>
+			<form-action>/packages</form-action>
 			<form-method>POST</form-method>
 			<validation-function></validation-function>
 			<submit-button-value>Add</submit-button-value>
@@ -128,7 +128,7 @@
 					<icon-img>form-package</icon-img>
 					<icon-alt>Package Name</icon-alt>
 					<type>text</type>
-					<name>package-name</name>
+					<name>package_name</name>
 					<id>package-name</id>
 					<placeholder>*Package Name</placeholder>
 					<required>required</required>
@@ -138,7 +138,7 @@
 				<gig-category type="select">
 					<icon-img>form-category</icon-img>
 					<icon-alt>Gig Category</icon-alt>
-					<name>gig-category</name>
+					<name>gig_category</name>
 					<id>gig-category</id>
 					<required>required</required>
 					<onblur></onblur>
@@ -151,23 +151,53 @@
 						</option>
 
 						<option>
-							<value>0</value>
-							<text>Category</text>
+							<value>Web-Development</value>
+							<text>Web-Development</text>
 						</option>
 
 						<option>
-							<value>1</value>
-							<text>Category</text>
+							<value>Cosmetologist</value>
+							<text>Cosmetologist</text>
 						</option>
 
 						<option>
-							<value>2</value>
-							<text>Category</text>
+							<value>Musician</value>
+							<text>Musician</text>
 						</option>
 
 						<option>
-							<value>3</value>
-							<text>Category</text>
+							<value>Photography</value>
+							<text>Photography</text>
+						</option>
+
+						<option>
+							<value>Videography</value>
+							<text>Videography</text>
+						</option>
+
+						<option>
+							<value>Party-Planner</value>
+							<text>Party-Planner</text>
+						</option>
+
+						<option>
+							<value>DJ</value>
+							<text>DJ</text>
+						</option>
+
+						<option>
+							<value>Makeup-Artist</value>
+							<text>Makeup-Artist</text>
+						</option>
+
+						<option>
+							<value>Graphic-Artist</value>
+							<text>Graphic-Artist</text>
+						</option>
+
+						<option>
+							<value>Other</value>
+							<text>Other</text>
 						</option>
 
 					</options>
@@ -181,8 +211,8 @@
 			<modal-id>edit-package-modal</modal-id>
 			<h1>Update Package</h1>
 			<form-requirements></form-requirements>
-			<form-action>#</form-action>
-			<form-method>POST</form-method>
+			<form-action>/packages/package id goes here</form-action>
+			<form-method>PUT</form-method>
 			<validation-function></validation-function>
 			<submit-button-value>Update</submit-button-value>
 			<inputs>
@@ -219,23 +249,53 @@
 						</option>
 
 						<option>
-							<value>0</value>
-							<text>Category</text>
+							<value>Web-Development</value>
+							<text>Web-Development</text>
 						</option>
 
 						<option>
-							<value>1</value>
-							<text>Category</text>
+							<value>Cosmetologist</value>
+							<text>Cosmetologist</text>
 						</option>
 
 						<option>
-							<value>2</value>
-							<text>Category</text>
+							<value>Musician</value>
+							<text>Musician</text>
 						</option>
 
 						<option>
-							<value>3</value>
-							<text>Category</text>
+							<value>Photography</value>
+							<text>Photography</text>
+						</option>
+
+						<option>
+							<value>Videography</value>
+							<text>Videography</text>
+						</option>
+
+						<option>
+							<value>Party-Planner</value>
+							<text>Party-Planner</text>
+						</option>
+
+						<option>
+							<value>DJ</value>
+							<text>DJ</text>
+						</option>
+
+						<option>
+							<value>Makeup-Artist</value>
+							<text>Makeup-Artist</text>
+						</option>
+
+						<option>
+							<value>Graphic-Artist</value>
+							<text>Graphic-Artist</text>
+						</option>
+
+						<option>
+							<value>Other</value>
+							<text>Other</text>
 						</option>
 
 					</options>
@@ -304,18 +364,33 @@
 						</option>
 
 						<option>
-							<value>Photographer</value>
-							<text>Photographer</text>
+							<value>Photography</value>
+							<text>Photography</text>
 						</option>
 
 						<option>
-							<value>Videographer</value>
-							<text>Videographer</text>
+							<value>Videography</value>
+							<text>Videography</text>
 						</option>
 
 						<option>
 							<value>Party-Planner</value>
 							<text>Party-Planner</text>
+						</option>
+
+						<option>
+							<value>DJ</value>
+							<text>DJ</text>
+						</option>
+
+						<option>
+							<value>Makeup-Artist</value>
+							<text>Makeup-Artist</text>
+						</option>
+
+						<option>
+							<value>Graphic-Artist</value>
+							<text>Graphic-Artist</text>
 						</option>
 
 						<option>
@@ -345,8 +420,8 @@
 			<modal-id>edit-gear-modal</modal-id>
 			<h1>Update Item</h1>
 			<form-requirements></form-requirements>
-			<form-action>#</form-action>
-			<form-method>POST</form-method>
+			<form-action>/gear/gear id goes here</form-action>
+			<form-method>PUT</form-method>
 			<validation-function></validation-function>
 			<submit-button-value>Update</submit-button-value>
 			<inputs>
@@ -360,7 +435,7 @@
 					<icon-img>form-item-name</icon-img>
 					<icon-alt>Gear Name</icon-alt>
 					<type>text</type>
-					<name>edit-gear-name</name>
+					<name>edit_gear_name</name>
 					<id>edit-item-name</id>
 					<placeholder>*Item Name</placeholder>
 					<required>required</required>
@@ -383,23 +458,53 @@
 						</option>
 
 						<option>
-							<value>0</value>
-							<text>Category</text>
+							<value>Web-Development</value>
+							<text>Web-Development</text>
 						</option>
 
 						<option>
-							<value>1</value>
-							<text>Category</text>
+							<value>Cosmetologist</value>
+							<text>Cosmetologist</text>
 						</option>
 
 						<option>
-							<value>2</value>
-							<text>Category</text>
+							<value>Musician</value>
+							<text>Musician</text>
 						</option>
 
 						<option>
-							<value>3</value>
-							<text>Category</text>
+							<value>Photography</value>
+							<text>Photography</text>
+						</option>
+
+						<option>
+							<value>Videography</value>
+							<text>Videography</text>
+						</option>
+
+						<option>
+							<value>Party-Planner</value>
+							<text>Party-Planner</text>
+						</option>
+
+						<option>
+							<value>DJ</value>
+							<text>DJ</text>
+						</option>
+
+						<option>
+							<value>Makeup-Artist</value>
+							<text>Makeup-Artist</text>
+						</option>
+
+						<option>
+							<value>Graphic-Artist</value>
+							<text>Graphic-Artist</text>
+						</option>
+
+						<option>
+							<value>Other</value>
+							<text>Other</text>
 						</option>
 
 					</options>
