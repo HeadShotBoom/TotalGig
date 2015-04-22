@@ -84,7 +84,7 @@
                     @else
                     <img class="package-icon" data-category-id={{ $gear->gig_category }} src={{ asset('img/other.png') }} alt="gear Name" />
                     @endif
-                    <div data-id="1" class="content">
+                    <div data-id={{ $gear->id }} class="content">
                         <h1>{{ $gear->gear_name }}</h1>
                         <img class="edit modal-trigger" data-modal="edit-gear" src="img/edit.png" alt="Edit" />
                         <img class="delete modal-trigger"  data-modal="delete-gear" src="img/delete.png" alt="Delete" />

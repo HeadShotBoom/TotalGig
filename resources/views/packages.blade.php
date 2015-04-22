@@ -58,7 +58,7 @@
                     @elseif($package->category == 'Other')
                     <img class="package-icon" data-category-id={{ $package->category }} src={{ asset('img/other.png') }} alt="package Name" />
                     @endif
-                    <div data-id="1" class="content">
+                    <div data-id={{ $package->id }} class="content">
                         <h1>{{ $package->package_name }}</h1>
                         <img class="edit modal-trigger" data-modal="edit-package" src="img/edit.png" alt="Edit" />
                         <img class="delete modal-trigger"  data-modal="delete-package" src="img/delete.png" alt="Delete" />

@@ -152,7 +152,7 @@
 
 						<option>
 							<value>Web-Development</value>
-							<text>Web-Development</text>
+							<text>Web Development</text>
 						</option>
 
 						<option>
@@ -177,7 +177,7 @@
 
 						<option>
 							<value>Party-Planner</value>
-							<text>Party-Planner</text>
+							<text>Party Planner</text>
 						</option>
 
 						<option>
@@ -187,12 +187,12 @@
 
 						<option>
 							<value>Makeup-Artist</value>
-							<text>Makeup-Artist</text>
+							<text>Makeup Artist</text>
 						</option>
 
 						<option>
 							<value>Graphic-Artist</value>
-							<text>Graphic-Artist</text>
+							<text>Graphic Artist</text>
 						</option>
 
 						<option>
@@ -211,22 +211,27 @@
 			<modal-id>edit-package-modal</modal-id>
 			<h1>Update Package</h1>
 			<form-requirements></form-requirements>
-			<form-action>/packages/package id goes here</form-action>
-			<form-method>PUT</form-method>
+			<form-action>/packages/</form-action>
+			<form-method>POST</form-method>
 			<validation-function></validation-function>
 			<submit-button-value>Update</submit-button-value>
 			<inputs>
 				<package-id>
 					<type>hidden</type>
-					<name>edit-package-id</name>
+					<name>edit_package_id</name>
 					<id>edit-package-id</id>
 					<required>required</required>
 				</package-id>
+				<method-maker>
+					<type>hidden</type>
+					<name>_method</name>
+					<value>PUT</value>
+				</method-maker>
 				<package-name>
 					<icon-img>form-package</icon-img>
 					<icon-alt>Package Name</icon-alt>
 					<type>text</type>
-					<name>edit-package-name</name>
+					<name>edit_package_name</name>
 					<id>edit-package-name</id>
 					<placeholder>*Package Name</placeholder>
 					<required>required</required>
@@ -236,7 +241,7 @@
 				<gig-category type="select">
 					<icon-img>form-category</icon-img>
 					<icon-alt>Gig Category</icon-alt>
-					<name>edit-gig-category</name>
+					<name>edit_gig_category</name>
 					<id>edit-gig-category</id>
 					<required>required</required>
 					<onblur></onblur>
@@ -250,7 +255,7 @@
 
 						<option>
 							<value>Web-Development</value>
-							<text>Web-Development</text>
+							<text>Web Development</text>
 						</option>
 
 						<option>
@@ -275,7 +280,7 @@
 
 						<option>
 							<value>Party-Planner</value>
-							<text>Party-Planner</text>
+							<text>Party Planner</text>
 						</option>
 
 						<option>
@@ -285,12 +290,12 @@
 
 						<option>
 							<value>Makeup-Artist</value>
-							<text>Makeup-Artist</text>
+							<text>Makeup Artist</text>
 						</option>
 
 						<option>
 							<value>Graphic-Artist</value>
-							<text>Graphic-Artist</text>
+							<text>Graphic Artist</text>
 						</option>
 
 						<option>
@@ -350,7 +355,7 @@
 
 						<option>
 							<value>Web-Development</value>
-							<text>Web-Development</text>
+							<text>Web Development</text>
 						</option>
 
 						<option>
@@ -375,7 +380,7 @@
 
 						<option>
 							<value>Party-Planner</value>
-							<text>Party-Planner</text>
+							<text>Party Planner</text>
 						</option>
 
 						<option>
@@ -385,12 +390,12 @@
 
 						<option>
 							<value>Makeup-Artist</value>
-							<text>Makeup-Artist</text>
+							<text>Makeup Artist</text>
 						</option>
 
 						<option>
 							<value>Graphic-Artist</value>
-							<text>Graphic-Artist</text>
+							<text>Graphic Artist</text>
 						</option>
 
 						<option>
@@ -420,17 +425,22 @@
 			<modal-id>edit-gear-modal</modal-id>
 			<h1>Update Item</h1>
 			<form-requirements></form-requirements>
-			<form-action>/gear/gear id goes here</form-action>
-			<form-method>PUT</form-method>
+			<form-action>/gear/</form-action>
+			<form-method>POST</form-method>
 			<validation-function></validation-function>
 			<submit-button-value>Update</submit-button-value>
 			<inputs>
 				<item-id>
 					<type>hidden</type>
-					<name>edit-gear-id</name>
+					<name>edit_gear_id</name>
 					<id>edit-gear-id</id>
 					<required>required</required>
 				</item-id>
+				<method-maker>
+					<type>hidden</type>
+					<name>_method</name>
+					<value>PUT</value>
+				</method-maker>
 				<package-name>
 					<icon-img>form-item-name</icon-img>
 					<icon-alt>Gear Name</icon-alt>
@@ -445,7 +455,7 @@
 				<gig-category type="select">
 					<icon-img>form-category</icon-img>
 					<icon-alt>Gig Category</icon-alt>
-					<name>edit-gig-category</name>
+					<name>edit_gig_category</name>
 					<id>edit-gig-category</id>
 					<required>required</required>
 					<onblur></onblur>
@@ -459,7 +469,7 @@
 
 						<option>
 							<value>Web-Development</value>
-							<text>Web-Development</text>
+							<text>Web Development</text>
 						</option>
 
 						<option>
@@ -484,7 +494,7 @@
 
 						<option>
 							<value>Party-Planner</value>
-							<text>Party-Planner</text>
+							<text>Party Planner</text>
 						</option>
 
 						<option>
@@ -494,12 +504,12 @@
 
 						<option>
 							<value>Makeup-Artist</value>
-							<text>Makeup-Artist</text>
+							<text>Makeup Artist</text>
 						</option>
 
 						<option>
 							<value>Graphic-Artist</value>
-							<text>Graphic-Artist</text>
+							<text>Graphic Artist</text>
 						</option>
 
 						<option>
@@ -513,7 +523,7 @@
 					<icon-img>form-description</icon-img>
 					<icon-alt>Gear Description</icon-alt>
 					<type>textarea</type>
-					<name>edit-gear-description</name>
+					<name>edit_gear_description</name>
 					<id>edit-gear-description</id>
 					<placeholder>Item Description</placeholder>
 					<required></required>
