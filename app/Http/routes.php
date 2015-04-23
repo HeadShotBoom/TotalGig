@@ -26,6 +26,7 @@ Route::resource('employees', 'EmployeeController');
 
 Route::model('gear', 'App\Gear');
 Route::resource('gear', 'GearController');
+Route::get('gear/delete/{id}', 'GearController@delete');
 
 Route::model('packages', 'App\Package');
 Route::resource('packages', 'PackageController');

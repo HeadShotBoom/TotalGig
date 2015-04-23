@@ -8,6 +8,7 @@ use App\Package;
 use App\Service;
 use Auth;
 use App\User;
+use DB;
 
 class PackageController extends Controller {
 
@@ -200,86 +201,90 @@ class PackageController extends Controller {
 		$updatedPackage->save();
 		$packageID = $request->edit_package_id;
 
+		DB::table('services')->where('package_id', $packageID)->delete();
+
 		if (!empty($service0[1])) {
-			$updatedService = $service;
-			$updatedService->service_qty = $service0[0];
-			$updatedService->service_name = $service0[1];
-			$updatedService->service_price = $service0[2];
-			$updatedService->package_id = $packageID;
-			$updatedService->save();
+			$service = new Service;
+			$service->service_qty = $service0[0];
+			$service->service_name = $service0[1];
+			$service->service_price = $service0[2];
+			$service->package_id = $packageID;
+			$service->save();
 		}
 		if (!empty($service1[1])) {
-			$updatedService = $service;
-			$updatedService->service_qty = $service1[0];
-			$updatedService->service_name = $service1[1];
-			$updatedService->service_price = $service1[2];
-			$updatedService->package_id = $packageID;
-			$updatedService->save();
+			$service = new Service;
+			$service->service_qty = $service1[0];
+			$service->service_name = $service1[1];
+			$service->service_price = $service1[2];
+			$service->package_id = $packageID;
+			$service->save();
 		}
 		if (!empty($service2[1])) {
-			$updatedService = $service;
-			$updatedService->service_qty = $service2[0];
-			$updatedService->service_name = $service2[1];
-			$updatedService->service_price = $service2[2];
-			$updatedService->package_id = $packageID;
-			$updatedService->save();
+			$service = new Service;
+			$service->service_qty = $service2[0];
+			$service->service_name = $service2[1];
+			$service->service_price = $service2[2];
+			$service->package_id = $packageID;
+			$service->save();
 		}
 		if (!empty($service3[1])) {
-			$updatedService = $service;
-			$updatedService->service_qty = $service3[0];
-			$updatedService->service_name = $service3[1];
-			$updatedService->service_price = $service3[2];
-			$updatedService->package_id = $packageID;
-			$updatedService->save();
+			$service = new Service;
+			$service->service_qty = $service3[0];
+			$service->service_name = $service3[1];
+			$service->service_price = $service3[2];
+			$service->package_id = $packageID;
+			$service->save();
 		}
 		if (!empty($service4[1])) {
-			$updatedService = $service;
-			$updatedService->service_qty = $service4[0];
-			$updatedService->service_name = $service4[1];
-			$updatedService->service_price = $service4[2];
-			$updatedService->package_id = $packageID;
-			$updatedService->save();
+			$service = new Service;
+			$service->service_qty = $service4[0];
+			$service->service_name = $service4[1];
+			$service->service_price = $service4[2];
+			$service->package_id = $packageID;
+			$service->save();
 		}
 		if (!empty($service5[1])) {
-			$updatedService = $service;
-			$updatedService->service_qty = $service5[0];
-			$updatedService->service_name = $service5[1];
-			$updatedService->service_price = $service5[2];
-			$updatedService->package_id = $packageID;
-			$updatedService->save();
+			$service = new Service;
+			$service->service_qty = $service5[0];
+			$service->service_name = $service5[1];
+			$service->service_price = $service5[2];
+			$service->package_id = $packageID;
+			$service->save();
 		}
 		if (!empty($service6[1])) {
-			$updatedService = $service;
-			$updatedService->service_qty = $service6[0];
-			$updatedService->service_name = $service6[1];
-			$updatedService->service_price = $service6[2];
-			$updatedService->package_id = $packageID;
-			$updatedService->save();
+			$service = new Service;
+			$service->service_qty = $service6[0];
+			$service->service_name = $service6[1];
+			$service->service_price = $service6[2];
+			$service->package_id = $packageID;
+			$service->save();
 		}
 		if (!empty($service7[1])) {
-			$updatedService = $service;
-			$updatedService->service_qty = $service7[0];
-			$updatedService->service_name = $service7[1];
-			$updatedService->service_price = $service7[2];
-			$updatedService->package_id = $packageID;
-			$updatedService->save();
+			$service = new Service;
+			$service->service_qty = $service7[0];
+			$service->service_name = $service7[1];
+			$service->service_price = $service7[2];
+			$service->package_id = $packageID;
+			$service->save();
 		}
 		if (!empty($service8[1])) {
-			$updatedService = $service;
-			$updatedService->service_qty = $service8[0];
-			$updatedService->service_name = $service8[1];
-			$updatedService->service_price = $service8[2];
-			$updatedService->package_id = $packageID;
-			$updatedService->save();
+			$service = new Service;
+			$service->service_qty = $service8[0];
+			$service->service_name = $service8[1];
+			$service->service_price = $service8[2];
+			$service->package_id = $packageID;
+			$service->save();
 		}
 		if (!empty($service9[1])) {
-			$updatedService = $service;
-			$updatedService->service_qty = $service9[0];
-			$updatedService->service_name = $service9[1];
-			$updatedService->service_price = $service9[2];
-			$updatedService->package_id = $packageID;
-			$updatedService->save();
+			$service = new Service;
+			$service->service_qty = $service9[0];
+			$service->service_name = $service9[1];
+			$service->service_price = $service9[2];
+			$service->package_id = $packageID;
+			$service->save();
 		}
+
+
 
 		return redirect('packages');
 	}

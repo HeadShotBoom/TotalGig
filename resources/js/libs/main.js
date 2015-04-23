@@ -88,9 +88,11 @@ function launchModal(targetModal){
 				    	$inputs.push($selectOpen+$selectOptions+$selectClose);
 				    }else if($type === 'textarea'){
 				    	$inputs.push('<div class="form-row"><div class="form-icon"><img src="img/'+$iconImg+'.png" alt="'+$iconAlt+'" /></div><textarea name="'+$name+'" placeholder="'+$placeholder+'" onblur="'+$onblur+'" '+$required+'></textarea><p class="field-requirements highlight">'+$fieldRequirements+'</p></div>');
-				 	}else if($type === 'hidden'){
+				 	}else if($type === 'hidden' && $name != '_method'){
 				 		$inputs.push('<input type="'+$type+'" value=" " name="'+$name+'" id="'+$id+'" '+$required+'>');
-				 	}else {
+					}else if($type === 'hidden' && $name === '_method'){
+						$inputs.push('<input type="'+$type+'" value="PUT" name="'+$name+'" id="'+$id+'" '+$required+'>');
+					}else {
 				    	$inputs.push('<div class="form-row"><div class="form-icon"><img src="img/'+$iconImg+'.png" alt="'+$iconAlt+'" /></div><input type="'+$type+'" name="'+$name+'" id="'+$id+'" placeholder="'+$placeholder+'" onblur="'+$onblur+'"' +$required+' /><p class="field-requirements highlight">'+$fieldRequirements+'</p></div>');
 				    }
 			    });
@@ -313,9 +315,9 @@ $(document).ready(function(){
 				services.pop(); // No need for sum
 
 				// Populate package data
-				$('input[name="edit-package-id').val(packageId);
-				$('input[name="edit-package-name"]').val(packageName);
-				$('select[name="edit-gig-category"]').val(packageCategory);
+				$('input[name="edit_package_id"]').val(packageId);
+				$('input[name="edit_package_name"]').val(packageName);
+				$('select[name="edit_gig_category"]').val(packageCategory);
 
 				var packageFormAction = $('#edit-package-modal form').attr('data-action');
 				$('#edit-package-modal form').attr('action', packageFormAction+packageId);
@@ -355,10 +357,10 @@ $(document).ready(function(){
 				var gearDescription = $(this).next().next().next().text();
 
 				// Populate package data
-				$('input[name="edit-gear-id"]').val(gearId);
-				$('input[name="edit-gear-name"]').val(gearName);
-				$('select[name="edit-gig-category"]').val(gearCategory);
-				$('textarea[name="edit-gear-description"]').val(gearDescription);
+				$('input[name="edit_gear_id"]').val(gearId);
+				$('input[name="edit_gear_name"]').val(gearName);
+				$('select[name="edit_gig_category"]').val(gearCategory);
+				$('textarea[name="edit_gear_description"]').val(gearDescription);
 
 				var gearFormAction = $('#edit-gear-modal form').attr('data-action');
 				$('#edit-gear-modal form').attr('action', gearFormAction+gearId);

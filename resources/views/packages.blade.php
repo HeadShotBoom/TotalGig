@@ -73,7 +73,10 @@
                                 <td class="service-name">{{ $service->service_name }}</td>
                                 <td class="service-price">${{ $service->service_price }}.00</td>
                             </tr>
-                            <?php $total = $total + $service->service_price ?>
+                            <?php
+                            $serviceTotal = $service->service_qty * $service->service_price;
+                            $total = $total + $serviceTotal;
+                            ?>
                             @endforeach
                             <tr>
                                 <td></td>

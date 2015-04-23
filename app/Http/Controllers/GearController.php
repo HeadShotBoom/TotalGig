@@ -106,6 +106,11 @@ class GearController extends Controller {
 		return redirect('gear');
 	}
 
+	public function delete(Gear $gear, Request $request)
+    {
+        dd($request->all());
+    }
+
 	private function createGear(GearRequest $request)
 	{
 		$gear = Auth::user()->gear()->create($request->all());
