@@ -24,10 +24,10 @@
 
         <div class="row">
             <button class="sort three columns alpha" type="button" onclick="toggleSort()" data-status="closed">Sort By<div class="arrow-down" ></div>
-					<span class="hide sort-options">
-						<a href="/gear" class="active">Name</a>
-						<a href="/gear/cat">Gig Category</a>
-					</span>
+                <span class="hide sort-options">
+					<a href="/gear" class="active">Name</a>
+					<a href="/gear/cat">Gig Category</a>
+				</span>
             </button>
             <button class="add-item three columns omega modal-trigger" data-modal="add-gear">Add Item</button>
         </div>
@@ -59,8 +59,8 @@
                     @endif
                     <div data-id={{ $gear->id }} class="content">
                         <h1>{{ $gear->gear_name }}</h1>
-                        <img class="edit modal-trigger" data-modal="edit-gear" src="img/edit.png" alt="Edit" />
-                        <img class="delete modal-trigger"  data-modal="delete-gear" src="img/delete.png" alt="Delete" />
+                        <img class="edit modal-trigger" data-modal="edit-gear" src={{ asset('img/edit.png') }} alt="Edit" />
+                        <img class="delete modal-trigger"  data-modal="delete-gear" src={{ asset('img/delete.png') }} alt="Delete" />
                         <h6>Item Type</h6>
                         <p class="mCustomScrollbar" data-mcs-theme="dark">{{ $gear->gear_description }}</p>
                     </div>
