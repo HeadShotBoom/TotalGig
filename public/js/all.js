@@ -55,7 +55,7 @@ function launchModal(targetModal){
 			 var $modalType = $selectedModal.attr('type');
 
 		    if($modalType === 'delete'){
-		    	var $htmlOpenDelete = '<div class="modal hide" id="'+$id+'" class="mCustomScrollbar" data-mcs-theme="minimal-dark"><div class="modal-header"><img src="img/alt-logo.png" alt="Total Gig" /><span class="modal-close">X</span></div><h1>'+$h1+'</h1>';
+		    	var $htmlOpenDelete = '<div class="modal hide" id="'+$id+'" class="mCustomScrollbar" data-mcs-theme="minimal-dark"><div class="modal-header"><img src="/public/img/alt-logo.png" alt="Total Gig" /><span class="modal-close">X</span></div><h1>'+$h1+'</h1>';
 
 		    	var $htmlBodyDelete = '<a href="'+$linkTo+'" class="button delete-link" data-original-href="'+$linkTo+'">Delete</a><span class="modal-close button">Cancel</span>';
 

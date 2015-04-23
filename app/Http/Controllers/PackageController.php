@@ -26,10 +26,16 @@ class PackageController extends Controller {
 	public function index()
 	{
 		$thisUser = Auth::user();
-		$packages = Package::all();
+		$packages = Package::orderBy('package_name', 'ASC')->get();
 		return view('packages', compact('packages', 'thisUser'));
 	}
 
+	public function index2()
+	{
+		$thisUser = Auth::user();
+		$packages = Package::orderBy('category', 'ASC')->get();
+		return view('packages', compact('packages', 'thisUser'));
+	}
 	/**
 	 * Show the form for creating a new resource.
 	 *
@@ -297,7 +303,15 @@ class PackageController extends Controller {
 	 */
 	public function destroy(Package $package)
 	{
-		$package->delete();
+		//
+	}
+
+	public function delete(Package $package, Request $request)
+	{
+		$uri = $request->url();
+		$toRemove = 'http://totalgig/packages/delete/';
+		$packageId = str_replace($toRemove, '', $uri);
+		DB::table('packages')->where('id', $packageId)->delete();
 		return redirect('packages');
 	}
 

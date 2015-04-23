@@ -110,7 +110,7 @@
 		<modal>
 			<modal-id>delete-package-modal</modal-id>
 			<h1>Are you sure you want to delete&lt;br&gt;&lt;span class="delete-value"&gt;&lt;/span&gt;?</h1>
-			<link-to>#?id=</link-to>
+			<link-to>/packages/delete/</link-to>
 		</modal>
 	</delete-package>
 
@@ -313,7 +313,7 @@
 		<modal>
 			<modal-id>delete-gear-modal</modal-id>
 			<h1>Are you sure you want to delete&lt;br&gt;&lt;span class="delete-value"&gt;&lt;/span&gt;?</h1>
-			<link-to>#?id=</link-to>
+			<link-to>/gear/delete/</link-to>
 		</modal>
 	</delete-gear>
 

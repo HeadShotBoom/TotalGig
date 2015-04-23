@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Gear;
 use App\User;
 use Auth;
+use DB;
 
 class GearController extends Controller {
 
@@ -24,7 +25,14 @@ class GearController extends Controller {
 	public function index()
 	{
 		$thisUser = Auth::user();
-		$gears = Gear::all();
+		$gears = Gear::orderBy('gear_name', 'ASC')->get();
+		return view('gear', compact('thisUser', 'gears'));
+	}
+
+	public function index2()
+	{
+		$thisUser = Auth::user();
+		$gears = Gear::orderBy('gear_name', 'DESC')->get();
 		return view('gear', compact('thisUser', 'gears'));
 	}
 
@@ -102,13 +110,16 @@ class GearController extends Controller {
 	 */
 	public function destroy(Gear $gear)
 	{
-		$gear->delete();
-		return redirect('gear');
+		//
 	}
 
 	public function delete(Gear $gear, Request $request)
     {
-        dd($request->all());
+		$uri = $request->url();
+		$toRemove = 'http://totalgig/gear/delete/';
+		$gearId = str_replace($toRemove, '', $uri);
+		DB::table('gears')->where('id', $gearId)->delete();
+		return redirect('gear');
     }
 
 	private function createGear(GearRequest $request)

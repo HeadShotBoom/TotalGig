@@ -24,12 +24,15 @@ Route::get('invoices', 'HomeController@invoices');
 Route::model('employees', 'App\Employee');
 Route::resource('employees', 'EmployeeController');
 
+Route::get('gear/cat', 'GearController@index2');
 Route::model('gear', 'App\Gear');
 Route::resource('gear', 'GearController');
 Route::get('gear/delete/{id}', 'GearController@delete');
 
+Route::get('packages/cat', 'PackageController@index2');
 Route::model('packages', 'App\Package');
 Route::resource('packages', 'PackageController');
+Route::get('packages/delete/{id}', 'PackageController@delete');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',
