@@ -8,7 +8,7 @@
 ///										 ///
 ///										 ///
 ///										 ///
-///										 ///
+///										 ///										 
 ////////////////////////////////////////////
 
 
@@ -88,10 +88,8 @@ function launchModal(targetModal){
 				    	$inputs.push($selectOpen+$selectOptions+$selectClose);
 				    }else if($type === 'textarea'){
 				    	$inputs.push('<div class="form-row"><div class="form-icon"><img src="img/'+$iconImg+'.png" alt="'+$iconAlt+'" /></div><textarea name="'+$name+'" placeholder="'+$placeholder+'" onblur="'+$onblur+'" '+$required+'></textarea><p class="field-requirements highlight">'+$fieldRequirements+'</p></div>');
-				 	}else if($type === 'hidden' && $name === '_method') {
-						$inputs.push('<input type="' + $type + '" value="PUT" name="' + $name + '" id="' + $id + '" ' + $required + '>');
-					}else if($type === 'hidden' && $name != '_method'){
-							$inputs.push('<input type="'+$type+'" value=" " name="'+$name+'" id="'+$id+'" '+$required+'>');
+				 	}else if($type === 'hidden'){
+				 		$inputs.push('<input type="'+$type+'" value=" " name="'+$name+'" id="'+$id+'" '+$required+'>');
 				 	}else {
 				    	$inputs.push('<div class="form-row"><div class="form-icon"><img src="img/'+$iconImg+'.png" alt="'+$iconAlt+'" /></div><input type="'+$type+'" name="'+$name+'" id="'+$id+'" placeholder="'+$placeholder+'" onblur="'+$onblur+'"' +$required+' /><p class="field-requirements highlight">'+$fieldRequirements+'</p></div>');
 				    }
@@ -113,12 +111,12 @@ function launchModal(targetModal){
 				}
 
 			    // Compile Form html
-				var $formOpen = '<form action="'+$formAction+'" data-action=" '+$formAction+'" method="'+$formMethod+'" onsubmit="return '+$validationFunction+'">';
+			    var $formOpen = '<form action="'+$formAction+'" data-action="'+$formAction+'" method="'+$formMethod+'" onsubmit="return '+$validationFunction+'">';
 
 			    var	$formInputs = '<input type="hidden" class="csrf-token" name="csrf-token" value=" ">';
 
 			    for(var j=0;j < $inputs.length; j++){
-			    	$formInputs += $inputs[j];
+			    	$formInputs += $inputs[j]; 
 			    }
 
 			    var $formClose = '<input type="submit" value="'+$submitButtonValue+'" /></form>';
@@ -129,16 +127,16 @@ function launchModal(targetModal){
 			    var $htmlForm = $formOpen + $formInputs + $formClose;
 
 			    var $htmlClose = '</div>';
-
+			    
 			    var $html = $htmlOpen + $htmlForm + $htmlClose;
-
+				
 				// Output HTML
 			    $('body').append($html);
 			}
 
 			$(".modal").mCustomScrollbar({scrollInertia:75});
 		    $(".form-services").mCustomScrollbar({scrollInertia: 50});
-		}
+		}   
 	});
 }
 
@@ -235,7 +233,7 @@ function matchPasswords(){
 		$('#confirm-password').prev().removeClass('invalid');
 
 		$('#confirm-password').next().text('');
-		$('#confirm-password').next().removeClass('error');
+		$('#confirm-password').next().removeClass('error');	
 	}
 }
 
@@ -315,12 +313,12 @@ $(document).ready(function(){
 				services.pop(); // No need for sum
 
 				// Populate package data
-				$('input[name="edit_package_id"]').val(packageId);
-				$('input[name="edit_package_name"]').val(packageName);
-				$('select[name="edit_gig_category"]').val(packageCategory);
+				$('input[name="edit-package-id').val(packageId);
+				$('input[name="edit-package-name"]').val(packageName);
+				$('select[name="edit-gig-category"]').val(packageCategory);
 
-				var formAction = $('#edit-package-modal form').attr('action');
-				$('#edit-package-modal form').attr('action', formAction+packageId);
+				var packageFormAction = $('#edit-package-modal form').attr('data-action');
+				$('#edit-package-modal form').attr('action', packageFormAction+packageId);
 				for(var l = 0;l < 10;l++){
 					var idTarget = 'input[name="service-id-edit'+l+'"]';
 					var quantityTarget = 'input[name="service-quantity-edit'+l+'"]';
@@ -339,10 +337,11 @@ $(document).ready(function(){
 					var priceTargetNew = 'input[name="service-price-edit'+m+'"]';
 
 					var idValue = services[m]['service-id'];
+
 					var quantityValue = parseInt(services[m]['service-quantity']);
 					var nameValue = services[m]['service-name'];
 					var priceValue = parseFloat(services[m]['service-price'].slice(1));
-
+					
 					$(idTargetNew).val(idValue);
 					$(quantityTargetNew).val(quantityValue);
 					$(nameTargetNew).val(nameValue);
@@ -356,13 +355,13 @@ $(document).ready(function(){
 				var gearDescription = $(this).next().next().next().text();
 
 				// Populate package data
-				$('input[name="edit_gear_id"]').val(gearId);
-				$('input[name="edit_gear_name"]').val(gearName);
-				$('select[name="edit_gig_category"]').val(gearCategory);
-				$('textarea[name="edit_gear_description"]').val(gearDescription);
+				$('input[name="edit-gear-id"]').val(gearId);
+				$('input[name="edit-gear-name"]').val(gearName);
+				$('select[name="edit-gig-category"]').val(gearCategory);
+				$('textarea[name="edit-gear-description"]').val(gearDescription);
 
-				var formAction = $('#edit-gear-modal form').attr('data-action');
-				$('#edit-gear-modal form').attr('action', formAction+gearId);
+				var gearFormAction = $('#edit-gear-modal form').attr('data-action');
+				$('#edit-gear-modal form').attr('action', gearFormAction+gearId);
 			}
 		}else {
 			openModal(modalId);
