@@ -23,12 +23,12 @@
         </div>
 
         <div class="row">
-            <button class="sort three columns alpha" type="button" onclick="toggleSort()" data-status="closed">Sort By<div class="arrow-down" ></div>
+            <div class="sort three columns alpha" type="button" onclick="toggleSort()" data-status="closed">Sort By<div class="arrow-down" ></div>
                 <span class="hide sort-options">
 					<a href="/gear" class="active">Name</a>
 					<a href="/gear/cat">Gig Category</a>
 				</span>
-            </button>
+            </div>
             <button class="add-item three columns omega modal-trigger" data-modal="add-gear">Add Item</button>
         </div>
 
