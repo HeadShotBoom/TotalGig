@@ -19,6 +19,7 @@ class CreateEmployeesTable extends Migration {
             $table->string('name');
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
+			$table->string('job_title')->nullable();
             $table->string('pay_rate', 8)->nullable();
 			$table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

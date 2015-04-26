@@ -55,7 +55,7 @@ function launchModal(targetModal){
 			 var $modalType = $selectedModal.attr('type');
 
 		    if($modalType === 'delete'){
-		    	var $htmlOpenDelete = '<div class="modal hide" id="'+$id+'" class="mCustomScrollbar" data-mcs-theme="minimal-dark"><div class="modal-header"><img src="/public/img/alt-logo.png" alt="Total Gig" /><span class="modal-close">X</span></div><h1>'+$h1+'</h1>';
+		    	var $htmlOpenDelete = '<div class="modal hide" id="'+$id+'" class="mCustomScrollbar" data-mcs-theme="minimal-dark"><div class="modal-header"><img src="img/alt-logo.png" alt="Total Gig" /><span class="modal-close">X</span></div><h1>'+$h1+'</h1>';
 
 		    	var $htmlBodyDelete = '<a href="'+$linkTo+'" class="button delete-link" data-original-href="'+$linkTo+'">Delete</a><span class="modal-close button">Cancel</span>';
 
@@ -98,7 +98,11 @@ function launchModal(targetModal){
 				    	});
 
 				    	$inputs.push($selectOpen+$selectOptions+$selectClose);
-				    }else if($type === 'textarea'){
+				    }else if($(this).attr('type') === 'double-1'){
+                        $inputs.push('<div class="form-row"><div class="form-icon"><img src="img/'+$iconImg+'.png" alt="'+$iconAlt+'" /></div><input type="'+$type+'" class="double-1" name="'+$name+'" id="'+$id+'" placeholder="'+$placeholder+'" onblur="'+$onblur+'"' +$required+' />');
+                    } else if($(this).attr('type') === 'double-2'){
+                        $inputs.push('<input type="'+$type+'" class="double-2" name="'+$name+'" id="'+$id+'" placeholder="'+$placeholder+'" onblur="'+$onblur+'"' +$required+' /><p class="field-requirements highlight">'+$fieldRequirements+'</p></div>');
+                    }else if($type === 'textarea'){
 				    	$inputs.push('<div class="form-row"><div class="form-icon"><img src="img/'+$iconImg+'.png" alt="'+$iconAlt+'" /></div><textarea name="'+$name+'" placeholder="'+$placeholder+'" onblur="'+$onblur+'" '+$required+'></textarea><p class="field-requirements highlight">'+$fieldRequirements+'</p></div>');
 				 	}else if($type === 'hidden' && $name != '_method'){
 				 		$inputs.push('<input type="'+$type+'" value=" " name="'+$name+'" id="'+$id+'" '+$required+'>');
@@ -289,7 +293,17 @@ $(document).ready(function(){
 		var modalId = dataModal+'-modal';
 
 		if($(this).hasClass('delete')){
-			var itemName = $(this).prevUntil('.content').text();
+            if($(this).attr('data-modal') === 'delete-gear' || $(this).attr('data-modal') === 'delete-package'){
+                var itemName1 = $(this).prevUntil('.content').text();
+
+                var fullTarget1 = '#'+modalId+' h1 .delete-value';
+                $(fullTarget1).html(itemName1);
+            }else if($(this).attr('data-modal') === 'delete-employee'){
+                var itemName2 = $(this).parent().parent().find('.name').text();
+
+                var fullTarget2 = '#'+modalId+' h1 .delete-value';
+                $(fullTarget2).html(itemName2);
+            }
 			var itemId = $(this).parents('.content').attr('data-id');
 
 			openModal(modalId);
@@ -376,8 +390,28 @@ $(document).ready(function(){
 
 				var gearFormAction = $('#edit-gear-modal form').attr('data-action');
 				$('#edit-gear-modal form').attr('action', gearFormAction+gearId);
-			}
-		}else {
+			}else if(dataModal === 'edit-employee') {  // Exclusive to edit-employee-modal
+                // Collect employee data
+                var employeeId = $(this).parent().parent().attr('data-id');
+                var employeeTarget = 'tr[data-id=' + employeeId + ']';
+                var employeeName = $(employeeTarget).find('.name').text();
+                var employeeJobTitle = $(employeeTarget).find('.job-title').text();
+                var employeePay = parseFloat($(employeeTarget).find('.pay').text());
+                var employeePhone = $(employeeTarget).find('.phone').text();
+                var employeeEmail = $(employeeTarget).find('.email').text();
+
+                // Populate employee data
+                $('input[name="edit_employee_name"]').val(employeeName);
+                $('input[name="edit_employee_job_title"]').val(employeeJobTitle);
+                $('input[name="edit_employee_pay"]').val(employeePay);
+                $('input[name="edit_employee_phone"]').val(employeePhone);
+                $('input[name="edit_employee_email"]').val(employeeEmail);
+
+                var employeeFormAction = $('#edit-employee-modal form').attr('data-action');
+                $('#edit-employee-modal form').attr('action', employeeFormAction + employeeId);
+                console.log(employeePay);
+            }
+			}else {
 			openModal(modalId);
 			closeModal();
 

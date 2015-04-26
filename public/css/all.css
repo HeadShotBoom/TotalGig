@@ -539,7 +539,8 @@ body {
   background: -ms-linear-gradient(top, #e3e3e3 0%, #e5e5e5 5%, #e8e8e8 10%, #ebebeb 25%, #f5f5f5 40%, #f0f0f0 60%, #f2f2f2 90%, #f5f5f5 95%, #f7f7f7 100%);
   /* IE10+ */
   background: linear-gradient(to bottom, #e3e3e3 0%, #e5e5e5 5%, #e8e8e8 10%, #ebebeb 25%, #f5f5f5 40%, #f0f0f0 60%, #f2f2f2 90%, #f5f5f5 95%, #f7f7f7 100%);
-  /* W3C */ }
+  /* W3C */
+  padding-bottom: 50px; }
 
 h1 {
   font: 32px Lobster, Cabin, sans-serif;
@@ -806,7 +807,7 @@ footer {
         transition: all 0.3s ease-in-out;
         display: inline-block;
         width: 83.8%;
-        height: 28px;
+        height: 26px;
         color: #382313;
         vertical-align: top;
         margin: 0;
@@ -816,7 +817,7 @@ footer {
         -ms-border-radius: 5px;
         border-radius: 5px;
         background: #fafafa;
-        border-sizing: border-box;
+        border-sizing: content-box;
         border: 2px solid #241a18;
         box-shadow: 0 0 5px rgba(36, 26, 24, 0.35); }
       .modal form .form-row select {
@@ -827,9 +828,18 @@ footer {
         font-size: 18px;
         height: 100px;
         resize: none; }
+      .modal form .form-row input[type=number] {
+        text-indent: 3px;
+        padding-top: 6px;
+        padding-bottom: 6px; }
       .modal form .form-row input:focus,
       .modal form .form-row textarea:focus {
         border-color: #eb5b0e; }
+      .modal form .form-row .double-1 {
+        width: 50%;
+        margin-right: 5%; }
+      .modal form .form-row .double-2 {
+        width: 27.5%; }
       .modal form .form-row .field-requirements {
         text-align: right;
         font-size: 12px;
@@ -973,7 +983,10 @@ footer {
   font-family: Cabin, sans-serif;
   border-width: 2px;
   text-align: left;
-  margin: 0; }
+  line-height: 48px;
+  margin: 0;
+  text-indent: 20px;
+  cursor: pointer; }
   .sort .sort-options a {
     font-size: 18px;
     line-height: 10px;
@@ -1003,7 +1016,8 @@ footer {
   -ms-border-radius: 5px;
   border-radius: 5px;
   font-family: Cabin, sans-serif;
-  border-width: 2px; }
+  border-width: 2px;
+  line-height: 48px; }
   .sort:hover .arrow-down {
     border-top-color: #eb5b0e; }
 
@@ -1012,7 +1026,7 @@ footer {
   -moz-transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
-  margin-left: 41px;
+  margin-left: 20px;
   margin-top: -5px;
   display: inline-block;
   vertical-align: middle;
@@ -1067,6 +1081,41 @@ footer {
   font-family: Cabin, sans-serif;
   border-width: 2px;
   text-decoration: underline; }
+
+.large-table {
+  width: 100%;
+  text-align: left; }
+  .large-table thead {
+    height: 50px;
+    line-height: 50px;
+    color: #fafafa;
+    font-weight: 600;
+    font-size: 24px;
+    background: rgba(0, 0, 0, 0.9);
+    /* Old browsers */
+    background: -moz-linear-gradient(top, rgba(0, 0, 0, 0.9) 0%, rgba(3, 2, 2, 0.9) 10%, rgba(8, 6, 5, 0.9) 25%, rgba(13, 9, 9, 0.9) 40%, rgba(15, 11, 10, 0.9) 50%, rgba(18, 13, 12, 0.9) 60%, rgba(20, 15, 14, 0.9) 75%, rgba(23, 17, 15, 0.9) 90%, rgba(28, 20, 19, 0.9) 100%);
+    /* FF3.6+ */
+    background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.9) 0%, rgba(3, 2, 2, 0.9) 10%, rgba(8, 6, 5, 0.9) 25%, rgba(13, 9, 9, 0.9) 40%, rgba(15, 11, 10, 0.9) 50%, rgba(18, 13, 12, 0.9) 60%, rgba(20, 15, 14, 0.9) 75%, rgba(23, 17, 15, 0.9) 90%, rgba(28, 20, 19, 0.9) 100%);
+    /* Chrome10+,Safari5.1+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0.9)), color-stop(10%, rgba(3, 2, 2, 0.9)), color-stop(25%, rgba(8, 6, 5, 0.9)), color-stop(40%, rgba(13, 9, 9, 0.9)), color-stop(50%, rgba(15, 11, 10, 0.9)), color-stop(60%, rgba(18, 13, 12, 0.9)), color-stop(75%, rgba(20, 15, 14, 0.9)), color-stop(90%, rgba(23, 17, 15, 0.9)), color-stop(100%, rgba(28, 20, 19, 0.9)));
+    /* Chrome,Safari4+ */
+    background: -o-linear-gradient(top, rgba(0, 0, 0, 0.9) 0%, rgba(3, 2, 2, 0.9) 10%, rgba(8, 6, 5, 0.9) 25%, rgba(13, 9, 9, 0.9) 40%, rgba(15, 11, 10, 0.9) 50%, rgba(18, 13, 12, 0.9) 60%, rgba(20, 15, 14, 0.9) 75%, rgba(23, 17, 15, 0.9) 90%, rgba(28, 20, 19, 0.9) 100%);
+    /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, rgba(0, 0, 0, 0.9) 0%, rgba(3, 2, 2, 0.9) 10%, rgba(8, 6, 5, 0.9) 25%, rgba(13, 9, 9, 0.9) 40%, rgba(15, 11, 10, 0.9) 50%, rgba(18, 13, 12, 0.9) 60%, rgba(20, 15, 14, 0.9) 75%, rgba(23, 17, 15, 0.9) 90%, rgba(28, 20, 19, 0.9) 100%);
+    /* IE10+ */
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9) 0%, rgba(3, 2, 2, 0.9) 10%, rgba(8, 6, 5, 0.9) 25%, rgba(13, 9, 9, 0.9) 40%, rgba(15, 11, 10, 0.9) 50%, rgba(18, 13, 12, 0.9) 60%, rgba(20, 15, 14, 0.9) 75%, rgba(23, 17, 15, 0.9) 90%, rgba(28, 20, 19, 0.9) 100%);
+    /* W3C */ }
+  .large-table tbody tr:nth-of-type(odd) {
+    background: #fff; }
+  .large-table tbody tr {
+    height: 20px; }
+  .large-table th,
+  .large-table td {
+    text-indent: 5px; }
+  .large-table td {
+    padding: 3px 0; }
+  .large-table td:last-of-type img:last-of-type {
+    margin-left: 10px; }
 
 /* #Page Styles
 ================================================== */
@@ -1305,6 +1354,11 @@ footer {
 .package:nth-of-type(even),
 .gear-item:nth-of-type(even) {
   margin-left: 20px; }
+
+/* - Employees
+======================*/
+.add-item[data-modal="add-employee"] {
+  font-size: 18px; }
 
 /* #Media Queries
 ================================================== */

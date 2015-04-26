@@ -16,7 +16,7 @@ class Employee extends Model {
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'phone', 'user_id', 'pay_rate'];
+    protected $fillable = ['name', 'email', 'phone', 'user_id', 'pay_rate', 'job'];
 
     public function user()
     {

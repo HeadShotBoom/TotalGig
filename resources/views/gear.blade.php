@@ -10,7 +10,7 @@
     <div class="container">
         <div class="four columns"><a href="/dashboard" id="header-logo">Total Gig</a></div>
         <div class="twelve columns">
-           @include('partial.nav')
+            @include('partial.nav')
         </div>
     </div>
 </header>

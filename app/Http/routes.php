@@ -21,8 +21,11 @@ Route::get('clients', 'HomeController@clients');
 
 Route::get('invoices', 'HomeController@invoices');
 
+Route::get('employees/pay', 'EmployeeController@index3');
+Route::get('employees/job', 'EmployeeController@index2');
 Route::model('employees', 'App\Employee');
 Route::resource('employees', 'EmployeeController');
+Route::get('employees/delete/{id}', 'EmployeeController@delete');
 
 Route::get('gear/cat', 'GearController@index2');
 Route::model('gear', 'App\Gear');

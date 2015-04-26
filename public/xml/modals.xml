@@ -533,5 +533,155 @@
 			</inputs>
 		</modal>
 	</edit-gear>
+	<delete-employee type="delete">
+		<modal>
+			<modal-id>delete-employee-modal</modal-id>
+			<h1>Are you sure you want to delete&lt;br&gt;&lt;span class="delete-value"&gt;&lt;/span&gt;?</h1>
+			<link-to>/employees/delete/</link-to>
+		</modal>
+	</delete-employee>
+
+	<add-employee type="add">
+		<modal>
+			<modal-id>add-employee-modal</modal-id>
+			<h1>Add Employee</h1>
+			<form-requirements>*Indicates a required field</form-requirements>
+			<form-action>/employees</form-action>
+			<form-method>POST</form-method>
+			<validation-function></validation-function>
+			<submit-button-value>Add</submit-button-value>
+			<inputs>
+				<employee-name>
+					<icon-img>form-employee</icon-img>
+					<icon-alt>Employee Name</icon-alt>
+					<type>text</type>
+					<name>add_employee_name</name>
+					<id>add-employee-name</id>
+					<placeholder>*Employee Name</placeholder>
+					<required>required</required>
+					<onblur>validateInput('#add-employee-name')</onblur>
+					<field-requirements>Ex: John Doe</field-requirements>
+				</employee-name>
+				<job-title>
+					<icon-img>form-job-title</icon-img>
+					<icon-alt>Job Title</icon-alt>
+					<type>text</type>
+					<name>add_employee_job_title</name>
+					<id>add-employee-job-title</id>
+					<placeholder>Job Title</placeholder>
+					<required></required>
+					<onblur></onblur>
+					<field-requirements>Ex: Web Developer</field-requirements>
+				</job-title>
+				<email>
+					<icon-img>form-email</icon-img>
+					<icon-alt>Email</icon-alt>
+					<type>email</type>
+					<name>add_employee_email</name>
+					<id>employee-email</id>
+					<placeholder>Email</placeholder>
+					<required></required>
+					<onblur>validateInput('#add-employee-email')</onblur>
+					<field-requirements></field-requirements>
+				</email>
+				<phone type="double-1">
+					<icon-img>form-phone</icon-img>
+					<icon-alt>Phone Number</icon-alt>
+					<type>text</type>
+					<name>add_employee_phone</name>
+					<id>add-employee-phone</id>
+					<placeholder>Phone</placeholder>
+					<required></required>
+					<onblur></onblur>
+					<field-requirements></field-requirements>
+				</phone>
+				<pay type="double-2">
+					<icon-img></icon-img>
+					<icon-alt></icon-alt>
+					<type>number" step="0.01</type>
+					<name>add_employee_pay</name>
+					<id>add-employee-pay</id>
+					<placeholder>Pay / Hr</placeholder>
+					<required></required>
+					<onblur></onblur>
+					<field-requirements></field-requirements>
+				</pay>
+			</inputs>
+		</modal>
+	</add-employee>
+
+	<edit-employee type="edit">
+		<modal>
+			<modal-id>edit-employee-modal</modal-id>
+			<h1>Update Employee</h1>
+			<form-requirements></form-requirements>
+			<form-action>/employees/</form-action>
+			<form-method>POST</form-method>
+			<validation-function></validation-function>
+			<submit-button-value>Update</submit-button-value>
+			<inputs>
+				<method-maker>
+					<type>hidden</type>
+					<name>_method</name>
+					<value>PUT</value>
+				</method-maker>
+				<employee-name>
+					<icon-img>form-employee</icon-img>
+					<icon-alt>Employee Name</icon-alt>
+					<type>text</type>
+					<name>edit_employee_name</name>
+					<id>edit-employee-name</id>
+					<placeholder>*Employee Name</placeholder>
+					<required>required</required>
+					<onblur>validateInput('#edit-employee-name')</onblur>
+					<field-requirements>Ex: John Doe</field-requirements>
+				</employee-name>
+				<job-title>
+					<icon-img>form-job-title</icon-img>
+					<icon-alt>Job Title</icon-alt>
+					<type>text</type>
+					<name>edit_employee_job_title</name>
+					<id>edit_employee_job_title</id>
+					<placeholder>Job Title</placeholder>
+					<required></required>
+					<onblur></onblur>
+					<field-requirements>Ex: Web Developer</field-requirements>
+				</job-title>
+				<email>
+					<icon-img>form-email</icon-img>
+					<icon-alt>Email</icon-alt>
+					<type>email</type>
+					<name>edit_employee_email</name>
+					<id>edit-employee-email</id>
+					<placeholder>Email</placeholder>
+					<required></required>
+					<onblur>validateInput('#edit-employee-email')</onblur>
+					<field-requirements></field-requirements>
+				</email>
+				<phone type="double-1">
+					<icon-img>form-phone</icon-img>
+					<icon-alt>Phone Number</icon-alt>
+					<type>text</type>
+					<name>edit_employee_phone</name>
+					<id>edit-employee-phone</id>
+					<placeholder>Phone</placeholder>
+					<required></required>
+					<onblur></onblur>
+					<field-requirements></field-requirements>
+				</phone>
+				<pay type="double-2">
+					<icon-img></icon-img>
+					<icon-alt></icon-alt>
+					<type>number" step="0.01</type>
+					<name>edit_employee_pay</name>
+					<id>edit-employee-pay</id>
+					<placeholder>Pay /Hr</placeholder>
+					<required></required>
+					<onblur></onblur>
+					<field-requirements></field-requirements>
+				</pay>
+			</inputs>
+		</modal>
+	</edit-employee>
 
 </modals>

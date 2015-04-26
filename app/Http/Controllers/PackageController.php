@@ -36,6 +36,7 @@ class PackageController extends Controller {
 		$packages = Package::orderBy('category', 'ASC')->get();
 		return view('packages', compact('packages', 'thisUser'));
 	}
+
 	/**
 	 * Show the form for creating a new resource.
 	 *
