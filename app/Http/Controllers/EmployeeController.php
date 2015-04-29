@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Employee;
 use Auth;
+use DB;
 
 class EmployeeController extends Controller {
 
@@ -29,13 +30,13 @@ class EmployeeController extends Controller {
     public function index2()
     {
         $thisUser = Auth::user();
-        $employees = Employee::orderBy('job', 'ASC')->get();
+        $employees = Employee::orderBy('job_title', 'ASC')->get();
         return view('employees', compact('employees', 'thisUser'));
     }
     public function index3()
     {
         $thisUser = Auth::user();
-        $employees = Employee::orderBy('pay', 'ASC')->get();
+        $employees = Employee::orderBy('pay_rate', 'ASC')->get();
         return view('employees', compact('employees', 'thisUser'));
     }
 	/**
@@ -60,7 +61,7 @@ class EmployeeController extends Controller {
         $employee->name = $request->add_employee_name;
         $employee->email = $request->add_employee_email;
         $employee->phone = $request->add_employee_phone;
-        $employee->job_title = $request->add_employee_job;
+        $employee->job_title = $request->add_employee_job_title;
         $employee->pay_rate = $request->add_employee_pay;
         $employee->save();
 

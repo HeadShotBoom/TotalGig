@@ -17,7 +17,10 @@ Route::get('dashboard', 'HomeController@index');
 
 Route::get('gigs', 'HomeController@gigs');
 
-Route::get('clients', 'HomeController@clients');
+Route::get('clients/loc', 'ClientController@index2');
+Route::model('clients', 'App\Client');
+Route::resource('clients', 'ClientController');
+Route::get('clients/delete/{id}', 'ClientController@delete');
 
 Route::get('invoices', 'HomeController@invoices');
 

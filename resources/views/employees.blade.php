@@ -52,7 +52,7 @@
                 <tr class="content" data-id={{ $employee->id }}>
                     <td class="name">{{ $employee->name }}</td>
                     <td class="job-title">{{ $employee->job_title }}</td>
-                    <td class="pay">{{ $employee->pay_rate }}</td></hr >
+                    <td class="pay">${{ $employee->pay_rate }}/hr</td>
                     <td class="email">{{ $employee->email }}</td>
                     <td class="phone">{{ $employee->phone }}</td>
                     <td>

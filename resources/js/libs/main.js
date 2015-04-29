@@ -92,7 +92,7 @@ function launchModal(targetModal){
                         $inputs.push('<input type="'+$type+'" class="double-2" name="'+$name+'" id="'+$id+'" placeholder="'+$placeholder+'" onblur="'+$onblur+'"' +$required+' /><p class="field-requirements highlight">'+$fieldRequirements+'</p></div>');
                     }else if($type === 'textarea'){
 				    	$inputs.push('<div class="form-row"><div class="form-icon"><img src="img/'+$iconImg+'.png" alt="'+$iconAlt+'" /></div><textarea name="'+$name+'" placeholder="'+$placeholder+'" onblur="'+$onblur+'" '+$required+'></textarea><p class="field-requirements highlight">'+$fieldRequirements+'</p></div>');
-				 	}else if($type === 'hidden' && $name != '_method'){
+				 	}else if($type === 'hidden' && $name !== '_method'){
 				 		$inputs.push('<input type="'+$type+'" value=" " name="'+$name+'" id="'+$id+'" '+$required+'>');
 					}else if($type === 'hidden' && $name === '_method'){
 						$inputs.push('<input type="'+$type+'" value="PUT" name="'+$name+'" id="'+$id+'" '+$required+'>');
@@ -247,7 +247,7 @@ function matchPasswords(){
 /// III: Other Functions				 ///
 function toggleSort(){
 	if($('.sort').attr('data-status') === 'open'){
-		$('.sort').css('width', 'initial');
+		$('.sort').width(160);
 		$('.sort-options').toggleClass('hide');
 		$('.sort').attr('data-status', 'closed');
 		$('.sort .arrow-down').css({'-ms-transform': 'rotate(0deg)', '-webkit-transform': 'rotate(0deg)', 'transition': 'rotate(0deg)'});
@@ -286,7 +286,7 @@ $(document).ready(function(){
 
                 var fullTarget1 = '#'+modalId+' h1 .delete-value';
                 $(fullTarget1).html(itemName1);
-            }else if($(this).attr('data-modal') === 'delete-employee'){
+            }else if($(this).attr('data-modal') === 'delete-employee' || $(this).attr('data-modal') === 'delete-client'){
                 var itemName2 = $(this).parent().parent().find('.name').text();
 
                 var fullTarget2 = '#'+modalId+' h1 .delete-value';
@@ -296,9 +296,6 @@ $(document).ready(function(){
 
 			openModal(modalId);
 			closeModal();
-
-			var fullTarget = '#'+modalId+' h1 .delete-value';
-			$(fullTarget).html(itemName);
 
 			var linkTarget = '#'+modalId+' .delete-link';
 			$(linkTarget).attr('href', $(linkTarget).attr('data-original-href') + itemId);
@@ -368,7 +365,7 @@ $(document).ready(function(){
 				var gearId = $(this).parent().prev().parent().attr('data-gear-id');
 				var gearName = $(this).prevUntil('.content').text();
 				var gearCategory = $(this).parent().prev().attr('data-category-id');
-				var gearDescription = $(this).next().next().next().text();
+				var gearDescription = $(this).next().next().text();
 
 				// Populate package data
 				$('input[name="edit_gear_id"]').val(gearId);
@@ -397,7 +394,25 @@ $(document).ready(function(){
 
                 var employeeFormAction = $('#edit-employee-modal form').attr('data-action');
                 $('#edit-employee-modal form').attr('action', employeeFormAction + employeeId);
-                console.log(employeePay);
+            }else if(dataModal === 'edit-client') { //Exclusive to edit-client modal
+            	// Collect client data
+                var clientId = $(this).parent().parent().attr('data-id');
+                var clientTarget = 'tr[data-id=' + clientId + ']';
+                var clientName = $(clientTarget).find('.name').text();
+                var clientPhone = $(clientTarget).find('.phone').text();
+                var clientLocation = $(clientTarget).find('.location').text();
+                var clientEmail = $(clientTarget).find('.email').text();
+
+                // Populate client data
+                $('input[name="edit_client_name"]').val(clientName);
+                $('input[name="edit_client_phone"]').val(clientPhone);
+                $('input[name="edit_client_location').val(clientLocation);
+                $('input[name="edit_client_email"]').val(clientEmail);
+
+                var clientFormAction = $('#edit-client-modal form').attr('data-action');
+                $('#edit-client-modal form').attr('action', clientFormAction + clientId);
+
+                console.log(clientId);
             }
 			}else {
 			openModal(modalId);

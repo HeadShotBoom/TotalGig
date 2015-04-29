@@ -684,4 +684,133 @@
 		</modal>
 	</edit-employee>
 
+	<delete-client type="delete">
+		<modal>
+			<modal-id>delete-client-modal</modal-id>
+			<h1>Are you sure you want to delete&lt;br&gt;&lt;span class="delete-value"&gt;&lt;/span&gt;?</h1>
+			<link-to>/clients/delete/</link-to>
+		</modal>
+	</delete-client>
+
+	<add-client type="add">
+		<modal>
+			<modal-id>add-client-modal</modal-id>
+			<h1>Add Client</h1>
+			<form-requirements>*Indicates a required field</form-requirements>
+			<form-action>/clients</form-action>
+			<form-method>POST</form-method>
+			<validation-function></validation-function>
+			<submit-button-value>Add</submit-button-value>
+			<inputs>
+				<client-name>
+					<icon-img>form-client</icon-img>
+					<icon-alt>Client Name</icon-alt>
+					<type>text</type>
+					<name>add_client_name</name>
+					<id>add-client-name</id>
+					<placeholder>*Client Name</placeholder>
+					<required>required</required>
+					<onblur>validateInput('#add-client-name')</onblur>
+					<field-requirements>Ex: John Doe</field-requirements>
+				</client-name>
+				<email>
+					<icon-img>form-email</icon-img>
+					<icon-alt>Email</icon-alt>
+					<type>email</type>
+					<name>add_client_email</name>
+					<id>client-email</id>
+					<placeholder>Email</placeholder>
+					<required></required>
+					<onblur>validateInput('#add-client-email')</onblur>
+					<field-requirements></field-requirements>
+				</email>
+				<location>
+					<icon-img>form-location</icon-img>
+					<icon-alt>Location</icon-alt>
+					<type>text</type>
+					<name>add_client_location</name>
+					<id>add-client-location</id>
+					<placeholder>Client Location</placeholder>
+					<required></required>
+					<onblur>validateInput('#add-client-location')</onblur>
+					<field-requirements></field-requirements>
+				</location>
+				<phone>
+					<icon-img>form-phone</icon-img>
+					<icon-alt>Phone Number</icon-alt>
+					<type>text</type>
+					<name>add_client_phone</name>
+					<id>add-client-phone</id>
+					<placeholder>Phone</placeholder>
+					<required></required>
+					<onblur></onblur>
+					<field-requirements></field-requirements>
+				</phone>
+			</inputs>
+		</modal>
+	</add-client>
+
+	<edit-client type="edit">
+		<modal>
+			<modal-id>edit-client-modal</modal-id>
+			<h1>Update Client</h1>
+			<form-requirements></form-requirements>
+			<form-action>/clients/</form-action>
+			<form-method>POST</form-method>
+			<validation-function></validation-function>
+			<submit-button-value>Update</submit-button-value>
+			<inputs>
+				<method-maker>
+					<type>hidden</type>
+					<name>_method</name>
+					<value>PUT</value>
+				</method-maker>
+				<client-name>
+					<icon-img>form-client</icon-img>
+					<icon-alt>Client Name</icon-alt>
+					<type>text</type>
+					<name>edit_client_name</name>
+					<id>edit-client-name</id>
+					<placeholder>*Client Name</placeholder>
+					<required>required</required>
+					<onblur>validateInput('#edit-client-name')</onblur>
+					<field-requirements>Ex: John Doe</field-requirements>
+				</client-name>
+				<email>
+					<icon-img>form-email</icon-img>
+					<icon-alt>Email</icon-alt>
+					<type>email</type>
+					<name>edit_client_email</name>
+					<id>client-email</id>
+					<placeholder>Email</placeholder>
+					<required></required>
+					<onblur>validateInput('#edit-client-email')</onblur>
+					<field-requirements></field-requirements>
+				</email>
+				<location>
+					<icon-img>form-location</icon-img>
+					<icon-alt>Location</icon-alt>
+					<type>text</type>
+					<name>edit_client_location</name>
+					<id>edit-client-location</id>
+					<placeholder>Client Location</placeholder>
+					<required></required>
+					<onblur>validateInput('#edit-client-location')</onblur>
+					<field-requirements></field-requirements>
+				</location>
+				<phone>
+					<icon-img>form-phone</icon-img>
+					<icon-alt>Phone Number</icon-alt>
+					<type>text</type>
+					<name>edit_client_phone</name>
+					<id>edit-client-phone</id>
+					<placeholder>Phone</placeholder>
+					<required></required>
+					<onblur></onblur>
+					<field-requirements></field-requirements>
+				</phone>
+			</inputs>
+		</modal>
+	</edit-client>
+
 </modals>

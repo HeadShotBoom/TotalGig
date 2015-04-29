@@ -61,7 +61,6 @@
                         <h1>{{ $gear->gear_name }}</h1>
                         <img class="edit modal-trigger" data-modal="edit-gear" src={{ asset('img/edit.png') }} alt="Edit" />
                         <img class="delete modal-trigger"  data-modal="delete-gear" src={{ asset('img/delete.png') }} alt="Delete" />
-                        <h6>Item Type</h6>
                         <p class="mCustomScrollbar" data-mcs-theme="dark">{{ $gear->gear_description }}</p>
                     </div>
                 </div>
