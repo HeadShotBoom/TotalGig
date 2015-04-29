@@ -55,7 +55,7 @@ function launchModal(targetModal){
 			 var $modalType = $selectedModal.attr('type');
 
 		    if($modalType === 'delete'){
-		    	var $htmlOpenDelete = '<div class="modal hide" id="'+$id+'" class="mCustomScrollbar" data-mcs-theme="minimal-dark"><div class="modal-header"><img src="img/alt-logo.png" alt="Total Gig" /><span class="modal-close">X</span></div><h1>'+$h1+'</h1>';
+		    	var $htmlOpenDelete = '<div class="modal hide" id="'+$id+'" class="mCustomScrollbar" data-mcs-theme="minimal-dark"><div class="modal-header"><img src="../img/alt-logo.png" alt="Total Gig" /><span class="modal-close">X</span></div><h1>'+$h1+'</h1>';
 
 		    	var $htmlBodyDelete = '<a href="'+$linkTo+'" class="button delete-link" data-original-href="'+$linkTo+'">Delete</a><span class="modal-close button">Cancel</span>';
 
@@ -81,7 +81,7 @@ function launchModal(targetModal){
 			    	}
 
 			    	if($(this).attr('type') === 'select'){
-			    		$selectOpen = '<div class="form-row"><div class="form-icon"><img src="img/'+$iconImg+'.png" alt="'+$iconAlt+'" /></div><select name="'+$name+'" id="'+$id+'" onblur="'+$onblur+'" '+$required+'><optgroup>';
+			    		$selectOpen = '<div class="form-row"><div class="form-icon"><img src="../img/'+$iconImg+'.png" alt="'+$iconAlt+'" /></div><select name="'+$name+'" id="'+$id+'" onblur="'+$onblur+'" '+$required+'><optgroup>';
 
 			    		$selectClose = '</optgroup></select></div>';
 
@@ -99,17 +99,17 @@ function launchModal(targetModal){
 
 				    	$inputs.push($selectOpen+$selectOptions+$selectClose);
 				    }else if($(this).attr('type') === 'double-1'){
-                        $inputs.push('<div class="form-row"><div class="form-icon"><img src="img/'+$iconImg+'.png" alt="'+$iconAlt+'" /></div><input type="'+$type+'" class="double-1" name="'+$name+'" id="'+$id+'" placeholder="'+$placeholder+'" onblur="'+$onblur+'"' +$required+' />');
+                        $inputs.push('<div class="form-row"><div class="form-icon"><img src="../img/'+$iconImg+'.png" alt="'+$iconAlt+'" /></div><input type="'+$type+'" class="double-1" name="'+$name+'" id="'+$id+'" placeholder="'+$placeholder+'" onblur="'+$onblur+'"' +$required+' />');
                     } else if($(this).attr('type') === 'double-2'){
                         $inputs.push('<input type="'+$type+'" class="double-2" name="'+$name+'" id="'+$id+'" placeholder="'+$placeholder+'" onblur="'+$onblur+'"' +$required+' /><p class="field-requirements highlight">'+$fieldRequirements+'</p></div>');
                     }else if($type === 'textarea'){
-				    	$inputs.push('<div class="form-row"><div class="form-icon"><img src="img/'+$iconImg+'.png" alt="'+$iconAlt+'" /></div><textarea name="'+$name+'" placeholder="'+$placeholder+'" onblur="'+$onblur+'" '+$required+'></textarea><p class="field-requirements highlight">'+$fieldRequirements+'</p></div>');
+				    	$inputs.push('<div class="form-row"><div class="form-icon"><img src="../img/'+$iconImg+'.png" alt="'+$iconAlt+'" /></div><textarea name="'+$name+'" placeholder="'+$placeholder+'" onblur="'+$onblur+'" '+$required+'></textarea><p class="field-requirements highlight">'+$fieldRequirements+'</p></div>');
 				 	}else if($type === 'hidden' && $name !== '_method'){
 				 		$inputs.push('<input type="'+$type+'" value=" " name="'+$name+'" id="'+$id+'" '+$required+'>');
 					}else if($type === 'hidden' && $name === '_method'){
 						$inputs.push('<input type="'+$type+'" value="PUT" name="'+$name+'" id="'+$id+'" '+$required+'>');
 					}else {
-				    	$inputs.push('<div class="form-row"><div class="form-icon"><img src="img/'+$iconImg+'.png" alt="'+$iconAlt+'" /></div><input type="'+$type+'" name="'+$name+'" id="'+$id+'" placeholder="'+$placeholder+'" onblur="'+$onblur+'"' +$required+' /><p class="field-requirements highlight">'+$fieldRequirements+'</p></div>');
+				    	$inputs.push('<div class="form-row"><div class="form-icon"><img src="../img/'+$iconImg+'.png" alt="'+$iconAlt+'" /></div><input type="'+$type+'" name="'+$name+'" id="'+$id+'" placeholder="'+$placeholder+'" onblur="'+$onblur+'"' +$required+' /><p class="field-requirements highlight">'+$fieldRequirements+'</p></div>');
 				    }
 			    });
 
@@ -140,7 +140,7 @@ function launchModal(targetModal){
 			    var $formClose = '<input type="submit" value="'+$submitButtonValue+'" /></form>';
 
 			    // Compile modal html
-			    var $htmlOpen = '<div class="modal hide" id="'+$id+'" class="mCustomScrollbar" data-mcs-theme="minimal-dark"><div class="modal-header"><img src="img/alt-logo.png" alt="Total Gig" /><span class="modal-close">X</span></div><h1>'+$h1+'</h1><p class="form-requirements">'+$formRequirements+'</p>';
+			    var $htmlOpen = '<div class="modal hide" id="'+$id+'" class="mCustomScrollbar" data-mcs-theme="minimal-dark"><div class="modal-header"><img src="../img/alt-logo.png" alt="Total Gig" /><span class="modal-close">X</span></div><h1>'+$h1+'</h1><p class="form-requirements">'+$formRequirements+'</p>';
 
 			    var $htmlForm = $formOpen + $formInputs + $formClose;
 
