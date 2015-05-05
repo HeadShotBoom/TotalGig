@@ -53,7 +53,7 @@
                     <td class="number">{{ $invoice->id }}</td>
                     <td class="created">{{ $invoice->date }}</td>
                     <td class="cost">${{ $invoice->total }}</td>
-                    <td class="paid"><a href="#">{{ $invoice->paid }}</a></td> <!-- This link should go to a function that updates the gig as the opposite of what it currently displays. I.E. if the invoice is not paid, 												  the link should take it to a function that updates it to paid and vice versa. -->
+                    <td class="paid"><a href="/invoices/{{ $invoice->id }}/toggle">{{ $invoice->paid }}</a></td> <!-- This link should go to a function that updates the gig as the opposite of what it currently displays. I.E. if the invoice is not paid, 												  the link should take it to a function that updates it to paid and vice versa. -->
                     <td class="invoice-gig">{{ $invoice->name }}</td>
                     <td class="invoice-client"><?php $clientName = DB::table('clients')->where('id', $invoice->client)->pluck('name'); echo $clientName;?></td>
                     <td>
