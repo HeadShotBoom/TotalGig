@@ -9,6 +9,7 @@ use App\Package;
 use App\Employee;
 use App\Gear;
 use Illuminate\Http\Request;
+use DB;
 
 class GigController extends Controller {
 
@@ -50,7 +51,6 @@ class GigController extends Controller {
 	 */
 	public function store(Request $request)
 	{
-
 		$gig = new Gig;
 		$gig->user_id = Auth::id();
 		$gig->gig_name = $request->add_gig_name;
@@ -60,6 +60,24 @@ class GigController extends Controller {
 		$gig->gig_date = $request->add_gig_date;
 		$gig->notes = $request->add_gig_notes;
 		$gig->save();
+		$gigId = $gig->id;
+		foreach($request->add_gig_employees as $employee){
+			DB::table('employee_gig')->insert(['employee_id' => $employee, 'gig_id' => $gigId]);
+		}
+        foreach($request->add_gig_gear as $gear){
+            DB::table('gears_gig')->insert(['gear_id' => $gear, 'gig_id' => $gigId]);
+        }
+        $totalQty = DB::table('services')->select('service_qty')->where('package_id', $gig->service_package)->get();
+        $totalPrice = DB::table('services')->select('service_price')->where('package_id', $gig->service_package)->get();
+        $totalMoney = 0;
+        for($x=0; $x<count($totalQty); $x++){
+            $totalMoney += $totalQty[$x]->service_qty*$totalPrice[$x]->service_price;
+        }
+        $now = date('M | d | Y');
+        DB::table('invoices')->insert(['user_id' => $gig->user_id, 'date' => $now, 'total' => $totalMoney, 'paid' => 'No', 'name' => $gig->gig_name, 'client' => $gig->client_id]);
+        return redirect('gigs');
+
+
 	}
 
 	/**

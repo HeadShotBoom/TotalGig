@@ -900,7 +900,7 @@
 				<employees type="select">
 					<icon-img>form-employee</icon-img>
 					<icon-alt>Employees</icon-alt>
-					<name>add_gig_employees</name>
+					<name>add_gig_employees[]</name>
 					<id>add-gig-employees</id>
 					<required></required>
 					<onblur></onblur>
@@ -913,7 +913,7 @@
 				<gear type="select">
 					<icon-img>form-package</icon-img>
 					<icon-alt>Gear</icon-alt>
-					<name>add_gig_gear</name>
+					<name>add_gig_gear[]</name>
 					<id>add-gig-gear</id>
 					<required></required>
 					<onblur></onblur>
