@@ -20,7 +20,7 @@ class CreateGigsTable extends Migration {
             $table->integer('client_id')->unsigned()->nullable();
             $table->string('category')->nullable();
             $table->integer('service_package')->unsigned()->nullable();
-            $table->timestamp('gig_date')->nullable();
+            $table->string('gig_date')->nullable();
             $table->text('notes')->nullable();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

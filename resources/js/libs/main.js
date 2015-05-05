@@ -211,6 +211,10 @@ function openModal(targetModal){
     //Display
     $(".fill-background").show(300);
     $(modal).show(100);
+
+    if($('input[name$="date"]')){
+        $('input[name$="date"]').datepicker();
+    }
 }
 
 function closeModal(){

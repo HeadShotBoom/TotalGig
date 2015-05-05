@@ -8,7 +8,7 @@
 ================================================== -->
 <header>
     <div class="container">
-        <div class="four columns"><a href="index.html" id="header-logo">Total Gig</a></div>
+        <div class="four columns"><a href="/dashboard" id="header-logo">Total Gig</a></div>
         <div class="twelve columns">
             @include('partial.nav')
         </div>
@@ -59,9 +59,9 @@
                 @else
                 <img class="gig-icon" data-category-id={{ $gig->category }} src={{ asset('img/other.png') }} alt="gear Name" />
                 @endif
-                <h1><a href="#">{{ $gig->name }}</a></h1>
-                <h2><a href="#">{{ $gig->client_name }}</a></h2>
-                <p>May | 23 | 2015</p> <!-- Use PHP date() function to convert for format. For example $newDate = date("M | d | Y", strtotime($originalDate)); -->
+                <h1><a href="#">{{ $gig->gig_name }}</a></h1>
+                <h2><a href="#"><?php $clientName = DB::table('clients')->where('id', $gig->client_id)->pluck('name'); echo $clientName;?></a></h2>
+                <p><?php $newDate = date("M | d | Y", strtotime($gig->gig_date)); echo $newDate; ?></p>
             </div>
             @endforeach
 
@@ -127,5 +127,6 @@
 </div><!--fill-background -->
 <!-- End Document
 ================================================== -->
+<input id="csrf-token" type="hidden" name="_token" value={{ $thisUser->remember_token }}>
 </body>
 @endsection
