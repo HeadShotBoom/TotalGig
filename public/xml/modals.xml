@@ -813,4 +813,127 @@
 		</modal>
 	</edit-client>
 
+	<add-gig type="add">
+		<modal>
+			<modal-id>add-gig-modal</modal-id>
+			<h1>Add Gig</h1>
+			<form-requirements>*Indicates a required field</form-requirements>
+			<form-action>/gigs</form-action>
+			<form-method>POST</form-method>
+			<validation-function></validation-function>
+			<submit-button-value>Add</submit-button-value>
+			<inputs>
+				<gig-name>
+					<icon-img>form-gig-name</icon-img>
+					<icon-alt>Gig Name</icon-alt>
+					<type>text</type>
+					<name>add_gig_name</name>
+					<id>add-gig-name</id>
+					<placeholder>*Gig Name</placeholder>
+					<required>required</required>
+					<onblur>validateInput('#add-gig-name')</onblur>
+					<field-requirements>Ex: Photo Shoot</field-requirements>
+				</gig-name>
+				<gig-category type="select">
+					<icon-img>form-category</icon-img>
+					<icon-alt>Gig Category</icon-alt>
+					<name>edit_gig_category</name>
+					<id>edit-gig-category</id>
+					<required>required</required>
+					<onblur></onblur>
+					<options>
+
+						<option>
+							<disable>disabled selected</disable>
+							<value></value>
+							<text>*Gig Category</text>
+						</option>
+
+					</options>
+				</gig-category>
+				<client type="select">
+					<icon-img>form-client</icon-img>
+					<icon-alt>Client</icon-alt>
+					<name>add_gig_client</name>
+					<id>add-gig-client</id>
+					<required>required</required>
+					<onblur></onblur>
+					<options>
+
+						<option>
+							<disable>disabled selected</disable>
+							<value></value>
+							<text>*Client</text>
+						</option>
+
+					</options>
+				</client>
+				<service-package type="select">
+					<icon-img>form-package</icon-img>
+					<icon-alt>Package</icon-alt>
+					<name>add_gig_package</name>
+					<id>add-gig-package</id>
+					<required>required</required>
+					<onblur></onblur>
+					<field-requirements>This will determine the gig's invoice and contract.</field-requirements>
+					<options>
+
+						<option>
+							<disable>disabled selected</disable>
+							<value></value>
+							<text>*Service Package</text>
+						</option>
+
+					</options>
+				</service-package>
+				<gig-name>
+					<icon-img>form-date</icon-img>
+					<icon-alt>Date</icon-alt>
+					<type>text</type>
+					<name>add_gig_date</name>
+					<id>add-gig-date</id>
+					<placeholder>*Date</placeholder>
+					<required>required</required>
+					<onblur>validateInput('#add-date-name')</onblur>
+					<field-requirements></field-requirements>
+				</gig-name>
+				<employees type="select">
+					<icon-img>form-employee</icon-img>
+					<icon-alt>Employees</icon-alt>
+					<name>add_gig_employees</name>
+					<id>add-gig-employees</id>
+					<required></required>
+					<onblur></onblur>
+					<multiselect>multiple</multiselect>
+					<field-requirements>Assign multiple employees using ctrl-click</field-requirements>
+					<options>
+
+					</options>
+				</employees>
+				<gear type="select">
+					<icon-img>form-package</icon-img>
+					<icon-alt>Gear</icon-alt>
+					<name>add_gig_gear</name>
+					<id>add-gig-gear</id>
+					<required></required>
+					<onblur></onblur>
+					<multiselect>multiple</multiselect>
+					<field-requirements>Select all required gear using ctrl-click</field-requirements>
+					<options>
+
+					</options>
+				</gear>
+				<notes>
+					<icon-img>form-notes</icon-img>
+					<icon-alt>Notes</icon-alt>
+					<type>textarea</type>
+					<name>add_gig_notes</name>
+					<id>add-gig-notes</id>
+					<placeholder>Notes</placeholder>
+					<required></required>
+					<onblur></onblur>
+				</notes>
+			</inputs>
+		</modal>
+	</add-gig>
 </modals>

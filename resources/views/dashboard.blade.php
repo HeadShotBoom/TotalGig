@@ -1,9 +1,12 @@
 @extends('app')
 
 @section('content')
-<h1>Dashboard Page</h1>
-<a href="/clients">Clients</a>
-<a href="/employees">Employees</a>
-<a href="/gear">Gear</a>
-<a href="/packages">Packages</a>
+<header>
+    <div class="container">
+        <div class="four columns"><a href="index.html" id="header-logo">Total Gig</a></div>
+        <div class="twelve columns">
+            @include('partial.nav')
+        </div>
+    </div>
+</header>
 @endsection

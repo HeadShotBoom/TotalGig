@@ -17,12 +17,15 @@ elixir(function(mix) {
         'libs/base.css',
         'libs/skeleton.css',
         'libs/jquery.mCustomScrollbar.min.css',
+        'libs/datepicker.css',
+        'libs/datepicker.structure.min.css',
         'libs/layout.css'
     ])
 
     mix.scripts([
         'libs/jquery-2.0.3.min.js',
         'libs/jquery.mCustomScrollbar.concat.min.js',
+        'libs/datepicker.min.js',
         'libs/main.js'
 
     ])

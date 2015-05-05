@@ -15,14 +15,16 @@ Route::get('/', 'WelcomeController@index');
 
 Route::get('dashboard', 'HomeController@index');
 
-Route::get('gigs', 'HomeController@gigs');
+Route::model('gigs', 'App\Gig');
+Route::resource('gigs', 'GigController');
 
 Route::get('clients/loc', 'ClientController@index2');
 Route::model('clients', 'App\Client');
 Route::resource('clients', 'ClientController');
 Route::get('clients/delete/{id}', 'ClientController@delete');
 
-Route::get('invoices', 'HomeController@invoices');
+Route::model('invoices', 'App/Invoice');
+Route::resource('invoices', 'InvoiceController');
 
 Route::get('employees/pay', 'EmployeeController@index3');
 Route::get('employees/job', 'EmployeeController@index2');

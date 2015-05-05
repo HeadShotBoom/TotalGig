@@ -64,12 +64,13 @@ function launchModal(targetModal){
 			    	var $required = $(this).find('required').text();
 			    	var $onblur = $(this).find('onblur').text();
 			    	var $fieldRequirements = $(this).find('field-requirements').text();
+					var $multiselect = $(this).find('multiselect').text();
 			    	if($fieldRequirements.length < 1){
 			    		$fieldRequirements = '<br>';
 			    	}
 
 			    	if($(this).attr('type') === 'select'){
-			    		$selectOpen = '<div class="form-row"><div class="form-icon"><img src="../img/'+$iconImg+'.png" alt="'+$iconAlt+'" /></div><select name="'+$name+'" id="'+$id+'" onblur="'+$onblur+'" '+$required+'><optgroup>';
+                        $selectOpen = '<div class="form-row"><div class="form-icon"><img src="../img/'+$iconImg+'.png" alt="'+$iconAlt+'" /></div><select '+$multiselect+' name="'+$name+'" id="'+$id+'" onblur="'+$onblur+'" '+$required+'><optgroup>';
 
 			    		$selectClose = '</optgroup></select></div>';
 
@@ -139,6 +140,53 @@ function launchModal(targetModal){
 				// Output HTML
 			    $('body').append($html);
 			}
+
+            if($id === 'add-gig-modal' || $id === 'edit-gig-modal'){
+                $('ul[data-populate=category] li').each(function(){
+                    var value = $(this).attr('data-db-value');
+                    var text = $(this).text();
+                    $('select[id$=gig-category]')
+                        .append($("<option></option>")
+                            .attr("value",value)
+                            .text(text));
+                });
+
+                $('ul[data-populate=clients] li').each(function(){
+                    var value = $(this).attr('data-db-value');
+                    var text = $(this).text();
+                    $('select[id$=gig-client]')
+                        .append($("<option></option>")
+                            .attr("value",value)
+                            .text(text));
+                });
+
+                $('ul[data-populate=service-packages] li').each(function(){
+                    var value = $(this).attr('data-db-value');
+                    var text = $(this).text();
+                    $('select[id$=gig-package]')
+                        .append($("<option></option>")
+                            .attr("value",value)
+                            .text(text));
+                });
+
+                $('ul[data-populate=employees] li').each(function(){
+                    var value = $(this).attr('data-db-value');
+                    var text = $(this).text();
+                    $('select[id$=gig-employees]')
+                        .append($("<option></option>")
+                            .attr("value",value)
+                            .text(text));
+                });
+
+                $('ul[data-populate=gear] li').each(function(){
+                    var value = $(this).attr('data-db-value');
+                    var text = $(this).text();
+                    $('select[id$=gig-gear]')
+                        .append($("<option></option>")
+                            .attr("value",value)
+                            .text(text));
+                });
+            }
 
 			$(".modal").mCustomScrollbar({scrollInertia:75});
 		    $(".form-services").mCustomScrollbar({scrollInertia: 50});
@@ -396,13 +444,13 @@ $(document).ready(function(){
                 $('#edit-employee-modal form').attr('action', employeeFormAction + employeeId);
             }else if(dataModal === 'edit-client') { //Exclusive to edit-client modal
             	// Collect client data
+                console.log('Test');
                 var clientId = $(this).parent().parent().attr('data-id');
                 var clientTarget = 'tr[data-id=' + clientId + ']';
                 var clientName = $(clientTarget).find('.name').text();
                 var clientPhone = $(clientTarget).find('.phone').text();
                 var clientLocation = $(clientTarget).find('.location').text();
                 var clientEmail = $(clientTarget).find('.email').text();
-
                 // Populate client data
                 $('input[name="edit_client_name"]').val(clientName);
                 $('input[name="edit_client_phone"]').val(clientPhone);
@@ -412,7 +460,7 @@ $(document).ready(function(){
                 var clientFormAction = $('#edit-client-modal form').attr('data-action');
                 $('#edit-client-modal form').attr('action', clientFormAction + clientId);
 
-                console.log(clientId);
+
             }
 			}else {
 			openModal(modalId);
