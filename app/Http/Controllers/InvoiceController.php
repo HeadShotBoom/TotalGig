@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Invoice;
 use Auth;
 use Illuminate\Http\Request;
+use DB;
 
 class InvoiceController extends Controller {
 
@@ -86,6 +87,22 @@ class InvoiceController extends Controller {
 	public function destroy($id)
 	{
 		//
+	}
+	public function toggle(Request $request)
+	{
+		$uri = $request->url();
+		$toRemove = 'http://totalgig/invoices/';
+		$alsoRemove = '/toggle';
+		$part1 = str_replace($toRemove, '', $uri);
+		$invoiceId = str_replace($alsoRemove, '', $part1);
+		$paid = DB::table('invoices')->where('id', $invoiceId)->pluck('paid');
+		if($paid === 'No'){
+			DB::table('invoices')->where('id', $invoiceId)->update(['paid' => "Yes"]);
+		}elseif($paid === "Yes"){
+			DB::table('invoices')->where('id', $invoiceId)->update(['paid' => "No"]);
+		}
+		return redirect('invoices');
+
 	}
 
 }

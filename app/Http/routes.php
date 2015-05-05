@@ -23,6 +23,7 @@ Route::model('clients', 'App\Client');
 Route::resource('clients', 'ClientController');
 Route::get('clients/delete/{id}', 'ClientController@delete');
 
+Route::get('invoices/{id}/toggle', 'InvoiceController@toggle');
 Route::model('invoices', 'App/Invoice');
 Route::resource('invoices', 'InvoiceController');
 
