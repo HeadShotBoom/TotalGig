@@ -50,7 +50,16 @@ class GigController extends Controller {
 	 */
 	public function store(Request $request)
 	{
-		dd($request->all());
+
+		$gig = new Gig;
+		$gig->user_id = Auth::id();
+		$gig->gig_name = $request->add_gig_name;
+		$gig->client_id = $request->add_gig_client;
+		$gig->category = $request->edit_gig_category;
+		$gig->service_package = $request->add_gig_package;
+		$gig->gig_date = $request->add_gig_date;
+		$gig->notes = $request->add_gig_notes;
+		$gig->save();
 	}
 
 	/**

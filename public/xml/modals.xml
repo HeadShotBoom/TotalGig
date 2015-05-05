@@ -51,7 +51,7 @@
 					<icon-img>form-user</icon-img>
 					<icon-alt>Full Name</icon-alt>
 					<type>text</type>
-					<name>full-name</name>
+					<name>full_name</name>
 					<id>full-name</id>
 					<placeholder>*Full Name</placeholder>
 					<required>required</required>

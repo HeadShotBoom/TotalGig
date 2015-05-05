@@ -38,23 +38,23 @@
             @foreach($gigs as $gig)
             <div class="gig">
                 <!-- href to view-gig -->
-                @if($gig->category == 'Web-Development')
+                @if($gig->category == '8')
                 <img class="gig-icon" data-category-id={{ $gig->category }} src={{ asset('img/web-development.png') }} alt="gear Name" />
-                @elseif($gig->category == 'Cosmetologist')
+                @elseif($gig->category == '0')
                 <img class="gig-icon" data-category-id={{ $gig->category }} src={{ asset('img/cosmetologist.png') }} alt="gear Name" />
-                @elseif($gig->category == 'Musician')
+                @elseif($gig->category == '4')
                 <img class="gig-icon" data-category-id={{ $gig->category }} src={{ asset('img/musician.png') }} alt="gear Name" />
-                @elseif($gig->category == 'Party-Planner')
+                @elseif($gig->category == '5')
                 <img class="gig-icon" data-category-id={{ $gig->category }} src={{ asset('img/party-planner.png') }} alt="gear Name" />
-                @elseif($gig->category == 'Photography')
+                @elseif($gig->category == '6')
                 <img class="gig-icon" data-category-id={{ $gig->category }} src={{ asset('img/photographer.png') }} alt="gear Name" />
-                @elseif($gig->category == 'Videography')
+                @elseif($gig->category == '7')
                 <img class="gig-icon" data-category-id={{ $gig->category }} src={{ asset('img/videographer.png') }} alt="gear Name" />
-                @elseif($gig->category == 'DJ')
+                @elseif($gig->category == '1')
                 <img class="gig-icon" data-category-id={{ $gig->category }} src={{ asset('img/dj.png') }} alt="gear Name" />
-                @elseif($gig->category == 'Graphic-Artist')
+                @elseif($gig->category == '2')
                 <img class="gig-icon" data-category-id={{ $gig->category }} src={{ asset('img/graphic-artist.png') }} alt="gear Name" />
-                @elseif($gig->category == 'Makeup-Artist')
+                @elseif($gig->category == '3')
                 <img class="gig-icon" data-category-id={{ $gig->category }} src={{ asset('img/makeup-artist.png') }} alt="gear Name" />
                 @else
                 <img class="gig-icon" data-category-id={{ $gig->category }} src={{ asset('img/other.png') }} alt="gear Name" />
