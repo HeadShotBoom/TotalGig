@@ -21,6 +21,7 @@ class CreateInvoicesTable extends Migration {
 			$table->text('paid');
 			$table->text('name');
 			$table->text('client');
+			$table->integer('service_package');
 			$table->timestamps();
 		});
 	}

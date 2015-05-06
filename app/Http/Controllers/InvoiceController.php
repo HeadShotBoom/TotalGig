@@ -139,11 +139,21 @@ class InvoiceController extends Controller {
 		 $invoiceId = str_replace($alsoRemove, '', $part1);
 		 $stuff = DB::table('invoices')->where('id', $invoiceId)->get();
          $data = [];
-         $data['name'] = $stuff[0]->name;
-         $data['date'] = $stuff[0]->date;
-         $data['total'] = $stuff[0]->total;
-         $data['client'] = DB::table('clients')->where('id' , $stuff[0]->client)->pluck('name');
-
+         $data['gig_name'] = $stuff[0]->name;
+         $data['invoice_date'] = $stuff[0]->date;
+		 $data['invoice_number'] = $invoiceId;
+         $data['total_due'] = $stuff[0]->total;
+         $data['client_name'] = DB::table('clients')->where('id' , $stuff[0]->client)->pluck('name');
+		 $data['client_location'] = DB::table('clients')->where('id' , $stuff[0]->client)->pluck('address');
+		 $data['client_number'] = DB::table('clients')->where('id' , $stuff[0]->client)->pluck('phone');
+		 $userInfo = DB::table('users')->where('id', $stuff[0]->user_id)->get();
+		 $data['user_name'] = $userInfo[0]->name;
+		 $data['user_business'] = $userInfo[0]->business;
+		 $data['user_email'] = $userInfo[0]->email;
+		 $services = DB::table('services')->where('package_id', $stuff[0]->service_package)->get();
+		 for($i=0; $i<count($services); $i++){
+			 $data['services'][$i] = $services[$i];
+		 }
 		 $pdf = PDF::loadView('pdf.invoice', $data);
 		 return $pdf->download('invoice.pdf');
 	 }
