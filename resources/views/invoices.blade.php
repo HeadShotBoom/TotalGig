@@ -44,7 +44,7 @@
                     <th>Paid</th>
                     <th>Gig</th>
                     <th>Client</th>
-                    <th></th>
+                    <th>Download</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -57,8 +57,7 @@
                     <td class="invoice-gig">{{ $invoice->name }}</td>
                     <td class="invoice-client"><?php $clientName = DB::table('clients')->where('id', $invoice->client)->pluck('name'); echo $clientName;?></td>
                     <td>
-                        <a href="#"><img class="download" src={{ asset("img/download.png") }} alt="Download" /></a> <!-- Link to download -->
-                        <a href="#"><img class="print" src={{ asset("img/print.png") }} alt="Print" /></a> <!-- Link to print -->
+                        <a href="/invoices/{{ $invoice->id }}/download"><img class="download" src={{ asset("img/download.png") }} alt="Download" /></a> <!-- Link to download -->
                     </td>
                 </tr>
 
@@ -73,7 +72,7 @@
 
 <footer>
     <div class="container">
-        <img src="img/main-logo.png" alt="Total Gig" />
+        <img src={{ asset("img/main-logo.png") }} alt="Total Gig" />
         <a class="highlight" href="mailto:admin@totalgig.com">admin@totalgig.com</a><br>
         <span class="copyright">Copyright &copy; 2015 Total Gig<br>All rights reserved</span>
     </div><!-- container -->

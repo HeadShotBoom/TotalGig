@@ -28,7 +28,6 @@
 						<a href="/gigs" class="active">Upcoming</a>
 						<a href="/gigs/old">Oldest</a>
 						<a href="/gigs/cat">Category</a>
-						<a href="/gigs/client">Client</a>
 					</span>
             </div>
             <button class="add-item three columns omega modal-trigger" data-modal="add-gig">Add Gig</button>
@@ -60,7 +59,7 @@
                 <img class="gig-icon" data-category-id={{ $gig->category }} src={{ asset('img/other.png') }} alt="gear Name" />
                 @endif
                 <h1><a href="#">{{ $gig->gig_name }}</a></h1>
-                <h2><a href="#"><?php $clientName = DB::table('clients')->where('id', $gig->client_id)->pluck('name'); echo $clientName;?></a></h2>
+                <h2><a href="/clients"><?php $clientName = DB::table('clients')->where('id', $gig->client_id)->pluck('name'); echo $clientName;?></a></h2>
                 <p><?php $newDate = date("M | d | Y", strtotime($gig->gig_date)); echo $newDate; ?></p>
             </div>
             @endforeach

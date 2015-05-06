@@ -10,6 +10,7 @@ use App\Employee;
 use App\Gear;
 use Illuminate\Http\Request;
 use DB;
+use Mail;
 
 class GigController extends Controller {
 
@@ -33,6 +34,26 @@ class GigController extends Controller {
 		$packages = Package::all();
 		return view('gigs', compact('thisUser', 'gigs', 'clients', 'employees', 'gears', 'packages'));
 	}
+    public function index1()
+    {
+        $thisUser = Auth::user();
+        $gigs = Gig::orderBy('gig_date', 'DESC')->get();
+        $clients = Client::all();
+        $employees = Employee::all();
+        $gears = Gear::all();
+        $packages = Package::all();
+        return view('gigs', compact('thisUser', 'gigs', 'clients', 'employees', 'gears', 'packages'));
+    }
+    public function index2()
+    {
+        $thisUser = Auth::user();
+        $gigs = Gig::orderBy('category', 'DESC')->get();
+        $clients = Client::all();
+        $employees = Employee::all();
+        $gears = Gear::all();
+        $packages = Package::all();
+        return view('gigs', compact('thisUser', 'gigs', 'clients', 'employees', 'gears', 'packages'));
+    }
 
 	/**
 	 * Show the form for creating a new resource.
@@ -63,6 +84,15 @@ class GigController extends Controller {
 		$gigId = $gig->id;
 		foreach($request->add_gig_employees as $employee){
 			DB::table('employee_gig')->insert(['employee_id' => $employee, 'gig_id' => $gigId]);
+            $data['name'] = DB::table('employees')->where('id', $employee)->pluck('name');
+            $data['email'] = DB::table('employees')->where('id', $employee)->pluck('email');
+            $data['date'] = $gig->gig_date;
+            $data['gig_name'] = $gig->gig_name;
+            $data['boss'] = Auth::user();
+            Mail::send('emails.booked', $data, function($message) use ($data){
+
+                $message->to($data['email'], $data['name'])->subject('You have been booked!');
+            });
 		}
         foreach($request->add_gig_gear as $gear){
             DB::table('gears_gig')->insert(['gear_id' => $gear, 'gig_id' => $gigId]);

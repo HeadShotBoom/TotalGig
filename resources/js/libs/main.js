@@ -433,7 +433,7 @@ $(document).ready(function(){
                 var employeeTarget = 'tr[data-id=' + employeeId + ']';
                 var employeeName = $(employeeTarget).find('.name').text();
                 var employeeJobTitle = $(employeeTarget).find('.job-title').text();
-                var employeePay = parseFloat($(employeeTarget).find('.pay').text());
+				var employeePay = parseFloat($(employeeTarget).find('.pay').text().substr(1))
                 var employeePhone = $(employeeTarget).find('.phone').text();
                 var employeeEmail = $(employeeTarget).find('.email').text();
 
@@ -458,7 +458,7 @@ $(document).ready(function(){
                 // Populate client data
                 $('input[name="edit_client_name"]').val(clientName);
                 $('input[name="edit_client_phone"]').val(clientPhone);
-                $('input[name="edit_client_location').val(clientLocation);
+                $('input[name="edit_client_location"]').val(clientLocation);
                 $('input[name="edit_client_email"]').val(clientEmail);
 
                 var clientFormAction = $('#edit-client-modal form').attr('data-action');

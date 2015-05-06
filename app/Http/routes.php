@@ -15,6 +15,8 @@ Route::get('/', 'WelcomeController@index');
 
 Route::get('dashboard', 'HomeController@index');
 
+Route::get('gigs/old', 'GigController@index1');
+Route::get('gigs/cat', 'GigController@index2');
 Route::model('gigs', 'App\Gig');
 Route::resource('gigs', 'GigController');
 
@@ -23,6 +25,10 @@ Route::model('clients', 'App\Client');
 Route::resource('clients', 'ClientController');
 Route::get('clients/delete/{id}', 'ClientController@delete');
 
+Route::get('invoices/created', 'InvoiceController@index1');
+Route::get('invoices/total', 'InvoiceController@index2');
+Route::get('invoices/paid', 'InvoiceController@index3');
+Route::get('invoices/{id}/download', 'InvoiceController@downloadPdf');
 Route::get('invoices/{id}/toggle', 'InvoiceController@toggle');
 Route::model('invoices', 'App/Invoice');
 Route::resource('invoices', 'InvoiceController');

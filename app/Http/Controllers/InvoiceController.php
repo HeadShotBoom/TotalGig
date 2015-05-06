@@ -6,6 +6,7 @@ use App\Invoice;
 use Auth;
 use Illuminate\Http\Request;
 use DB;
+use PDF;
 
 class InvoiceController extends Controller {
 
@@ -24,6 +25,27 @@ class InvoiceController extends Controller {
 		$invoices = Invoice::orderBy('id', 'ASC')->get();
 		return view('invoices', compact('invoices', 'thisUser'));
 	}
+
+    public function index1()
+    {
+        $thisUser = Auth::user();
+        $invoices = Invoice::orderBy('date', 'ASC')->get();
+        return view('invoices', compact('invoices', 'thisUser'));
+    }
+
+    public function index2()
+    {
+        $thisUser = Auth::user();
+        $invoices = Invoice::orderBy('total', 'ASC')->get();
+        return view('invoices', compact('invoices', 'thisUser'));
+    }
+
+    public function index3()
+    {
+        $thisUser = Auth::user();
+        $invoices = Invoice::orderBy('paid', 'ASC')->get();
+        return view('invoices', compact('invoices', 'thisUser'));
+    }
 
 	/**
 	 * Show the form for creating a new resource.
@@ -88,6 +110,10 @@ class InvoiceController extends Controller {
 	{
 		//
 	}
+
+	/**
+	 *This function handles changing the paid status of the invoice
+	 */
 	public function toggle(Request $request)
 	{
 		$uri = $request->url();
@@ -104,5 +130,23 @@ class InvoiceController extends Controller {
 		return redirect('invoices');
 
 	}
+	 public function downloadPdf(Request $request)
+	 {
+		 $uri = $request->url();
+		 $toRemove = 'http://totalgig/invoices/';
+		 $alsoRemove = '/download';
+		 $part1 = str_replace($toRemove, '', $uri);
+		 $invoiceId = str_replace($alsoRemove, '', $part1);
+		 $stuff = DB::table('invoices')->where('id', $invoiceId)->get();
+         $data = [];
+         $data['name'] = $stuff[0]->name;
+         $data['date'] = $stuff[0]->date;
+         $data['total'] = $stuff[0]->total;
+         $data['client'] = DB::table('clients')->where('id' , $stuff[0]->client)->pluck('name');
+
+		 $pdf = PDF::loadView('pdf.invoice', $data);
+		 return $pdf->download('invoice.pdf');
+	 }
+
 
 }
