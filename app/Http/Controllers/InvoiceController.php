@@ -7,6 +7,7 @@ use Auth;
 use Illuminate\Http\Request;
 use DB;
 use PDF;
+use Mail;
 
 class InvoiceController extends Controller {
 
@@ -157,6 +158,70 @@ class InvoiceController extends Controller {
 		 $pdf = PDF::loadView('pdf.invoice', $data);
 		 return $pdf->download('invoice.pdf');
 	 }
+
+	public function emailPdf(Request $request)
+	{
+		$uri = $request->url();
+		$toRemove = 'http://totalgig/invoices/';
+		$alsoRemove = '/email';
+		$part1 = str_replace($toRemove, '', $uri);
+		$invoiceId = str_replace($alsoRemove, '', $part1);
+		$stuff = DB::table('invoices')->where('id', $invoiceId)->get();
+		$data = [];
+		$data['gig_name'] = $stuff[0]->name;
+		$data['invoice_date'] = $stuff[0]->date;
+		$data['invoice_number'] = $invoiceId;
+		$data['total_due'] = $stuff[0]->total;
+		$data['client_name'] = DB::table('clients')->where('id' , $stuff[0]->client)->pluck('name');
+		$data['client_location'] = DB::table('clients')->where('id' , $stuff[0]->client)->pluck('address');
+		$data['client_number'] = DB::table('clients')->where('id' , $stuff[0]->client)->pluck('phone');
+		$data['client_email'] = DB::table('clients')->where('id' , $stuff[0]->client)->pluck('email');
+		$userInfo = DB::table('users')->where('id', $stuff[0]->user_id)->get();
+		$data['user_name'] = $userInfo[0]->name;
+		$data['user_business'] = $userInfo[0]->business;
+		$data['user_email'] = $userInfo[0]->email;
+		$services = DB::table('services')->where('package_id', $stuff[0]->service_package)->get();
+		for($i=0; $i<count($services); $i++){
+			$data['services'][$i] = $services[$i];
+		}
+		$pdf = PDF::loadView('pdf.invoice', $data);
+		Mail::send('emails.invoice', $data, function($message) use($pdf, $data)
+		{
+			$message->to($data['client_email'])->subject('Invoice');
+
+			$message->attachData($pdf->output(), "invoice.pdf");
+		});
+		return redirect('invoices')->with('message', 'The invoice has been sent to the client!');
+	}
+
+	public function printPdf(Request $request)
+	{
+		$uri = $request->url();
+		$toRemove = 'http://totalgig/invoices/';
+		$alsoRemove = '/print';
+		$part1 = str_replace($toRemove, '', $uri);
+		$invoiceId = str_replace($alsoRemove, '', $part1);
+		$stuff = DB::table('invoices')->where('id', $invoiceId)->get();
+		$data = [];
+		$data['gig_name'] = $stuff[0]->name;
+		$data['invoice_date'] = $stuff[0]->date;
+		$data['invoice_number'] = $invoiceId;
+		$data['total_due'] = $stuff[0]->total;
+		$data['client_name'] = DB::table('clients')->where('id' , $stuff[0]->client)->pluck('name');
+		$data['client_location'] = DB::table('clients')->where('id' , $stuff[0]->client)->pluck('address');
+		$data['client_number'] = DB::table('clients')->where('id' , $stuff[0]->client)->pluck('phone');
+		$data['client_email'] = DB::table('clients')->where('id' , $stuff[0]->client)->pluck('email');
+		$userInfo = DB::table('users')->where('id', $stuff[0]->user_id)->get();
+		$data['user_name'] = $userInfo[0]->name;
+		$data['user_business'] = $userInfo[0]->business;
+		$data['user_email'] = $userInfo[0]->email;
+		$services = DB::table('services')->where('package_id', $stuff[0]->service_package)->get();
+		for($i=0; $i<count($services); $i++){
+			$data['services'][$i] = $services[$i];
+		}
+
+        return view('partial.invoice', compact('data'));
+	}
 
 
 }

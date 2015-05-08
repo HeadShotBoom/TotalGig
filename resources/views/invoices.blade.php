@@ -32,7 +32,6 @@
 					</span>
             </div>
         </div>
-
         <div>
             <table class="large-table">
 
@@ -44,7 +43,11 @@
                     <th>Paid</th>
                     <th>Gig</th>
                     <th>Client</th>
-                    <th>Download</th>
+                    <th>@if(Session::has('message'))
+                        <script>
+                            window.onload = function() { alert("The Invoice has been emailed to the client."); }
+                        </script>
+                        @endif</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -58,6 +61,8 @@
                     <td class="invoice-client"><?php $clientName = DB::table('clients')->where('id', $invoice->client)->pluck('name'); echo $clientName;?></td>
                     <td>
                         <a href="/invoices/{{ $invoice->id }}/download"><img class="download" src={{ asset("img/download.png") }} alt="Download" /></a> <!-- Link to download -->
+                        <a href="/invoices/{{ $invoice->id }}/email"><img class="email" src={{ asset("img/email.png") }} alt="Download" /></a> <!-- Link to Email -->
+                        <a target="_blank" href="/invoices/{{ $invoice->id }}/print"><img class="email" src={{ asset("img/print.png") }} alt="Download" /></a> <!-- Link to Print -->
                     </td>
                 </tr>
 

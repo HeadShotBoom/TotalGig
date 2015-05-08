@@ -29,6 +29,8 @@ Route::get('invoices/created', 'InvoiceController@index1');
 Route::get('invoices/total', 'InvoiceController@index2');
 Route::get('invoices/paid', 'InvoiceController@index3');
 Route::get('invoices/{id}/download', 'InvoiceController@downloadPdf');
+Route::get('invoices/{id}/email', 'InvoiceController@emailPdf');
+Route::get('invoices/{id}/print', 'InvoiceController@printPdf');
 Route::get('invoices/{id}/toggle', 'InvoiceController@toggle');
 Route::model('invoices', 'App/Invoice');
 Route::resource('invoices', 'InvoiceController');
