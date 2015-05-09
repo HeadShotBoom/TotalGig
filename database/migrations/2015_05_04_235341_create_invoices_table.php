@@ -15,6 +15,7 @@ class CreateInvoicesTable extends Migration {
 		Schema::create('invoices', function(Blueprint $table)
 		{
 			$table->increments('id');
+            $table->integer('gig_id')->unsigned();
 			$table->integer('user_id');
 			$table->text('date');
 			$table->text('total');
@@ -23,6 +24,7 @@ class CreateInvoicesTable extends Migration {
 			$table->text('client');
 			$table->integer('service_package');
 			$table->timestamps();
+            $table->foreign('gig_id')->references('id')->on('gigs')->onDelete('cascade');
 		});
 	}
 
