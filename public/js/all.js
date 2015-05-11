@@ -362,7 +362,12 @@ $(document).ready(function(){
 
                 var fullTarget2 = '#'+modalId+' h1 .delete-value';
                 $(fullTarget2).html(itemName2);
-            }
+            }else if($(this).attr('data-modal') === 'delete-gig'){
+				var itemName3 = $(this).parent().prev().find('h4').text();
+
+				var fullTarget3 = '#'+modalId+' h1 .delete-value';
+				$(fullTarget3).html(itemName3);
+			}
 			var itemId = $(this).parents('.content').attr('data-id');
 
 			openModal(modalId);
@@ -484,7 +489,41 @@ $(document).ready(function(){
                 $('#edit-client-modal form').attr('action', clientFormAction + clientId);
 
 
-            }
+            }else if(dataModal === 'edit-gig') { // Exclusive to edit-gig modal
+				// Collect gig data
+				var gigId = $('#view-gig').attr('data-id');
+				var gigName = $('.gig-header h4').text();
+				var gigDate = $('.gig-header h1').attr('data-formated-date');
+				var gigClientId = $('.gig-client').attr('data-client-id');
+				var gigServicePackageId = $('.gig-client').attr('data-client-id');
+				var gigCategoryId = $('.gig-category').attr('data-category-id');
+				var gigNotes = $('.gig-notes').find('p').text();
+				var gigEmployeeIds = [];
+				var gigGearIds = [];
+
+				$('.gig-employee').each(function(){
+					var value = $(this).attr('data-employee-id');
+
+					gigEmployeeIds.push(value);
+				});
+
+				$('.gig-gear-item').each(function(){
+					var value = $(this).attr('data-item-id');
+
+					gigGearIds.push(value);
+				});
+
+				// Populate gig data
+				$('input[name=edit_gig_name]').val(gigName);
+				$('select[name=edit_gig_category]').val(gigCategoryId);
+				$('select[name=edit_gig_client]').val(gigClientId);
+				$('select[name=edit_gig_package]').val(gigServicePackageId);
+				$('input[name=edit_gig_date]').val(gigDate);
+				$('textarea[name=edit_gig_notes]').text(gigNotes);
+				$('select[name=edit_gig_gear]').val(gigGearIds);
+				$('select[name=edit_gig_employees]').val(gigEmployeeIds);
+			}
+
 			}else {
 			openModal(modalId);
 			closeModal();

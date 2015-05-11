@@ -55,6 +55,11 @@ class GigController extends Controller {
         return view('gigs', compact('thisUser', 'gigs', 'clients', 'employees', 'gears', 'packages'));
     }
 
+	public function viewGig()
+	{
+		return view('viewGig');
+	}
+
 	/**
 	 * Show the form for creating a new resource.
 	 *

@@ -936,4 +936,136 @@
 			</inputs>
 		</modal>
 	</add-gig>
+
+	<edit-gig type="edit">
+		<modal>
+			<modal-id>edit-gig-modal</modal-id>
+			<h1>Update Gig</h1>
+			<form-requirements>*Indicates a required field</form-requirements>
+			<form-action>/gigs</form-action>
+			<form-method>POST</form-method>
+			<validation-function></validation-function>
+			<submit-button-value>Update</submit-button-value>
+			<inputs>
+				<gig-name>
+					<icon-img>form-gig-name</icon-img>
+					<icon-alt>Gig Name</icon-alt>
+					<type>text</type>
+					<name>edit_gig_name</name>
+					<id>edit-gig-name</id>
+					<placeholder>*Gig Name</placeholder>
+					<required>required</required>
+					<onblur>validateInput('#edit-gig-name')</onblur>
+					<field-requirements>Ex: Photo Shoot</field-requirements>
+				</gig-name>
+				<gig-category type="select">
+					<icon-img>form-category</icon-img>
+					<icon-alt>Gig Category</icon-alt>
+					<name>edit_gig_category</name>
+					<id>edit-gig-category</id>
+					<required>required</required>
+					<onblur></onblur>
+					<options>
+
+						<option>
+							<disable>disabled selected</disable>
+							<value></value>
+							<text>*Gig Category</text>
+						</option>
+
+					</options>
+				</gig-category>
+				<client type="select">
+					<icon-img>form-client</icon-img>
+					<icon-alt>Client</icon-alt>
+					<name>edit_gig_client</name>
+					<id>edit-gig-client</id>
+					<required>required</required>
+					<onblur></onblur>
+					<options>
+
+						<option>
+							<disable>disabled selected</disable>
+							<value></value>
+							<text>*Client</text>
+						</option>
+
+					</options>
+				</client>
+				<service-package type="select">
+					<icon-img>form-package</icon-img>
+					<icon-alt>Package</icon-alt>
+					<name>edit_gig_package</name>
+					<id>edit_gig-package</id>
+					<required>required</required>
+					<onblur></onblur>
+					<field-requirements>Changing this will create a new invoice and contract.</field-requirements>
+					<options>
+
+						<option>
+							<disable>disabled selected</disable>
+							<value></value>
+							<text>*Service Package</text>
+						</option>
+
+					</options>
+				</service-package>
+				<gig-name>
+					<icon-img>form-date</icon-img>
+					<icon-alt>Date</icon-alt>
+					<type>text</type>
+					<name>edit_gig_date</name>
+					<id>edit-gig-date</id>
+					<placeholder>*Date</placeholder>
+					<required>required</required>
+					<onblur>validateInput('#edit-date-name')</onblur>
+					<field-requirements></field-requirements>
+				</gig-name>
+				<employees type="select">
+					<icon-img>form-employee</icon-img>
+					<icon-alt>Employees</icon-alt>
+					<name>edit_gig_employees</name>
+					<id>edit-gig-employees</id>
+					<required></required>
+					<onblur></onblur>
+					<multiselect>multiple</multiselect>
+					<field-requirements>Assign multiple employees using ctrl-click</field-requirements>
+					<options>
+
+					</options>
+				</employees>
+				<gear type="select">
+					<icon-img>form-package</icon-img>
+					<icon-alt>Gear</icon-alt>
+					<name>edit_gig_gear</name>
+					<id>edit-gig-gear</id>
+					<required></required>
+					<onblur></onblur>
+					<multiselect>multiple</multiselect>
+					<field-requirements>Select all required gear using ctrl-click</field-requirements>
+					<options>
+
+					</options>
+				</gear>
+				<notes>
+					<icon-img>form-notes</icon-img>
+					<icon-alt>Notes</icon-alt>
+					<type>textarea</type>
+					<name>edit_gig_notes</name>
+					<id>edit-gig-notes</id>
+					<placeholder>Notes</placeholder>
+					<required></required>
+					<onblur></onblur>
+				</notes>
+			</inputs>
+		</modal>
+	</edit-gig>
+
+	<delete-gig type="delete">
+		<modal>
+			<modal-id>delete-gig-modal</modal-id>
+			<h1>Are you sure you want to delete&lt;br&gt;&lt;span class="delete-value"&gt;&lt;/span&gt;?</h1>
+			<link-to>/gig/delete/</link-to>
+		</modal>
+	</delete-gig>
 </modals>

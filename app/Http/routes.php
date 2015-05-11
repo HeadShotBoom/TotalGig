@@ -17,6 +17,7 @@ Route::get('dashboard', 'HomeController@index');
 
 Route::get('gigs/old', 'GigController@index1');
 Route::get('gigs/cat', 'GigController@index2');
+Route::get('gigs/{id}', 'GigController@viewGig');
 Route::model('gigs', 'App\Gig');
 Route::resource('gigs', 'GigController');
 
