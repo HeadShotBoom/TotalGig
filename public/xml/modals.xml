@@ -942,11 +942,22 @@
 			<modal-id>edit-gig-modal</modal-id>
 			<h1>Update Gig</h1>
 			<form-requirements>*Indicates a required field</form-requirements>
-			<form-action>/gigs</form-action>
+			<form-action>/gigs/</form-action>
 			<form-method>POST</form-method>
 			<validation-function></validation-function>
 			<submit-button-value>Update</submit-button-value>
 			<inputs>
+				<item-id>
+					<type>hidden</type>
+					<name>edit_gig_id</name>
+					<id>edit-gig-id</id>
+					<required>required</required>
+				</item-id>
+				<method-maker>
+					<type>hidden</type>
+					<name>_method</name>
+					<value>PUT</value>
+				</method-maker>
 				<gig-name>
 					<icon-img>form-gig-name</icon-img>
 					<icon-alt>Gig Name</icon-alt>
@@ -1024,7 +1035,7 @@
 				<employees type="select">
 					<icon-img>form-employee</icon-img>
 					<icon-alt>Employees</icon-alt>
-					<name>edit_gig_employees</name>
+					<name>edit_gig_employees[]</name>
 					<id>edit-gig-employees</id>
 					<required></required>
 					<onblur></onblur>
@@ -1037,7 +1048,7 @@
 				<gear type="select">
 					<icon-img>form-package</icon-img>
 					<icon-alt>Gear</icon-alt>
-					<name>edit_gig_gear</name>
+					<name>edit_gig_gear[]</name>
 					<id>edit-gig-gear</id>
 					<required></required>
 					<onblur></onblur>
@@ -1065,7 +1076,7 @@
 		<modal>
 			<modal-id>delete-gig-modal</modal-id>
 			<h1>Are you sure you want to delete&lt;br&gt;&lt;span class="delete-value"&gt;&lt;/span&gt;?</h1>
-			<link-to>/gig/delete/</link-to>
+			<link-to>/gigs/delete/</link-to>
 		</modal>
 	</delete-gig>
 </modals>

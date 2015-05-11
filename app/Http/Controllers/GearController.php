@@ -87,16 +87,11 @@ class GearController extends Controller {
 	 */
 	public function update(Gear $gear, Request $request)
 	{
-		$gear_id = $request->edit_gear_id;
-		$gear_name = $request->edit_gear_name;
-		$gear_category = $request->edit_gig_category;
-		$gear_description = $request->edit_gear_description;
-
 		$updated_gear = $gear;
-		$updated_gear->id = $gear_id;
-		$updated_gear->gear_name = $gear_name;
-		$updated_gear->gig_category = $gear_category;
-		$updated_gear->gear_description = $gear_description;
+		$updated_gear->id = $request->edit_gear_id;
+		$updated_gear->gear_name = $request->edit_gear_name;;
+		$updated_gear->gig_category = $request->edit_gig_category;
+		$updated_gear->gear_description = $request->edit_gear_description;
 		$updated_gear->save();
 		return redirect()->back();
 
@@ -119,7 +114,7 @@ class GearController extends Controller {
 		$toRemove = 'http://totalgig/gear/delete/';
 		$gearId = str_replace($toRemove, '', $uri);
 		DB::table('gears')->where('id', $gearId)->delete();
-		return redirect('gear');
+		return redirect()->back();
     }
 
 	private function createGear(GearRequest $request)

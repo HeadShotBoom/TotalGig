@@ -158,9 +158,43 @@ class GigController extends Controller {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
+	public function update(Gig $gig, Request $request)
 	{
-		//
+        $updatedGig = $gig;
+        $updatedGig->id = $request->edit_gig_id;
+        $updatedGig->gig_name = $request->edit_gig_name;
+        $updatedGig->category = $request->edit_gig_category;
+        $updatedGig->client_id = $request->edit_gig_client;
+        $updatedGig->service_package = $request->edit_gig_package;
+        $updatedGig->gig_date = $request->edit_gig_date;
+        $updatedGig->notes = $request->edit_gig_notes;
+        $updatedGig->save();
+        DB::table('employee_gig')->where('gig_id', $request->edit_gig_id)->delete();
+        foreach($request->edit_gig_employees as $employee){
+            DB::table('employee_gig')->insert(['employee_id' => $employee, 'gig_id' => $request->edit_gig_id]);
+            $data['name'] = DB::table('employees')->where('id', $employee)->pluck('name');
+            $data['email'] = DB::table('employees')->where('id', $employee)->pluck('email');
+            $data['date'] = $updatedGig->gig_date;
+            $data['gig_name'] = $updatedGig->gig_name;
+            $data['boss'] = Auth::user();
+            Mail::send('emails.updatedbooked', $data, function($message) use ($data){
+
+                $message->to($data['email'], $data['name'])->subject('You have been booked!');
+            });
+        }
+        DB::table('gears_gig')->where('gig_id', $request->edit_gig_id)->delete();
+        foreach($request->edit_gig_gear as $gear){
+            DB::table('gears_gig')->insert(['gear_id' => $gear, 'gig_id' => $request->edit_gig_id]);
+        }
+        $totalQty = DB::table('services')->select('service_qty')->where('package_id', $updatedGig->service_package)->get();
+        $totalPrice = DB::table('services')->select('service_price')->where('package_id', $updatedGig->service_package)->get();
+        $totalMoney = 0;
+        for($x=0; $x<count($totalQty); $x++){
+            $totalMoney += $totalQty[$x]->service_qty*$totalPrice[$x]->service_price;
+        }
+        $now = date('M | d | Y');
+        DB::table('invoices')->where('gig_id', $request->edit_gig_id)->update(['date' => $now, 'total' => $totalMoney, 'name' => $updatedGig->gig_name, 'client' => $updatedGig->client_id, 'service_package' => $updatedGig->service_package]);
+        return redirect()->back();
 	}
 
 	/**
@@ -173,5 +207,14 @@ class GigController extends Controller {
 	{
 		//
 	}
+
+    public function delete(Request $request)
+    {
+        $uri = $request->url();
+        $toRemove = 'http://totalgig/gigs/delete/';
+        $gigId = str_replace($toRemove, '', $uri);
+        DB::table('gigs')->where('id', $gigId)->delete();
+        return redirect('gigs');
+    }
 
 }

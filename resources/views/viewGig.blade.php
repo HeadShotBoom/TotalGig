@@ -49,11 +49,11 @@
             </div>
         </div>
 
-        <div id="view-gig" data-id={{ $gig[0]->id }}<!-- INSERT GIG ID HERE -->
+        <div id="view-gig" data-id={{ $gig[0]->id }}><!-- INSERT GIG ID HERE -->
 
             <div class="row">
 
-                <div class="four columns gig-client" data-client-id={{ $gig[0]->client_id }}<!--INSERT CLIENT ID HERE -->
+                <div class="four columns gig-client" data-client-id={{ $gig[0]->client_id }}><!--INSERT CLIENT ID HERE -->
                     <h1>{{ $clientInfo[0]->name }}</h1><!-- INSERT CLIENT NAME HERE -->
                     <div class="client-contact">
                         <h2>Contact</h2>
@@ -66,7 +66,7 @@
                     </div>
                 </div><!-- gig-client -->
 
-                <div class="four columns gig-package" data-package-id={{ $packageInfo[0]->id }}<!-- INSERT PACKAGE ID HERE -->
+                <div class="four columns gig-package" data-package-id={{ $packageInfo[0]->id }}><!-- INSERT PACKAGE ID HERE -->
                     <h1>Service Package</h1>
                     <ul class="mCustomScrollbar" data-mcs-theme="dark">
                         <li><h6>{{ $packageInfo[0]->package_name }}</h6></li><!-- INSERT PACKAGE NAME HERE -->
@@ -74,7 +74,7 @@
                         @for($i=0; $i<count($servicesInfo); $i++)
                         <li><span class="item">{{ $servicesInfo[$i]->service_name }}<span class="amount">({{ $servicesInfo[$i]->service_qty }})</span></span><span class="cost">${{ $servicesInfo[$i]->service_price }}</span></li><!-- INSERT PACKAGE ITEMS INFO HERE -->
                         <?php
-                        $serviceTotal = $servicesInfo[$i]->service_qty * $servicesInfo[0]->service_price;
+                        $serviceTotal = $servicesInfo[$i]->service_qty * $servicesInfo[$i]->service_price;
                         $total = $total + $serviceTotal;
                         ?>
                         @endfor

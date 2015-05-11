@@ -335,8 +335,9 @@ $(document).ready(function(){
 		if($(this).hasClass('delete')){
             if($(this).attr('data-modal') === 'delete-gear' || $(this).attr('data-modal') === 'delete-package'){
                 var itemName1 = $(this).prevUntil('.content').text();
-
+                console.log(itemName1);
                 var fullTarget1 = '#'+modalId+' h1 .delete-value';
+                console.log(fullTarget1);
                 $(fullTarget1).html(itemName1);
             }else if($(this).attr('data-modal') === 'delete-employee' || $(this).attr('data-modal') === 'delete-client'){
                 var itemName2 = $(this).parent().parent().find('.name').text();
@@ -347,6 +348,7 @@ $(document).ready(function(){
 				var itemName3 = $(this).parent().prev().find('h4').text();
 
 				var fullTarget3 = '#'+modalId+' h1 .delete-value';
+
 				$(fullTarget3).html(itemName3);
 			}
 			var itemId = $(this).parents('.content').attr('data-id');
@@ -356,6 +358,10 @@ $(document).ready(function(){
 
 			var linkTarget = '#'+modalId+' .delete-link';
 			$(linkTarget).attr('href', $(linkTarget).attr('data-original-href') + itemId);
+            if(dataModal === 'delete-gig'){
+                var gigDeleteId = $('#view-gig').attr('data-id');
+                $(linkTarget).attr('href', $(linkTarget).attr('data-original-href') + gigDeleteId);
+            }
 
 		}else if($(this).hasClass('edit')){
 			openModal(modalId);
@@ -453,7 +459,6 @@ $(document).ready(function(){
                 $('#edit-employee-modal form').attr('action', employeeFormAction + employeeId);
             }else if(dataModal === 'edit-client') { //Exclusive to edit-client modal
             	// Collect client data
-                console.log('Test');
                 var clientId = $(this).parent().parent().attr('data-id');
                 var clientTarget = 'tr[data-id=' + clientId + ']';
                 var clientName = $(clientTarget).find('.name').text();
@@ -495,6 +500,7 @@ $(document).ready(function(){
 				});
 
 				// Populate gig data
+                $('input[name=edit_gig_id]').val(gigId);
 				$('input[name=edit_gig_name]').val(gigName);
 				$('select[name=edit_gig_category]').val(gigCategoryId);
 				$('select[name=edit_gig_client]').val(gigClientId);
@@ -503,6 +509,9 @@ $(document).ready(function(){
 				$('textarea[name=edit_gig_notes]').text(gigNotes);
 				$('select[name=edit_gig_gear]').val(gigGearIds);
 				$('select[name=edit_gig_employees]').val(gigEmployeeIds);
+
+                var viewGigFormAction = $('#edit-gig-modal form').attr('data-action');
+                $('#edit-gig-modal form').attr('action', viewGigFormAction + gigId);
 			}
 
 			}else {
