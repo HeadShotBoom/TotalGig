@@ -128,7 +128,7 @@ class InvoiceController extends Controller {
 		}elseif($paid === "Yes"){
 			DB::table('invoices')->where('id', $invoiceId)->update(['paid' => "No"]);
 		}
-		return redirect('invoices');
+		return redirect()->back();
 
 	}
 	 public function downloadPdf(Request $request)

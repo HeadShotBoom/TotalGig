@@ -55,9 +55,24 @@ class GigController extends Controller {
         return view('gigs', compact('thisUser', 'gigs', 'clients', 'employees', 'gears', 'packages'));
     }
 
-	public function viewGig()
+	public function viewGig(Request $request)
 	{
-		return view('viewGig');
+		$uri = $request->url();
+		$toRemove = 'http://totalgig/gigs/';
+		$gigId = str_replace($toRemove, '', $uri);
+		$gig = Gig::where('id', $gigId)->get();
+		$clientInfo = Client::where('id', $gig[0]->client_id)->get();
+		$packageInfo = Package::where('id', $gig[0]->service_package)->get();
+		$servicesInfo = DB::table('services')->where('package_id', $gig[0]->service_package)->get();
+        $gearInfo = DB::table('gears_gig')->where('gig_id', $gig[0]->id)->get();
+        $employeesInfo = DB::table('employee_gig')->where('gig_id', $gig[0]->id)->get();
+        $invoiceInfo = DB::table('invoices')->where('gig_id', $gig[0]->id)->get();
+        $thisUser = Auth::user();
+        $clients = Client::all();
+        $employees = Employee::all();
+        $gears = Gear::all();
+        $packages = Package::all();
+		return view('viewGig', compact('thisUser', 'gig', 'clientInfo', 'packageInfo', 'servicesInfo', 'gearInfo', 'employeesInfo', 'invoiceInfo', 'clients', 'employees', 'gears', 'packages'));
 	}
 
 	/**

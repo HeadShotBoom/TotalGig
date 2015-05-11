@@ -36,7 +36,7 @@
         <div class="gigs">
             @foreach($gigs as $gig)
             <div class="gig">
-                <!-- href to view-gig -->
+                <a href="/gigs/{{ $gig->id }}">
                 @if($gig->category == '8')
                 <img class="gig-icon" data-category-id={{ $gig->category }} src={{ asset('img/web-development.png') }} alt="gear Name" />
                 @elseif($gig->category == '0')
@@ -58,7 +58,7 @@
                 @else
                 <img class="gig-icon" data-category-id={{ $gig->category }} src={{ asset('img/other.png') }} alt="gear Name" />
                 @endif
-                <h1><a href="#">{{ $gig->gig_name }}</a></h1>
+                <h1>{{ $gig->gig_name }}</a></h1>
                 <h2><a href="/clients"><?php $clientName = DB::table('clients')->where('id', $gig->client_id)->pluck('name'); echo $clientName;?></a></h2>
                 <p><?php $newDate = date("M | d | Y", strtotime($gig->gig_date)); echo $newDate; ?></p>
             </div>
