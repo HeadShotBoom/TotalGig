@@ -13,7 +13,7 @@
 
 Route::get('/', 'WelcomeController@index');
 
-Route::get('dashboard', 'HomeController@index');
+Route::get('dashboard', 'DashboardController@index');
 
 Route::get('gigs/old', 'GigController@index1');
 Route::get('gigs/cat', 'GigController@index2');
