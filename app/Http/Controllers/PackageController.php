@@ -26,14 +26,14 @@ class PackageController extends Controller {
 	public function index()
 	{
 		$thisUser = Auth::user();
-		$packages = Package::orderBy('package_name', 'ASC')->get();
+		$packages = Package::where('user_id', $thisUser->id)->orderBy('package_name', 'ASC')->get();
 		return view('packages', compact('packages', 'thisUser'));
 	}
 
 	public function index2()
 	{
 		$thisUser = Auth::user();
-		$packages = Package::orderBy('category', 'ASC')->get();
+		$packages = Package::where('user_id', $thisUser->id)->orderBy('category', 'ASC')->get();
 		return view('packages', compact('packages', 'thisUser'));
 	}
 

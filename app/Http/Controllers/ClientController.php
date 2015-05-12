@@ -22,13 +22,13 @@ class ClientController extends Controller {
 	public function index()
 	{
 		$thisUser = Auth::user();
-		$clients = Client::orderBy('name', 'ASC')->get();
+		$clients = Client::where('user_id', $thisUser->id)->orderBy('name', 'ASC')->get();
 		return view('clients', compact('clients', 'thisUser'));
 	}
 	public function index2()
 	{
 		$thisUser = Auth::user();
-		$clients = Client::orderBy('address', 'ASC')->get();
+		$clients = Client::where('user_id', $thisUser->id)->orderBy('address', 'ASC')->get();
 		return view('clients', compact('clients', 'thisUser'));
 	}
 

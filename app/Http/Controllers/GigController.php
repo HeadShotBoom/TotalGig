@@ -27,31 +27,31 @@ class GigController extends Controller {
 	public function index()
 	{
 		$thisUser = Auth::user();
-		$gigs = Gig::orderBy('gig_date', 'ASC')->get();
-		$clients = Client::all();
-		$employees = Employee::all();
-		$gears = Gear::all();
-		$packages = Package::all();
+		$gigs = Gig::where('user_id', $thisUser->id)->orderBy('gig_date', 'ASC')->get();
+		$clients = Client::where('user_id', $thisUser->id)->get();
+		$employees = Employee::where('user_id', $thisUser->id)->get();
+		$gears = Gear::where('user_id', $thisUser->id)->get();
+		$packages = Package::where('user_id', $thisUser->id)->get();
 		return view('gigs', compact('thisUser', 'gigs', 'clients', 'employees', 'gears', 'packages'));
 	}
     public function index1()
     {
         $thisUser = Auth::user();
-        $gigs = Gig::orderBy('gig_date', 'DESC')->get();
-        $clients = Client::all();
-        $employees = Employee::all();
-        $gears = Gear::all();
-        $packages = Package::all();
+        $gigs = Gig::where('user_id', $thisUser->id)->orderBy('gig_date', 'DESC')->get();
+        $clients = Client::where('user_id', $thisUser->id)->get();
+        $employees = Employee::where('user_id', $thisUser->id)->get();
+        $gears = Gear::where('user_id', $thisUser->id)->get();
+        $packages = Package::where('user_id', $thisUser->id)->get();
         return view('gigs', compact('thisUser', 'gigs', 'clients', 'employees', 'gears', 'packages'));
     }
     public function index2()
     {
         $thisUser = Auth::user();
-        $gigs = Gig::orderBy('category', 'DESC')->get();
-        $clients = Client::all();
-        $employees = Employee::all();
-        $gears = Gear::all();
-        $packages = Package::all();
+        $gigs = Gig::where('user_id', $thisUser->id)->orderBy('category', 'DESC')->get();
+        $clients = Client::where('user_id', $thisUser->id)->get();
+        $employees = Employee::where('user_id', $thisUser->id)->get();
+        $gears = Gear::where('user_id', $thisUser->id)->get();
+        $packages = Package::where('user_id', $thisUser->id)->get();
         return view('gigs', compact('thisUser', 'gigs', 'clients', 'employees', 'gears', 'packages'));
     }
 
@@ -68,10 +68,10 @@ class GigController extends Controller {
         $employeesInfo = DB::table('employee_gig')->where('gig_id', $gig[0]->id)->get();
         $invoiceInfo = DB::table('invoices')->where('gig_id', $gig[0]->id)->get();
         $thisUser = Auth::user();
-        $clients = Client::all();
-        $employees = Employee::all();
-        $gears = Gear::all();
-        $packages = Package::all();
+        $clients = Client::where('user_id', $thisUser->id)->get();
+        $employees = Employee::where('user_id', $thisUser->id)->get();
+        $gears = Gear::where('user_id', $thisUser->id)->get();
+        $packages = Package::where('user_id', $thisUser->id)->get();
 		return view('viewGig', compact('thisUser', 'gig', 'clientInfo', 'packageInfo', 'servicesInfo', 'gearInfo', 'employeesInfo', 'invoiceInfo', 'clients', 'employees', 'gears', 'packages'));
 	}
 

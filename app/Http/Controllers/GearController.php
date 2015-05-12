@@ -25,14 +25,14 @@ class GearController extends Controller {
 	public function index()
 	{
 		$thisUser = Auth::user();
-		$gears = Gear::orderBy('gear_name', 'ASC')->get();
+		$gears = Gear::where('user_id', $thisUser->id)->orderBy('gear_name', 'ASC')->get();
 		return view('gear', compact('thisUser', 'gears'));
 	}
 
 	public function index2()
 	{
 		$thisUser = Auth::user();
-		$gears = Gear::orderBy('gear_name', 'DESC')->get();
+		$gears = Gear::where('user_id', $thisUser->id)->orderBy('gear_name', 'DESC')->get();
 		return view('gear', compact('thisUser', 'gears'));
 	}
 

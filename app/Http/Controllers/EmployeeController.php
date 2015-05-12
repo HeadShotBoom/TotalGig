@@ -24,19 +24,19 @@ class EmployeeController extends Controller {
 	public function index()
 	{
         $thisUser = Auth::user();
-        $employees = Employee::orderBy('name', 'ASC')->get();
+        $employees = Employee::where('user_id', $thisUser->id)->orderBy('name', 'ASC')->get();
 		return view('employees', compact('employees', 'thisUser'));
 	}
     public function index2()
     {
         $thisUser = Auth::user();
-        $employees = Employee::orderBy('job_title', 'ASC')->get();
+        $employees = Employee::where('user_id', $thisUser->id)->orderBy('job_title', 'ASC')->get();
         return view('employees', compact('employees', 'thisUser'));
     }
     public function index3()
     {
         $thisUser = Auth::user();
-        $employees = Employee::orderBy('pay_rate', 'ASC')->get();
+        $employees = Employee::where('user_id', $thisUser->id)->orderBy('pay_rate', 'ASC')->get();
         return view('employees', compact('employees', 'thisUser'));
     }
 	/**
