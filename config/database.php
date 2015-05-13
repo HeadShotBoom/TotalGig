@@ -54,7 +54,7 @@ return [
 
 		'mysql' => [
 			'driver'    => 'mysql',
-			'host'      => 'localhost',
+			'host'      => 'TotalGig',
 			'database'  => 'TotalGig',
 			'username'  => 'forge',
 			'password'  => '3B8qOeFwxJz2H9pYbk2B',
