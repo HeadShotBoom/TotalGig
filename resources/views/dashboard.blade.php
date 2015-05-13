@@ -7,7 +7,7 @@
 ================================================== -->
 <header>
     <div class="container">
-        <div class="four columns"><a href="index.html" id="header-logo">Total Gig</a></div>
+        <div class="four columns"><a href='/dashboard' id="header-logo">Total Gig</a></div>
         <div class="twelve columns">
             @include('partial.nav')
         </div>
@@ -79,82 +79,9 @@
 
             <div class="calendar-container">
 
-                <ul class='main-calendar'>
-                    <li class='main-day-header' >
-                        <div class='main-title'>
-                            <a class="prev" href="http://oldtg/calendar?month=4&year=2015" >Prev</a><span class="main-month">May 2015</span><a class="next" href="http://oldtg/calendar?month=6&year=2015" >Next</a>
-                        </div>
-                        <div class="main-labels">
-                            <div class='main-label'>Sun</div>
-                            <div class='main-label'>Mon</div>
-                            <div class='main-label'>Tue</div>
-                            <div class='main-label'>Wed</div>
-                            <div class='main-label'>Thu</div>
-                            <div class='main-label'>Fri</div>
-                            <div class='main-label'>Sat</div>
-                        </div>
-                    </li>
-                    <li class='main-week'>
-                        <div class='previous-month main-day'>&nbsp;</div>
-                        <div class='previous-month main-day'>&nbsp;</div>
-                        <div class='previous-month main-day'>&nbsp;</div>
-                        <div class='previous-month main-day'>&nbsp;</div>
-                        <div class='previous-month main-day'>&nbsp;</div>
-                        <div class='main-day'>1</div>
-                        <div class='main-day'>2</div>
-                    </li>
-                    <li class='main-week'>
-                        <div class='main-day'>3</div>
-                        <div class='main-day'>4</div>
-                        <div class='main-day'>5</div>
-                        <div class='main-day'>6</div>
-                        <div class='main-day'>7</div>
-                        <div class='main-day'>8</div>
-                        <div class='main-day'>9</div>
-                    </li>
-                    <li class='main-week'>
-                        <div class='main-day'>10</div>
-                        <div class='main-day'>11</div>
-                        <div class='main-day'>12</div>
-                        <div class='main-day'>13</div>
-                        <div class='main-day'>14</div>
-                        <div class='main-day'>15</div>
-                        <div class='main-day'>16</div>
-                    </li>
-                    <li class='main-week'>
-                        <div class='main-day'>17</div>
-                        <div class='main-day'>18</div>
-                        <div class='main-day'>19</div>
-                        <div class='main-day'>20</div>
-                        <div class='main-day'>21</div>
-                        <div class='main-day'>22</div>
-                        <div class='main-day'>23<a href="view_gig.html" class="main-event">Photo Shoot</a></div><!-- INSERT GIG HREF AND TITLE AS SUCH -->
-                    </li>
-                    <li class='main-week'>
-                        <div class='main-day'>24</div>
-                        <div class='main-day'>25</div>
-                        <div class='main-day'>26</div>
-                        <div class='main-day'>27</div>
-                        <div class='main-day'>28</div>
-                        <div class='main-day'>29</div>
-                        <div class='main-day'>30<a href="view_gig.html" class="main-event">Wedding Shoot</a></div>
-                    </li>
-                    <li class='main-week'>
-                        <div class='main-day'>31</div>
-                        <div class='next-month main-day'>&nbsp;</div>
-                        <div class='next-month main-day'>&nbsp;</div>
-                        <div class='next-month main-day'>&nbsp;</div>
-                        <div class='next-month main-day'>&nbsp;</div>
-                        <div class='next-month main-day'>&nbsp;</div>
-                        <div class='next-month main-day'>&nbsp;</div>
-                        <!-- <li class='main-week'></li>
-                        <li class='main-week'> </li>
-                        <li class='main-week'> </li>
-                        <li class='main-week'> </li>
-                        <li class='main-week'> </li>
-                        <li class='main-week'> </li> -->
-                    </li>
-                </ul>
+                @include('partial.calendar')
+
+
 
             </div><!-- calendar-container -->
 
@@ -165,8 +92,8 @@
 
 <footer>
     <div class="container">
-        <img src="img/main-logo.png" alt="Total Gig" />
-        <a class="highlight" href="mailto:support@totalgig.com">admin@totalgig.com</a><br>
+        <img src={{ asset('img/main-logo.png') }} alt="Total Gig" />
+        <a class="highlight" href="mailto:admin@totalgig.com">admin@totalgig.com</a><br>
         <span class="copyright">Copyright &copy; 2015 Total Gig<br>All rights reserved</span>
     </div><!-- container -->
 </footer>
@@ -175,48 +102,50 @@
 ============================================================================================================= -->
 <!-- POPULATE WITH ALL GIG CATEGORIES IN DB -->
 <ul class="hide" data-populate="category">
-    <li data-db-value="0">Web Developer</li>
-    <li data-db-value="1">Photographer</li>
-    <li data-db-value="2">Videograhper</li>
-    <!-- ETC ETC ETC -->
+    <li data-db-value="0">Cosmetologist</li>
+    <li data-db-value="1">DJ</li>
+    <li data-db-value="2">Graphic-Artist</li>
+    <li data-db-value="3">Makeup-Artist</li>
+    <li data-db-value="4">Musician</li>
+    <li data-db-value="5">Party-Planner</li>
+    <li data-db-value="6">Photographer</li>
+    <li data-db-value="7">Videography</li>
+    <li data-db-value="8">Web-Development</li>
+    <li data-db-value="9">Other</li>
 </ul>
 
-<!-- POPULATE WITH ALL CLIENTS IN DB LINKED TO THE CURRENT USER -->
 <ul class="hide" data-populate="clients">
-    <li data-db-value="0">Alta Alred</li>
-    <li data-db-value="1">Derrick Drey</li>
-    <li data-db-value="2">Latricia Levi</li>
-    <!-- ETC ETC ETC -->
+    @foreach($clients as $client)
+    <li data-db-value={{ $client->id }} >{{ $client->name }}</li>
+    @endforeach
 </ul>
 
 <!-- POPULATE WITH ALL EMPLOYEES IN DB LINKED TO THE CURRENT USER -->
 <ul class="hide" data-populate="employees">
-    <li data-db-value="0">Arden Jewel</li>
-    <li data-db-value="1">Dawson Diggory</li>
-    <li data-db-value="2">Gus Midge</li>
-    <!-- ETC ETC ETC -->
+    @foreach($employees as $employee)
+    <li data-db-value={{ $employee->id }} >{{ $employee->name }} </li>
+    @endforeach
 </ul>
 
 <!-- POPULATE WITH ALL SERVICE PACKAGES IN DB LINKED TO THE CURRENT USER -->
 <ul class="hide" data-populate="service-packages">
-    <li data-db-value="0">Package Name 1</li>
-    <li data-db-value="1">Package Name 2</li>
-    <li data-db-value="2">Package Name 3</li>
-    <!-- ETC ETC ETC -->
+    @foreach($packages as $package)
+    <li data-db-value={{ $package->id }} > {{ $package->package_name }}</li>
+    @endforeach
 </ul>
 
 <!-- POPULATE WITH ALL GEAR IN DB LINKED TO THE CURRENT USER -->
 <ul class="hide" data-populate="gear">
-    <li data-db-value="0">Macbook</li>
-    <li data-db-value="1">Camera</li>
-    <li data-db-value="2">Backpack</li>
-    <!-- ETC ETC ETC -->
+    @foreach($gears as $gear)
+    <li data-db-value={{ $gear->id }}>{{ $gear->gear_name }}</li>
+    @endforeach
 </ul>
 
 <div class="hide fill-background">
 </div><!--fill-background -->
 <!-- End Document
 ================================================== -->
+<input id="csrf-token" type="hidden" name="_token" value={{ $thisUser->remember_token }}>
 </body>
 
 @endsection

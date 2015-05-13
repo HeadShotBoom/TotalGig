@@ -125,7 +125,7 @@ class GigController extends Controller {
         }
         $now = date('M | d | Y');
         DB::table('invoices')->insert(['gig_id' => $gigId, 'user_id' => $gig->user_id, 'date' => $now, 'total' => $totalMoney, 'paid' => 'No', 'name' => $gig->gig_name, 'client' => $gig->client_id, 'service_package' => $gig->service_package]);
-        return redirect('gigs');
+        return redirect()->back();
 
 
 	}

@@ -1,7 +1,3 @@
-@extends('layout')
-
-@section('content')
-
 <?php
 
 $date =time () ;
@@ -79,32 +75,33 @@ $days_in_month = cal_days_in_month(0, $month, $year) ;
 
 
 <br />
-<?php
-echo "<ul class='large-8 large-push-2 small-12 columns maincalendar'>";
 
-echo "<li class='title'>"; ?>
-<a class="floatleft" href="{{ action('GigController@calendar') }}?month=<?php echo $month-1 ?>&year=<?php echo $year ?>" >Prev</a>
+<ul class='main-calendar'>
+    <li class='main-day-header' >
+        <div class='main-title'>
+            <a class="floatleft" href="{{ action('DashboardController@index') }}?month=<?php echo $month-1 ?>&year=<?php echo $year ?>" >Prev</a>
 <?php echo $title . " " .  $year; ?>
-<a class="floatright" href="{{ action('GigController@calendar') }}?month=<?php echo $month+1 ?>&year=<?php echo $year ?>" >Next</a>
-<?php echo "</li>";
-echo "<li class='mainday-header' >
-<div class='large-1 mainday'>Sun</div>
-        <div class='large-1 mainday'>Mon</div>
-        <div class='large-1 mainday'>Tue</div>
-        <div class='large-1 mainday'>Wed</div>
-        <div class='large-1 mainday'>Thu</div>
-        <div class='large-1 mainday'>Fri</div>
-        <div class='large-1 mainday'>Sat</div>
-</li>";
+            <a class="floatright" href="{{ action('DashboardController@index') }}?month=<?php echo $month+1 ?>&year=<?php echo $year ?>" >Next</a>
+        </div>
+        <div class="main-labels">
+            <div class='main-label'>Sun</div>
+            <div class='main-label'>Mon</div>
+            <div class='main-label'>Tue</div>
+            <div class='main-label'>Wed</div>
+            <div class='main-label'>Thu</div>
+            <div class='main-label'>Fri</div>
+            <div class='main-label'>Sat</div>
+        </div>
+</li>
 
-
+<?php
 //This counts the days in the week, up to 7
 
 $day_count = 1;
 
 
 
-echo "<li class='mainweek'>";
+echo "<li class='main-week'>";
 
 //first we take care of those blank days
 
@@ -112,7 +109,7 @@ while ( $blank > 0 )
 
 {
 
-    echo "<div class='large-1 previous-month mainday'></div>";
+    echo "<div class='previous-month main-day'>&nbsp;</div>";
 
     $blank = $blank-1;
 
@@ -126,21 +123,18 @@ $day_num = 1;
 
 $namesforcal = array();
 
-foreach($gig as $gig){
+foreach($gigs as $gig){
     $gigdate = $gig->gig_date;
     $strarr = str_split($gigdate, 1);
     $gigtimestamp = $strarr;
-    $gigminutes = $gigtimestamp[11].$gigtimestamp[12].$gigtimestamp[14].$gigtimestamp[15].$gigtimestamp[17].$gigtimestamp[18];
-    $gigday = $gigtimestamp[8].$gigtimestamp[9];
-    $gigmonth = $gigtimestamp[5].$gigtimestamp[6];
-    $gigyear = $gigtimestamp[2].$gigtimestamp[3];
-
+    $gigday = $gigtimestamp[3].$gigtimestamp[4];
+    $gigmonth = $gigtimestamp[0].$gigtimestamp[1];
+    $gigyear = $gigtimestamp[8].$gigtimestamp[9];
     $giginfo = array();
     $giginfo[0] = $gig->gig_name;
     $giginfo[1] = $gig->id;
-    $namesforcal[intval($gigyear)][intval($gigmonth)][intval($gigday)][intval($gigminutes)][0] = $giginfo[0];
-    $namesforcal[intval($gigyear)][intval($gigmonth)][intval($gigday)][intval($gigminutes)][1] = $gigtimestamp[11].$gigtimestamp[12].$gigtimestamp[13].$gigtimestamp[14].$gigtimestamp[15];
-    $namesforcal[intval($gigyear)][intval($gigmonth)][intval($gigday)][intval($gigminutes)][2] = $giginfo[1];
+    $random = rand();
+    $namesforcal[intval($gigyear)][intval($gigmonth)][intval($gigday)][intval($random)] = $giginfo;
 }
 
 //count up the days, untill we've done all of them in the month
@@ -149,12 +143,12 @@ while ( $day_num <= $days_in_month )
 
 {
 
-    echo "<div class='large-1 mainday'>$day_num";
+    echo "<div class='main-day'>$day_num";
     if(isset($namesforcal[$shortyear])) {
-        if (isset($namesforcal[$shortyear][$month])) {
-            if(isset($namesforcal[$shortyear][$month][$day_num])) {
-                foreach($namesforcal[$shortyear][$month][$day_num] as $thegigness){
-                    echo "<br /><a href='/view/$thegigness[2]' >$thegigness[0] @ $thegigness[1]</a><br />";
+        if (isset($namesforcal[intval($shortyear)][intval($month)])) {
+            if(isset($namesforcal[intval($shortyear)][intval($month)][intval($day_num)])) {
+                foreach($namesforcal[intval($shortyear)][intval($month)][intval($day_num)] as $thegigness){
+                    echo "<br /><a class='main-event' href='/gigs/$thegigness[1]' >$thegigness[0]</a><br />";
                 }
             }
         }
@@ -173,7 +167,7 @@ while ( $day_num <= $days_in_month )
 
     {
 
-        echo "</li><li class='mainweek'>";
+        echo "</li><li class='main-week'>";
 
         $day_count = 1;
 
@@ -187,7 +181,7 @@ while ( $day_count >1 && $day_count <=7 )
 
 {
 
-    echo "<li class='mainweek'> </li>";
+    echo "<div class='main-day'>&nbsp;</div>";
 
     $day_count++;
 
@@ -196,5 +190,3 @@ while ( $day_count >1 && $day_count <=7 )
 
 echo "</li></ul>";
 ?>
-
-@endsection
