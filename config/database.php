@@ -57,7 +57,7 @@ return [
 			'host'      => 'localhost',
 			'database'  => 'TotalGig',
 			'username'  => 'forge',
-			'password'  => '3B8qOeFwxJz2H9pYbk2B',
+			'password'  => 'Im4NZzBRqSqRPiq8myY3',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
