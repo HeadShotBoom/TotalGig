@@ -23,8 +23,6 @@ class InvoiceController extends Controller {
 	public function index()
 	{
 		$thisUser = Auth::user();
-		echo 'WHAT IS THE NUMBER AFTER THIS?';
-		dd($thisUser->id);
 		$invoices = Invoice::where('user_id', $thisUser->id)->orderBy('id', 'ASC')->get();
 		return view('invoices', compact('invoices', 'thisUser'));
 	}
