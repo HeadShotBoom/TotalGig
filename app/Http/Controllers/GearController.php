@@ -111,8 +111,7 @@ class GearController extends Controller {
 	public function delete(Gear $gear, Request $request)
     {
 		$uri = $request->url();
-		$toRemove = 'http://totalgig/gear/delete/';
-		$gearId = str_replace($toRemove, '', $uri);
+		$gearId = filter_var($uri, FILTER_SANITIZE_NUMBER_INT);
 		DB::table('gears')->where('id', $gearId)->delete();
 		return redirect()->back();
     }

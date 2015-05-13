@@ -124,8 +124,7 @@ class EmployeeController extends Controller {
     public function delete(Employee $employee, Request $request)
     {
         $uri = $request->url();
-        $toRemove = 'http://totalgig/employees/delete/';
-        $employeeId = str_replace($toRemove, '', $uri);
+        $employeeId = filter_var($uri, FILTER_SANITIZE_NUMBER_INT);
         DB::table('employees')->where('id', $employeeId)->delete();
         return redirect('employees');
     }

@@ -58,8 +58,7 @@ class GigController extends Controller {
 	public function viewGig(Request $request)
 	{
 		$uri = $request->url();
-		$toRemove = 'http://totalgig/gigs/';
-		$gigId = str_replace($toRemove, '', $uri);
+        $gigId = filter_var($uri, FILTER_SANITIZE_NUMBER_INT);
 		$gig = Gig::where('id', $gigId)->get();
 		$clientInfo = Client::where('id', $gig[0]->client_id)->get();
 		$packageInfo = Package::where('id', $gig[0]->service_package)->get();
@@ -211,8 +210,7 @@ class GigController extends Controller {
     public function delete(Request $request)
     {
         $uri = $request->url();
-        $toRemove = 'http://totalgig/gigs/delete/';
-        $gigId = str_replace($toRemove, '', $uri);
+        $gigId = filter_var($uri, FILTER_SANITIZE_NUMBER_INT);
         DB::table('gigs')->where('id', $gigId)->delete();
         return redirect('gigs');
     }

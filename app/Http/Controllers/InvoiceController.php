@@ -118,10 +118,7 @@ class InvoiceController extends Controller {
 	public function toggle(Request $request)
 	{
 		$uri = $request->url();
-		$toRemove = 'http://totalgig/invoices/';
-		$alsoRemove = '/toggle';
-		$part1 = str_replace($toRemove, '', $uri);
-		$invoiceId = str_replace($alsoRemove, '', $part1);
+		$invoiceId = filter_var($uri, FILTER_SANITIZE_NUMBER_INT);
 		$paid = DB::table('invoices')->where('id', $invoiceId)->pluck('paid');
 		if($paid === 'No'){
 			DB::table('invoices')->where('id', $invoiceId)->update(['paid' => "Yes"]);
@@ -134,10 +131,7 @@ class InvoiceController extends Controller {
 	 public function downloadPdf(Request $request)
 	 {
 		 $uri = $request->url();
-		 $toRemove = 'http://totalgig/invoices/';
-		 $alsoRemove = '/download';
-		 $part1 = str_replace($toRemove, '', $uri);
-		 $invoiceId = str_replace($alsoRemove, '', $part1);
+		 $invoiceId = filter_var($uri, FILTER_SANITIZE_NUMBER_INT);
 		 $stuff = DB::table('invoices')->where('id', $invoiceId)->get();
          $data = [];
          $data['gig_name'] = $stuff[0]->name;
@@ -162,10 +156,7 @@ class InvoiceController extends Controller {
 	public function emailPdf(Request $request)
 	{
 		$uri = $request->url();
-		$toRemove = 'http://totalgig/invoices/';
-		$alsoRemove = '/email';
-		$part1 = str_replace($toRemove, '', $uri);
-		$invoiceId = str_replace($alsoRemove, '', $part1);
+		$invoiceId = filter_var($uri, FILTER_SANITIZE_NUMBER_INT);
 		$stuff = DB::table('invoices')->where('id', $invoiceId)->get();
 		$data = [];
 		$data['gig_name'] = $stuff[0]->name;
@@ -197,10 +188,7 @@ class InvoiceController extends Controller {
 	public function printPdf(Request $request)
 	{
 		$uri = $request->url();
-		$toRemove = 'http://totalgig/invoices/';
-		$alsoRemove = '/print';
-		$part1 = str_replace($toRemove, '', $uri);
-		$invoiceId = str_replace($alsoRemove, '', $part1);
+		$invoiceId = filter_var($uri, FILTER_SANITIZE_NUMBER_INT);
 		$stuff = DB::table('invoices')->where('id', $invoiceId)->get();
 		$data = [];
 		$data['gig_name'] = $stuff[0]->name;

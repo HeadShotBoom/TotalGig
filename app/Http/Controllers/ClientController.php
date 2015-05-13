@@ -115,8 +115,7 @@ class ClientController extends Controller {
     public function delete(Client $client, Request $request)
     {
         $uri = $request->url();
-        $toRemove = 'http://totalgig/clients/delete/';
-        $clientId = str_replace($toRemove, '', $uri);
+		$clientId = filter_var($uri, FILTER_SANITIZE_NUMBER_INT);
         DB::table('clients')->where('id', $clientId)->delete();
         return redirect('clients');
     }

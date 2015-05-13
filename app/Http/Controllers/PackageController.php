@@ -310,8 +310,7 @@ class PackageController extends Controller {
 	public function delete(Package $package, Request $request)
 	{
 		$uri = $request->url();
-		$toRemove = 'http://totalgig/packages/delete/';
-		$packageId = str_replace($toRemove, '', $uri);
+		$packageId = filter_var($uri, FILTER_SANITIZE_NUMBER_INT);
 		DB::table('packages')->where('id', $packageId)->delete();
 		return redirect('packages');
 	}
