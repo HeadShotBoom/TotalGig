@@ -23,6 +23,7 @@ class InvoiceController extends Controller {
 	public function index()
 	{
 		$thisUser = Auth::user();
+		dd($thisUser->id);
 		$invoices = Invoice::where('user_id', $thisUser->id)->orderBy('id', 'ASC')->get();
 		return view('invoices', compact('invoices', 'thisUser'));
 	}
