@@ -81,8 +81,6 @@
 
                 @include('partial.calendar')
 
-
-
             </div><!-- calendar-container -->
 
         </div><!-- dashboard-calendar -->

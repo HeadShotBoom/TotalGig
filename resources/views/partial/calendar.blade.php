@@ -79,9 +79,9 @@ $days_in_month = cal_days_in_month(0, $month, $year) ;
 <ul class='main-calendar'>
     <li class='main-day-header' >
         <div class='main-title'>
-            <a class="floatleft" href="{{ action('DashboardController@index') }}?month=<?php echo $month-1 ?>&year=<?php echo $year ?>" >Prev</a>
-<?php echo $title . " " .  $year; ?>
-            <a class="floatright" href="{{ action('DashboardController@index') }}?month=<?php echo $month+1 ?>&year=<?php echo $year ?>" >Next</a>
+            <a class="prev" href="{{ action('DashboardController@index') }}?month=<?php echo $month-1 ?>&year=<?php echo $year ?>" >Prev</a>
+            <span class="main-month"><?php echo $title . " " .  $year; ?></span>
+            <a class="next" href="{{ action('DashboardController@index') }}?month=<?php echo $month+1 ?>&year=<?php echo $year ?>" >Next</a>
         </div>
         <div class="main-labels">
             <div class='main-label'>Sun</div>
