@@ -101,20 +101,24 @@ class GigController extends Controller {
 		$gig->notes = $request->add_gig_notes;
 		$gig->save();
 		$gigId = $gig->id;
-		foreach($request->add_gig_employees as $employee){
-			DB::table('employee_gig')->insert(['employee_id' => $employee, 'gig_id' => $gigId]);
-            $data['name'] = DB::table('employees')->where('id', $employee)->pluck('name');
-            $data['email'] = DB::table('employees')->where('id', $employee)->pluck('email');
-            $data['date'] = $gig->gig_date;
-            $data['gig_name'] = $gig->gig_name;
-            $data['boss'] = Auth::user();
-            Mail::send('emails.booked', $data, function($message) use ($data){
+		if(isset($request->add_gig_employees)) {
+            foreach ($request->add_gig_employees as $employee) {
+                DB::table('employee_gig')->insert(['employee_id' => $employee, 'gig_id' => $gigId]);
+                $data['name'] = DB::table('employees')->where('id', $employee)->pluck('name');
+                $data['email'] = DB::table('employees')->where('id', $employee)->pluck('email');
+                $data['date'] = $gig->gig_date;
+                $data['gig_name'] = $gig->gig_name;
+                $data['boss'] = Auth::user();
+                Mail::send('emails.booked', $data, function ($message) use ($data) {
 
-                $message->to($data['email'], $data['name'])->subject('You have been booked!');
-            });
-		}
-        foreach($request->add_gig_gear as $gear){
-            DB::table('gears_gig')->insert(['gear_id' => $gear, 'gig_id' => $gigId]);
+                    $message->to($data['email'], $data['name'])->subject('You have been booked!');
+                });
+            }
+        }
+        if(isset($request->add_gig_gear)) {
+            foreach ($request->add_gig_gear as $gear) {
+                DB::table('gears_gig')->insert(['gear_id' => $gear, 'gig_id' => $gigId]);
+            }
         }
         $totalQty = DB::table('services')->select('service_qty')->where('package_id', $gig->service_package)->get();
         $totalPrice = DB::table('services')->select('service_price')->where('package_id', $gig->service_package)->get();
