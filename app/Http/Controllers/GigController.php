@@ -129,7 +129,7 @@ class GigController extends Controller {
             }
             $now = date('M | d | Y');
             DB::table('invoices')->insert(['gig_id' => $gigId, 'user_id' => $gig->user_id, 'date' => $now, 'total' => $totalMoney, 'paid' => 'No', 'name' => $gig->gig_name, 'client' => $gig->client_id, 'service_package' => $gig->service_package]);
-        }   
+        }
         return redirect()->back();
 
 
@@ -175,30 +175,36 @@ class GigController extends Controller {
         $updatedGig->notes = $request->edit_gig_notes;
         $updatedGig->save();
         DB::table('employee_gig')->where('gig_id', $request->edit_gig_id)->delete();
-        foreach($request->edit_gig_employees as $employee){
-            DB::table('employee_gig')->insert(['employee_id' => $employee, 'gig_id' => $request->edit_gig_id]);
-            $data['name'] = DB::table('employees')->where('id', $employee)->pluck('name');
-            $data['email'] = DB::table('employees')->where('id', $employee)->pluck('email');
-            $data['date'] = $updatedGig->gig_date;
-            $data['gig_name'] = $updatedGig->gig_name;
-            $data['boss'] = Auth::user();
-            Mail::send('emails.updatedbooked', $data, function($message) use ($data){
+        if(isset($request->edit_gig_employees)) {
+            foreach ($request->edit_gig_employees as $employee) {
+                DB::table('employee_gig')->insert(['employee_id' => $employee, 'gig_id' => $request->edit_gig_id]);
+                $data['name'] = DB::table('employees')->where('id', $employee)->pluck('name');
+                $data['email'] = DB::table('employees')->where('id', $employee)->pluck('email');
+                $data['date'] = $updatedGig->gig_date;
+                $data['gig_name'] = $updatedGig->gig_name;
+                $data['boss'] = Auth::user();
+                Mail::send('emails.updatedbooked', $data, function ($message) use ($data) {
 
-                $message->to($data['email'], $data['name'])->subject('You have been booked!');
-            });
+                    $message->to($data['email'], $data['name'])->subject('You have been booked!');
+                });
+            }
+            DB::table('gears_gig')->where('gig_id', $request->edit_gig_id)->delete();
         }
-        DB::table('gears_gig')->where('gig_id', $request->edit_gig_id)->delete();
-        foreach($request->edit_gig_gear as $gear){
-            DB::table('gears_gig')->insert(['gear_id' => $gear, 'gig_id' => $request->edit_gig_id]);
+        if(isset($request->edit_gig_gear)) {
+            foreach ($request->edit_gig_gear as $gear) {
+                DB::table('gears_gig')->insert(['gear_id' => $gear, 'gig_id' => $request->edit_gig_id]);
+            }
         }
-        $totalQty = DB::table('services')->select('service_qty')->where('package_id', $updatedGig->service_package)->get();
-        $totalPrice = DB::table('services')->select('service_price')->where('package_id', $updatedGig->service_package)->get();
-        $totalMoney = 0;
-        for($x=0; $x<count($totalQty); $x++){
-            $totalMoney += $totalQty[$x]->service_qty*$totalPrice[$x]->service_price;
+        if(isset($request->edit_gig_package)) {
+            $totalQty = DB::table('services')->select('service_qty')->where('package_id', $updatedGig->service_package)->get();
+            $totalPrice = DB::table('services')->select('service_price')->where('package_id', $updatedGig->service_package)->get();
+            $totalMoney = 0;
+            for ($x = 0; $x < count($totalQty); $x++) {
+                $totalMoney += $totalQty[$x]->service_qty * $totalPrice[$x]->service_price;
+            }
+            $now = date('M | d | Y');
+            DB::table('invoices')->where('gig_id', $request->edit_gig_id)->update(['date' => $now, 'total' => $totalMoney, 'name' => $updatedGig->gig_name, 'client' => $updatedGig->client_id, 'service_package' => $updatedGig->service_package]);
         }
-        $now = date('M | d | Y');
-        DB::table('invoices')->where('gig_id', $request->edit_gig_id)->update(['date' => $now, 'total' => $totalMoney, 'name' => $updatedGig->gig_name, 'client' => $updatedGig->client_id, 'service_package' => $updatedGig->service_package]);
         return redirect()->back();
 	}
 
