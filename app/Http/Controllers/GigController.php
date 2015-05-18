@@ -120,14 +120,16 @@ class GigController extends Controller {
                 DB::table('gears_gig')->insert(['gear_id' => $gear, 'gig_id' => $gigId]);
             }
         }
-        $totalQty = DB::table('services')->select('service_qty')->where('package_id', $gig->service_package)->get();
-        $totalPrice = DB::table('services')->select('service_price')->where('package_id', $gig->service_package)->get();
-        $totalMoney = 0;
-        for($x=0; $x<count($totalQty); $x++){
-            $totalMoney += $totalQty[$x]->service_qty*$totalPrice[$x]->service_price;
-        }
-        $now = date('M | d | Y');
-        DB::table('invoices')->insert(['gig_id' => $gigId, 'user_id' => $gig->user_id, 'date' => $now, 'total' => $totalMoney, 'paid' => 'No', 'name' => $gig->gig_name, 'client' => $gig->client_id, 'service_package' => $gig->service_package]);
+        if(isset($request->add_gig_package)) {
+            $totalQty = DB::table('services')->select('service_qty')->where('package_id', $gig->service_package)->get();
+            $totalPrice = DB::table('services')->select('service_price')->where('package_id', $gig->service_package)->get();
+            $totalMoney = 0;
+            for ($x = 0; $x < count($totalQty); $x++) {
+                $totalMoney += $totalQty[$x]->service_qty * $totalPrice[$x]->service_price;
+            }
+            $now = date('M | d | Y');
+            DB::table('invoices')->insert(['gig_id' => $gigId, 'user_id' => $gig->user_id, 'date' => $now, 'total' => $totalMoney, 'paid' => 'No', 'name' => $gig->gig_name, 'client' => $gig->client_id, 'service_package' => $gig->service_package]);
+        }   
         return redirect()->back();
 
 
