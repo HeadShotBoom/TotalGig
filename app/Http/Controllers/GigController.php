@@ -101,7 +101,10 @@ class GigController extends Controller {
 		$gig->notes = $request->add_gig_notes;
 		$gig->save();
 		$gigId = $gig->id;
-		if(isset($request->add_gig_employees)) {
+        $employees = $request->add_gig_employees;
+        $thisGear = $request->add_gig_gear;
+        $thisPackage = $request->add_gig_package;
+		if(isset($employees)) {
             foreach ($request->add_gig_employees as $employee) {
                 DB::table('employee_gig')->insert(['employee_id' => $employee, 'gig_id' => $gigId]);
                 $data['name'] = DB::table('employees')->where('id', $employee)->pluck('name');
@@ -115,12 +118,12 @@ class GigController extends Controller {
                 });
             }
         }
-        if(isset($request->add_gig_gear)) {
+        if(isset($thisGear)) {
             foreach ($request->add_gig_gear as $gear) {
                 DB::table('gears_gig')->insert(['gear_id' => $gear, 'gig_id' => $gigId]);
             }
         }
-        if(isset($request->add_gig_package)) {
+        if(isset($thisPackage)) {
             $totalQty = DB::table('services')->select('service_qty')->where('package_id', $gig->service_package)->get();
             $totalPrice = DB::table('services')->select('service_price')->where('package_id', $gig->service_package)->get();
             $totalMoney = 0;
@@ -174,8 +177,11 @@ class GigController extends Controller {
         $updatedGig->gig_date = $request->edit_gig_date;
         $updatedGig->notes = $request->edit_gig_notes;
         $updatedGig->save();
+        $thisEmployees = $request->edit_gig_employees;
+        $thisGear = $request->edit_gig_gear;
+        $thisPackage = $request->edit_gig_package;
         DB::table('employee_gig')->where('gig_id', $request->edit_gig_id)->delete();
-        if(isset($request->edit_gig_employees)) {
+        if(isset($thisEmployees)) {
             foreach ($request->edit_gig_employees as $employee) {
                 DB::table('employee_gig')->insert(['employee_id' => $employee, 'gig_id' => $request->edit_gig_id]);
                 $data['name'] = DB::table('employees')->where('id', $employee)->pluck('name');
@@ -190,12 +196,12 @@ class GigController extends Controller {
             }
             DB::table('gears_gig')->where('gig_id', $request->edit_gig_id)->delete();
         }
-        if(isset($request->edit_gig_gear)) {
+        if(isset($thisGear)) {
             foreach ($request->edit_gig_gear as $gear) {
                 DB::table('gears_gig')->insert(['gear_id' => $gear, 'gig_id' => $request->edit_gig_id]);
             }
         }
-        if(isset($request->edit_gig_package)) {
+        if(isset($thisPackage)) {
             $totalQty = DB::table('services')->select('service_qty')->where('package_id', $updatedGig->service_package)->get();
             $totalPrice = DB::table('services')->select('service_price')->where('package_id', $updatedGig->service_package)->get();
             $totalMoney = 0;

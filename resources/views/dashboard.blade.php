@@ -53,7 +53,7 @@
                     <img class="gig-icon" data-category-id={{ $gig->category }} src={{ asset('img/other.png') }} alt="gear Name" />
                     @endif
                     <h1>{{ $gig->gig_name }}</h1></a>
-                    <h2><a href="/clients">Alta Alred</a></h2>
+                    <h2><a href="/clients"><?php $clientName = DB::table('clients')->where('id', $gig->client_id)->pluck('name'); echo $clientName; ?></a></h2>
                     <p><?php $newDate = date("M | d | Y", strtotime($gig->gig_date)); echo $newDate; ?></p> <!-- Use PHP date() function to convert for format. For example $newDate = date("M | d | Y", strtotime($originalDate)); -->
                 </div>
                 @endforeach

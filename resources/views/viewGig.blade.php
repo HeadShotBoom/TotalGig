@@ -120,6 +120,7 @@
             <div class="row">
 
                 <div class="four columns gig-invoice-contract">
+                    @if(isset($invoiceInfo[0]->paid))
                     <div class="gig-invoice" data-invoice-id={{ $gig[0]->id }}>
                         <h1>Invoice</h1>
                         <p>Payment Received?</p>
@@ -127,7 +128,12 @@
                         <a class="action-icon" href="/invoices/{{ $invoiceInfo[0]->id }}/download"><img src={{ asset('img/download-large.png') }} alt="Download" title="Download"></a><!-- INSERT DOWNLOAD HREF -->
                         <a class="action-icon" target="_blank" href="/invoices/{{ $invoiceInfo[0]->id }}/print"><img src={{ asset('img/print-large.png') }} alt="Print" title="Print"></a><!-- INSERT PRINT  HREF -->
                     </div><!-- gig-invoice -->
-
+                    @else
+                    <div class="gig-invoice" data-invoice-id='None'>
+                        <h1>Invoice</h1>
+                        <p>You have not created an invoice for this package</p>
+                    </div><!-- gig-invoice -->
+                    @endif
                     <div class="gig-contract" data-contract-id="0">
                         <h1>Contract</h1>
                         <p class="">Item Signed</p>
