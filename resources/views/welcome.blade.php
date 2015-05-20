@@ -11,6 +11,9 @@
         <div class="four columns"><a href="#" id="header-logo">Total Gig</a></div>
         <div class="twelve columns">
             <ul id="main_nav">
+                @if(Session::has('message'))
+                <li><span>{{ Session::get('message') }}</span></li>
+                @endif
                 <li><span class="modal-trigger" data-modal="sign-in">Sign In</span></li>
                 <li><span class="modal-trigger" data-modal="sign-up">Sign Up</span></li>
             </ul>

@@ -137,9 +137,9 @@
                     <div class="gig-contract" data-contract-id="0">
                         <h1>Contract</h1>
                         <p class="">Item Signed</p>
-                        <p class="collection-options"><a class="currently-selected" href="#">Yes</a><a href="#">No</a></p><!-- INSERT HREFS, NOTE 'currently-selected' class. -->
-                        <a class="action-icon" href="#"><img src={{ asset('img/download-large.png') }} alt="Download" title="Download"></a><!-- INSERT DOWNLOAD HREF -->
-                        <a class="action-icon" href="#"><img src={{ asset('img/print-large.png') }} alt="Print" title="Print"></a><!-- INSERT PRINT  HREF -->
+                        <p class="collection-options"><a @if($gig[0]->contract === 1) class="currently-selected" @endif href="/gigs/contract/{{$gig[0]->id}}/toggle">Yes</a><a @if($gig[0]->contract === 0) class="currently-selected" @endif href="/gigs/contract/{{$gig[0]->id}}/toggle">No</a></p><!-- INSERT HREFS, NOTE 'currently-selected' class. -->
+                        <a class="action-icon" href="/gigs/contract/{{$gig[0]->id}}/download"><img src={{ asset('img/download-large.png') }} alt="Download" title="Download"></a><!-- INSERT DOWNLOAD HREF -->
+                        <a class="action-icon" href="/gigs/contract/{{$gig[0]->id}}/print"><img src={{ asset('img/print-large.png') }} alt="Print" title="Print"></a><!-- INSERT PRINT  HREF -->
                     </div><!-- gig-contract -->
                 </div><!-- gig-invoice-contract -->
 

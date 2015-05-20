@@ -11,6 +11,7 @@ use App\Gear;
 use Illuminate\Http\Request;
 use DB;
 use Mail;
+use PDF;
 
 class GigController extends Controller {
 
@@ -231,6 +232,65 @@ class GigController extends Controller {
         $gigId = filter_var($uri, FILTER_SANITIZE_NUMBER_INT);
         DB::table('gigs')->where('id', $gigId)->delete();
         return redirect('gigs');
+    }
+
+    public function downloadContract(Request $request)
+    {
+        $uri = $request->url();
+        $gigId = filter_var($uri, FILTER_SANITIZE_NUMBER_INT);
+        $stuff = DB::table('gigs')->where('id', $gigId)->get();
+        $data = [];
+        $data['created_date'] = date("m/d/Y", strtotime($stuff[0]->created_at));
+        $data['client_name'] = DB::table('clients')->where('id' , $stuff[0]->client_id)->pluck('name');
+        $data['client_location'] = DB::table('clients')->where('id' , $stuff[0]->client_id)->pluck('address');
+        $data['client_number'] = DB::table('clients')->where('id' , $stuff[0]->client_id)->pluck('phone');
+        $userInfo = DB::table('users')->where('id', $stuff[0]->user_id)->get();
+        $data['user_name'] = $userInfo[0]->name;
+        $data['user_business'] = $userInfo[0]->business;
+        $data['user_email'] = $userInfo[0]->email;
+        $services = DB::table('services')->where('package_id', $stuff[0]->service_package)->get();
+        for($i=0; $i<count($services); $i++){
+            $data['services'][$i] = $services[$i];
+        }
+        $pdf = PDF::loadView('pdf.contract', $data);
+        return $pdf->download('contract.pdf');
+    }
+
+    public function printPdf(Request $request)
+    {
+        $uri = $request->url();
+        $gigId = filter_var($uri, FILTER_SANITIZE_NUMBER_INT);
+        $stuff = DB::table('gigs')->where('id', $gigId)->get();
+        $data = [];
+        $data['created_date'] = date("m/d/Y", strtotime($stuff[0]->created_at));
+        $data['client_name'] = DB::table('clients')->where('id' , $stuff[0]->client_id)->pluck('name');
+        $data['client_location'] = DB::table('clients')->where('id' , $stuff[0]->client_id)->pluck('address');
+        $data['client_number'] = DB::table('clients')->where('id' , $stuff[0]->client_id)->pluck('phone');
+        $userInfo = DB::table('users')->where('id', $stuff[0]->user_id)->get();
+        $data['user_name'] = $userInfo[0]->name;
+        $data['user_business'] = $userInfo[0]->business;
+        $data['user_email'] = $userInfo[0]->email;
+        $services = DB::table('services')->where('package_id', $stuff[0]->service_package)->get();
+        for($i=0; $i<count($services); $i++){
+            $data['services'][$i] = $services[$i];
+        }
+
+        return view('partial.contract', compact('data'));
+    }
+
+    public function toggleContract(Request $request)
+    {
+        $uri = $request->url();
+        $gigId = filter_var($uri, FILTER_SANITIZE_NUMBER_INT);
+        $signed = DB::table('gigs')->where('id', $gigId)->pluck('contract');
+        if($signed === 0){
+            DB::table('gigs')->where('id', $gigId)->update(['contract' => 1]);
+        }elseif($signed === 1){
+            DB::table('gigs')->where('id', $gigId)->update(['contract' => 0]);
+        }else {
+            DB::table('gigs')->where('id', $gigId)->update(['contract' => 0]);
+        }
+        return redirect()->back();
     }
 
 }
