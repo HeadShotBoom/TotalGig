@@ -580,7 +580,7 @@
 					<name>add_employee_email</name>
 					<id>employee-email</id>
 					<placeholder>Email</placeholder>
-					<required></required>
+					<required>required</required>
 					<onblur>validateInput('#add-employee-email')</onblur>
 					<field-requirements></field-requirements>
 				</email>
@@ -654,7 +654,7 @@
 					<name>edit_employee_email</name>
 					<id>edit-employee-email</id>
 					<placeholder>Email</placeholder>
-					<required></required>
+					<required>required</required>
 					<onblur>validateInput('#edit-employee-email')</onblur>
 					<field-requirements></field-requirements>
 				</email>
@@ -720,7 +720,7 @@
 					<name>add_client_email</name>
 					<id>client-email</id>
 					<placeholder>Email</placeholder>
-					<required></required>
+					<required>required</required>
 					<onblur>validateInput('#add-client-email')</onblur>
 					<field-requirements></field-requirements>
 				</email>
@@ -783,7 +783,7 @@
 					<name>edit_client_email</name>
 					<id>client-email</id>
 					<placeholder>Email</placeholder>
-					<required></required>
+					<required>required</required>
 					<onblur>validateInput('#edit-client-email')</onblur>
 					<field-requirements></field-requirements>
 				</email>
